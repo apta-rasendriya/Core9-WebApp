@@ -1,0 +1,34 @@
+/* Book a Demo popup (partials/demo.html, js/site.js) */
+.demo-modal { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 20px; }
+.demo-modal[hidden] { display: none; }
+.demo-modal__backdrop {
+  position: absolute; inset: 0; background: rgba(8, 5, 14, 0.72);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  animation: demo-fade 0.3s var(--ease) both;
+}
+.demo-modal__panel {
+  position: relative; width: min(560px, 100%); max-height: calc(100dvh - 40px); overflow-y: auto;
+  padding: clamp(28px, 5vw, 44px); border-radius: 24px;
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--line-2); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--p-glow);
+  animation: demo-rise 0.45s var(--ease) both;
+  overscroll-behavior: contain;
+}
+.demo-modal__close {
+  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  color: var(--muted); background: rgba(255, 255, 255, 0.04); border: 1px solid var(--line-2);
+  transition: color 0.2s, background 0.2s;
+}
+.demo-modal__close:hover { color: var(--text); background: rgba(255, 255, 255, 0.09); }
+.demo-modal .eyebrow { margin-bottom: 16px; }
+.demo-modal__title { font-family: var(--ff); font-weight: 500; font-size: clamp(24px, 4vw, 32px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 10px; color: var(--text); }
+.demo-modal__lead { color: var(--muted); font-size: 15px; line-height: 1.55; margin: 0 0 22px; }
+/* HubSpot renders its own iframe here; it is light by default, so frame it like a card */
+.demo-modal__form { min-height: 560px; border-radius: 14px; overflow: hidden; background: #fff; }
+
+body.demo-open { overflow: hidden; }
+
+@keyframes demo-fade { from { opacity: 0; } }
+@keyframes demo-rise { from { opacity: 0; transform: translateY(18px) scale(0.98); } }
+@media (prefers-reduced-motion: reduce) { .demo-modal__backdrop, .demo-modal__panel { animation: none; } }

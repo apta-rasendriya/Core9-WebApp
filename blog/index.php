@@ -1,101 +1,95 @@
 <?php
 declare(strict_types=1);
 
+// The main site links to articles as /insights/?article=<slug>, because its
+// bundler can't link to .php files; serve those from article.php.
+if (isset($_GET['article'])) {
+    $_GET['slug'] = (string) $_GET['article'];
+    require __DIR__ . '/article.php';
+    exit;
+}
+
 require __DIR__ . '/config/config.php';
 require __DIR__ . '/src/Database.php';
 require __DIR__ . '/src/helpers.php';
 require __DIR__ . '/src/ArticleRepository.php';
 require __DIR__ . '/src/CategoryRepository.php';
+require __DIR__ . '/partials/card.php';
 
 $categoryRepo = new CategoryRepository();
 $articleRepo = new ArticleRepository();
 
 $activeCategorySlug = isset($_GET['category']) ? (string) $_GET['category'] : null;
 $activeCategory = $activeCategorySlug ? $categoryRepo->findBySlug($activeCategorySlug) : null;
-if ($activeCategorySlug !== null && $activeCategory === null) {
+if ($activeCategory === null) {
     $activeCategorySlug = null;
 }
 
 $page = max(1, (int) ($_GET['page'] ?? 1));
 
-$categories = $categoryRepo->all();
+$categories = array_filter($categoryRepo->withPublishedCounts(), fn ($c) => (int) $c['article_count'] > 0);
+$totalPublished = array_sum(array_map(fn ($c) => (int) $c['article_count'], $categories));
 $featured = $articleRepo->featured();
 $showFeatured = $featured !== null && $page === 1 && $activeCategorySlug === null;
 
-$result = $articleRepo->allPublished($activeCategorySlug, $page, ARTICLES_PER_PAGE, $featured['id'] ?? null);
+// the featured article only leaves the grid when it is shown above it
+$result = $articleRepo->allPublished($activeCategorySlug, $page, ARTICLES_PER_PAGE, $showFeatured ? $featured['id'] : null);
 $articles = $result['items'];
 $totalPages = max(1, (int) ceil($result['total'] / ARTICLES_PER_PAGE));
 
-function page_url(int $page, ?string $category): string
+function listing_url(?string $category, int $page = 1): string
 {
-    $params = ['page' => $page];
-    if ($category) {
-        $params['category'] = $category;
-    }
-    return '?' . http_build_query($params);
+    $params = array_filter(['category' => $category, 'page' => $page > 1 ? $page : null]);
+    return $params ? '?' . http_build_query($params) : 'index.php';
 }
 
-function category_url(?string $slug): string
-{
-    return $slug ? '?' . http_build_query(['category' => $slug]) : '?';
-}
-
-if (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest') {
-    ob_start();
-    require __DIR__ . '/partials/results.php';
-    $html = ob_get_clean();
-
-    header('Content-Type: application/json');
-    echo json_encode([
-        'html' => $html,
-        'total' => $result['total'],
-        'page' => $page,
-        'totalPages' => $totalPages,
-        'category' => $activeCategorySlug,
-    ]);
-    exit;
-}
+$pageTitle = $activeCategory ? $activeCategory['name'] . ' | ' . SITE_NAME : SITE_NAME;
+$pageDescription = 'Practical perspective from the team deploying AI monitoring across enterprise fleets, warehouses and stores: what actually moves cost, risk and uptime.';
+require __DIR__ . '/partials/head.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title><?= e(SITE_NAME) ?></title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/style.css?v=<?= filemtime(__DIR__ . '/assets/css/style.css') ?>" />
-</head>
-<body>
-  <?php require __DIR__ . '/partials/site-nav.php'; ?>
-  <div class="hub">
-    <div class="hub-wrap">
-
-
-      <header class="hub-head">
-        <p class="hub-kicker">Core9 Insights</p>
-        <h1 class="hub-h1">Field notes on fleet safety, <em>telematics</em>, and supply-chain visibility.</h1>
-        <p class="hub-lede">Practical perspective from the team deploying AI monitoring across enterprise fleets, warehouses, and cold chains — what actually moves cost, risk, and uptime.</p>
-        <div class="hub-chips" id="chips">
-          <a class="chip <?= $activeCategorySlug === null ? 'active' : '' ?>" data-category="" href="<?= e(category_url(null)) ?>">All</a>
-          <?php foreach ($categories as $category): ?>
-            <a class="chip <?= $activeCategorySlug === $category['slug'] ? 'active' : '' ?>" data-category="<?= e($category['slug']) ?>" href="<?= e(category_url($category['slug'])) ?>"><?= e($category['name']) ?></a>
-          <?php endforeach; ?>
-        </div>
-      </header>
-
-      <div id="results" class="results">
-        <?php require __DIR__ . '/partials/results.php'; ?>
-      </div>
-
-      <footer class="hub-foot">
-        <div class="fl"><span>&copy; <?= date('Y') ?> Core9. All Rights Reserved.</span></div>
-        <div class="fr"><a href="/?scrollTo=section_3&amp;type=id">Products</a><a href="/?scrollTo=client_section&amp;type=class">Clients</a><a href="mailto:info@core9.ai">Contact</a></div>
-      </footer>
-
-    </div>
+<main>
+<section class="hero tkhero ins-hero" id="hero" aria-label="Insights">
+  <div class="tkhero__bg" aria-hidden="true"></div>
+  <div class="wrap tkhero__inner">
+    <nav class="crumbs" aria-label="Breadcrumb" data-hero-in><a href="/">Home</a><i></i><b>Insights</b></nav>
+    <span class="ihero__eyebrow" data-hero-in>Core9 Insights</span>
+    <h1 id="heroTitle" data-shiny="road,|floor|shelf.">Field notes from the road, the floor and the shelf.</h1>
+    <p class="hero__sub">Practical perspective from the team deploying AI monitoring across enterprise fleets, warehouses and stores: what actually moves cost, risk and uptime.</p>
   </div>
-  <script src="assets/js/main.js"></script>
-</body>
-</html>
+</section>
+
+<section class="ifeed" id="articles" aria-label="Articles">
+  <div class="wrap">
+    <nav class="ifilters" aria-label="Filter by topic" data-reveal>
+      <a class="ifilter<?= $activeCategorySlug === null ? ' is-on' : '' ?>" href="<?= e(listing_url(null)) ?>#articles"<?= $activeCategorySlug === null ? ' aria-current="page"' : '' ?>>All<i><?= $totalPublished ?></i></a>
+      <?php foreach ($categories as $category): $on = $activeCategorySlug === $category['slug']; ?>
+        <a class="ifilter<?= $on ? ' is-on' : '' ?>" href="<?= e(listing_url($category['slug'])) ?>#articles"<?= $on ? ' aria-current="page"' : '' ?>><?= e($category['name']) ?><i><?= (int) $category['article_count'] ?></i></a>
+      <?php endforeach; ?>
+    </nav>
+
+    <?php if ($showFeatured): ?>
+      <div class="ifeed__feat"><?= article_card($featured, true) ?></div>
+    <?php endif; ?>
+
+    <div class="ifeed__head" data-reveal><span><?= $activeCategory ? e($activeCategory['name']) : 'Latest insights' ?></span><b><?= (int) $result['total'] ?></b></div>
+
+    <?php if (empty($articles)): ?>
+      <p class="ifeed__empty">No articles here yet.</p>
+    <?php else: ?>
+      <div class="agrid">
+        <?php foreach ($articles as $article): ?><?= article_card($article) ?><?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if ($totalPages > 1): ?>
+      <nav class="pager" aria-label="Pages">
+        <a class="pager__arr<?= $page <= 1 ? ' is-off' : '' ?>" href="<?= e(listing_url($activeCategorySlug, $page - 1)) ?>#articles" aria-label="Previous page"><svg class="arr"><use href="#i-arrow"/></svg></a>
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+          <a class="<?= $i === $page ? 'is-on' : '' ?>" href="<?= e(listing_url($activeCategorySlug, $i)) ?>#articles"<?= $i === $page ? ' aria-current="page"' : '' ?>><?= $i ?></a>
+        <?php endfor; ?>
+        <a class="pager__arr<?= $page >= $totalPages ? ' is-off' : '' ?>" href="<?= e(listing_url($activeCategorySlug, $page + 1)) ?>#articles" aria-label="Next page"><svg class="arr"><use href="#i-arrow"/></svg></a>
+      </nav>
+    <?php endif; ?>
+  </div>
+</section>
+<?php require __DIR__ . '/partials/foot.php'; ?>

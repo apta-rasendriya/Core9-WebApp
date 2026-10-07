@@ -1,20 +1,23 @@
 # Core9 Insights — Blog
 
 A plain PHP + MySQL blog/article hub, built to live as a subfolder of a
-larger site (e.g. `yoursite.com/blog/`). No framework — just PDO and
+larger site. On core9.ai it is served at `/insights/`. No framework — just PDO and
 sessions for the admin area, with query-string URLs (no rewrite rules
 required).
 
 ## Structure
 
 Everything needed to serve the site sits flat in this folder, so it can be
-dropped into another site's docroot as-is (e.g. `htdocs/blog/`) and just
-works at `/blog/`.
+dropped into another site's docroot as-is (on core9.ai it is deployed as
+`/insights/`) and just works there.
 
 ```
-index.php           Homepage (featured article + paginated, filterable grid)
+index.php           Listing (featured article + paginated, filterable grid);
+                    also serves ?article=<slug>, the link format the main site uses
 article.php          Article detail page (?slug=...)
-assets/css, assets/js, assets/img
+partials/            head/foot, article card, icon sprite, and nav/footer/demo popup
+                    (nav.php, footer.php, demo.php are generated, see Look & feel)
+assets/css, assets/js, assets/logos, assets/img
 admin/                Password-protected admin panel
   setup.php           One-time first-run wizard to create the admin account
   login.php / logout.php
@@ -28,7 +31,7 @@ uploads/headers/       Uploaded article header images
 
 config/config.php     DB credentials, loaded from .env  (not web-accessible)
 src/                   PHP classes: Database, Auth, ArticleRepository, CategoryRepository, ImageUpload, helpers  (not web-accessible)
-database/              schema.sql (tables) + seed.sql (sample content)  (not web-accessible)
+database/              schema.sql (tables) + seed.sql (the six launch articles)  (not web-accessible)
 ```
 
 `config/`, `src/`, and `database/` stay inside this folder (so the whole
@@ -65,8 +68,8 @@ something else.
    ```
 
 3. **Drop it in.** Place this whole folder inside your main site's docroot,
-   named however you want the URL to read — e.g. `htdocs/blog/` gives you
-   `yoursite.com/blog/`.
+   named `insights` — the main site links to `/insights/`, so `htdocs/insights/` gives you
+   `yoursite.com/insights/`.
 
    For local testing without a full Apache setup, PHP's built-in server
    works too — run it *from this folder*:
@@ -75,7 +78,7 @@ something else.
    php -S localhost:8000
    ```
 
-4. Visit `http://localhost:8000/` (or `yoursite.com/blog/`) for the public site.
+4. Visit `http://localhost:8000/` (or `yoursite.com/insights/`) for the public site.
 
 5. Visit `.../admin/` — since no admin account exists yet, you'll land on
    the setup wizard. Create a username and password there, then log in.
@@ -84,7 +87,7 @@ something else.
 
 This blog lives inside the Core9-web project, so the Docker setup is at the
 project root (`../compose.yaml`). It serves the main site at `/` and this
-blog at `/blog/`, the same way they're deployed. It doesn't use or modify
+blog at `/insights/`, the same way they're deployed. It doesn't use or modify
 `.env`. From the Core9-web folder:
 
 ```
@@ -94,8 +97,8 @@ docker compose up -d --build
 ```
 
 - Site: http://localhost:8090/
-- Blog: http://localhost:8090/blog/
-- Admin: http://localhost:8090/blog/admin/
+- Blog: http://localhost:8090/insights/
+- Admin: http://localhost:8090/insights/admin/
 - phpMyAdmin: http://localhost:8091/
 
 On first start the database is created from `database/schema.sql` +
@@ -103,13 +106,20 @@ On first start the database is created from `database/schema.sql` +
 `npm run b` again. `docker compose down` stops it; `docker compose down -v`
 also wipes the database so it re-seeds on the next start.
 
-### Navigation
+### Look & feel
 
-The navbar in `partials/site-nav.php` mirrors the main site's navbar
-(`../src/index.html`, `../src/partials/mobile-nav.html`) and links back to it
-with root-absolute URLs (`/`, `/drivesense/`, `/?scrollTo=...`). If the main
-site's menu changes, update this partial to match. "Book a Demo" links to
-`/?demo=1`, which opens the main site's demo form.
+The blog uses the main site's design. Its shared pieces are copied from
+`../src` by `npm run sync-blog` (also run by `npm run b`):
+
+- `assets/css/{fonts,main,site,demo}.css`, `assets/js/{main,site}.js`,
+  `assets/js/vendor/`, `assets/logos/*.svg`
+- `partials/nav.php`, `partials/footer.php`, `partials/demo.php`, generated
+  from `../src/partials/`
+
+Edit the originals in `../src` and re-run the sync; don't edit those copies.
+Blog-only styles live in `assets/css/insights.css` (the design's Insights
+styles) and `assets/css/blog.css` (placeholder images, pager, small fixes).
+Every "Book a Demo" button opens the HubSpot demo form in a popup.
 
 ## Notes
 
@@ -122,14 +132,18 @@ site's menu changes, update this partial to match. "Book a Demo" links to
   the admin panel.
 - **Pagination**: 6 articles per page (excluding the featured one), controlled
   by `ARTICLES_PER_PAGE` in `config/config.php`.
-- **Article page**: full-bleed hero banner, breadcrumb, a sidebar with an
-  optional stat callout and pull-quote (leave those fields blank in the admin
+- **Article page**: header image, breadcrumb, contents list, a sidebar with an
+  optional stat callout and pull-quote plus a Toolkit calculator picked from
+  the category (leave those fields blank in the admin
   form to hide them), a CTA box, and a "More insights" grid of related
   articles (same category first, backfilled with the most recent otherwise).
 - **Content format**: the article body is plain text in the admin form —
-  leave a blank line between paragraphs. A lightweight markdown-lite syntax
-  is also supported: a line starting with `## ` becomes a heading, and
-  consecutive lines starting with `- ` become a bullet list. Everything is
+  leave a blank line between blocks. A lightweight markdown-lite syntax is
+  supported: `## ` and `### ` start a heading or subheading (these also build
+  the article's "In this article" contents), lines starting with `- ` become
+  a bullet list, `**bold**` works anywhere, lines like `| a | b |` become a
+  table (first line is the header; a row whose first cell is `**bold**` is
+  highlighted), and a line starting with `> ` becomes a small note. Everything is
   escaped before rendering, so there's no HTML/script injection risk from the
   admin form.
 - **Auth security**: passwords are hashed with `password_hash()`, admin forms
@@ -161,8 +175,8 @@ If you deploy behind **Nginx** or another server that ignores `.htaccess`,
 add explicit rules to deny those paths instead — for Nginx, something like:
 
 ```nginx
-location ~ ^/blog/(config|src|database)/ { deny all; }
-location ~ /blog/\.env$ { deny all; }
+location ~ ^/insights/(config|src|database)/ { deny all; }
+location ~ /insights/\.env$ { deny all; }
 ```
 
 When in doubt, you can always move `config/`, `src/`, and `database/` fully

@@ -15,3 +15,5 @@ Thumbs.db
 # Optional: IDE files (uncomment if needed)
 # .vscode/
 # .idea/
+# Design source (compiled v2 mockup, 48 MB) — kept locally, not in git
+Core9_Website_v2_compiled.html

@@ -1,11 +1,11 @@
 # Local preview of the full site with Docker: the main site at "/" and the
-# blog at "/blog/", the same way they're deployed together.
+# blog at "/insights/", the same way they're deployed together.
 #
 #   npm run b                     (build the main site into build/)
 #   docker compose up -d --build
 #   Site:       http://localhost:8090/
-#   Blog:       http://localhost:8090/blog/
-#   Blog admin: http://localhost:8090/blog/admin/
+#   Blog:       http://localhost:8090/insights/
+#   Blog admin: http://localhost:8090/insights/admin/
 #   phpMyAdmin: http://localhost:8091/
 #
 # Re-run `npm run b` after changing the main site; blog changes show up on

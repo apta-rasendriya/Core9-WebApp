@@ -5,14 +5,3 @@
 <FilesMatch "^\.">
     Require all denied
 </FilesMatch>
-
-# Pretty article URLs: /blog/<slug>/ -> article.php?slug=<slug>
-# (the main site links to articles this way). Assumes the blog is served at
-# /blog/; change RewriteBase if it lives elsewhere.
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /blog/
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^([a-z0-9-]+)/?$ article.php?slug=$1 [L,QSA]
-</IfModule>

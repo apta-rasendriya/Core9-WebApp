@@ -191,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="form-row">
         <label for="content">Content</label>
         <textarea id="content" name="content" rows="16" required><?= e($values['content']) ?></textarea>
-        <span class="hint">Plain text. Leave a blank line between paragraphs. A line starting with "## " becomes a heading; lines starting with "- " become a bullet list.</span>
+        <span class="hint">Plain text. Leave a blank line between blocks. Start a line with "## " for a heading or "### " for a subheading; lines starting with "- " become a bullet list; wrap words in **double asterisks** for bold. A table is lines like "| Column | Column |" (first line is the header; a row whose first cell is **bold** is highlighted). A line starting with "> " becomes a small note.</span>
       </div>
 
       <div class="form-row two">

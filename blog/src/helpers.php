@@ -23,10 +23,32 @@ function format_date(?string $datetime): string
 }
 
 /**
+ * Escapes a line of article text and turns **bold** into <strong>.
+ */
+function render_inline(string $text): string
+{
+    return preg_replace('/\*\*(.+?)\*\*/', '<strong>$1</strong>', e($text));
+}
+
+/**
+ * Anchor id for an article heading, used by the table of contents.
+ */
+function heading_id(string $heading): string
+{
+    return substr(slugify($heading), 0, 60);
+}
+
+/**
  * Renders plain-text article content to HTML, supporting a small
  * markdown-lite syntax on top of blank-line-separated paragraphs:
- *   "## Heading"   -> <h2>Heading</h2>
- *   "- item" lines -> <ul><li>item</li>...</ul>
+ *   "## Heading"     -> <h2 id="heading">Heading</h2>
+ *   "### Subheading" -> <h3 id="subheading">Subheading</h3>
+ *   "- item" lines   -> <ul><li>item</li>...</ul>
+ *   "| a | b |" lines -> a table; the first row is the header, a "| --- |"
+ *                       row after it is optional, and a row whose first cell
+ *                       is **bold** is highlighted
+ *   "> text"         -> a small note (e.g. under a table)
+ *   "**bold**"       -> <strong> anywhere in a line
  * Everything else is escaped, so there's no HTML/script injection risk.
  */
 function render_article_content(string $text): string
@@ -42,12 +64,24 @@ function render_article_content(string $text): string
 
         $lines = preg_split('/\r\n|\n|\r/', $block);
 
-        if (str_starts_with($lines[0], '## ')) {
-            $html .= '<h2>' . e(trim(substr($lines[0], 3))) . "</h2>\n";
+        if (preg_match('/^(#{2,3}) (.+)$/', $lines[0], $m)) {
+            $tag = strlen($m[1]) === 2 ? 'h2' : 'h3';
+            $html .= '<' . $tag . ' id="' . e(heading_id($m[2])) . '">' . render_inline(trim($m[2])) . '</' . $tag . ">\n";
             $rest = trim(implode("\n", array_slice($lines, 1)));
             if ($rest !== '') {
-                $html .= '<p>' . nl2br(e($rest)) . "</p>\n";
+                $html .= '<p>' . nl2br(render_inline($rest)) . "</p>\n";
             }
+            continue;
+        }
+
+        if (str_starts_with($lines[0], '|')) {
+            $html .= render_table($lines);
+            continue;
+        }
+
+        if (str_starts_with($lines[0], '> ')) {
+            $note = implode("\n", array_map(fn ($l) => preg_replace('/^>\s?/', '', $l), $lines));
+            $html .= '<p class="note">' . nl2br(render_inline($note)) . "</p>\n";
             continue;
         }
 
@@ -62,16 +96,88 @@ function render_article_content(string $text): string
         if ($isList) {
             $html .= "<ul>\n";
             foreach ($lines as $line) {
-                $html .= '<li>' . e(trim(substr(trim($line), 2))) . "</li>\n";
+                $html .= '<li>' . render_inline(trim(substr(trim($line), 2))) . "</li>\n";
             }
             $html .= "</ul>\n";
             continue;
         }
 
-        $html .= '<p>' . nl2br(e($block)) . "</p>\n";
+        $html .= '<p>' . nl2br(render_inline($block)) . "</p>\n";
     }
 
     return $html;
+}
+
+/**
+ * Renders "| a | b |" lines (see render_article_content) as a table.
+ */
+function render_table(array $lines): string
+{
+    $rows = [];
+    foreach ($lines as $line) {
+        $line = trim($line);
+        if (preg_match('/^\|[\s:|-]+\|?$/', $line)) {
+            continue; // "| --- | --- |" separator
+        }
+        $rows[] = array_map('trim', explode('|', trim($line, '|')));
+    }
+    if (!$rows) {
+        return '';
+    }
+
+    $html = "<div class=\"atable\"><table>\n<thead><tr>";
+    foreach (array_shift($rows) as $cell) {
+        $html .= '<th>' . render_inline($cell) . '</th>';
+    }
+    $html .= "</tr></thead>\n<tbody>\n";
+    foreach ($rows as $cells) {
+        $first = array_shift($cells) ?? '';
+        $highlight = (bool) preg_match('/^\*\*(.+)\*\*$/', $first, $m);
+        $html .= '<tr' . ($highlight ? ' class="hl"' : '') . '><th scope="row">' . e($highlight ? $m[1] : $first) . '</th>';
+        foreach ($cells as $cell) {
+            $html .= '<td>' . render_inline($cell) . '</td>';
+        }
+        $html .= "</tr>\n";
+    }
+    return $html . "</tbody>\n</table></div>\n";
+}
+
+/**
+ * Table of contents for an article: its ## headings, each with the ###
+ * headings under it. Returns [['id', 'text', 'children' => [...]], ...].
+ */
+function article_toc(string $text): array
+{
+    $toc = [];
+    preg_match_all('/^(#{2,3}) (.+)$/m', $text, $matches, PREG_SET_ORDER);
+    foreach ($matches as [, $hashes, $heading]) {
+        $heading = trim(str_replace('**', '', $heading));
+        $item = ['id' => heading_id($heading), 'text' => $heading, 'children' => []];
+        if ($hashes === '##' || !$toc) {
+            $toc[] = $item;
+        } else {
+            $toc[count($toc) - 1]['children'][] = $item;
+        }
+    }
+    return $toc;
+}
+
+/**
+ * Toolkit calculator to suggest beside an article, picked from its category.
+ */
+function article_tool(?string $categorySlug): array
+{
+    $slug = $categorySlug ?? '';
+    if (str_contains($slug, 'fleet')) {
+        return ['/toolkit/fleet-risk-savings/', 'Fleet Risk & Savings Calculator'];
+    }
+    if (str_contains($slug, 'retail')) {
+        return ['/toolkit/shelf-audit-roi/', 'Shelf Audit ROI Calculator'];
+    }
+    if (str_contains($slug, 'safety') || str_contains($slug, 'warehouse')) {
+        return ['/toolkit/safety-efficiency-roi/', 'Safety & Efficiency ROI Calculator'];
+    }
+    return ['/toolkit/pilot-planner/', 'Pilot Planner'];
 }
 
 function redirect(string $path): never

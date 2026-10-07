@@ -1,0 +1,45 @@
+/* Blog-only additions on top of the site design (insights.css):
+   image placeholder for articles without one, link filters, and the pager. */
+
+/* card without an uploaded image: label on the card's own gradient, tinted by thumb_tone */
+.acard__ph {
+  position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 16px 18px;
+  font-family: var(--ff-tech); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(245, 242, 251, 0.6);
+  background: linear-gradient(150deg, var(--t1, rgba(117, 90, 161, 0.32)), transparent 75%);
+}
+.acard__ph[data-tone="gold"]   { --t1: rgba(216, 155, 33, 0.3); }
+.acard__ph[data-tone="teal"]   { --t1: rgba(54, 138, 160, 0.32); }
+.acard__ph[data-tone="rose"]   { --t1: rgba(176, 72, 112, 0.3); }
+.acard__ph[data-tone="sage"]   { --t1: rgba(96, 150, 108, 0.28); }
+.acard__ph[data-tone="steel"]  { --t1: rgba(96, 116, 168, 0.3); }
+.acard__ph[data-tone="ember"]  { --t1: rgba(192, 108, 56, 0.3); }
+
+/* filters are links here (filtered by index.php), not buttons */
+a.ifilter { text-decoration: none; color: inherit; }
+
+/* pager */
+.pager { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 56px; }
+.pager a {
+  min-width: 44px; height: 44px; padding: 0 12px; display: grid; place-items: center; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(255, 255, 255, 0.025);
+  font-family: var(--ff-tech); font-size: 12px; color: var(--muted); text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.pager a:hover { color: var(--text); border-color: var(--line-2); }
+.pager a.is-on { color: var(--gold-ink); background: var(--gold); border-color: var(--gold); font-weight: 700; }
+.pager a.is-off { opacity: 0.3; pointer-events: none; }
+.pager .arr { width: 16px; height: 16px; }
+.pager__arr:first-child .arr { transform: rotate(180deg); }
+
+/* Fixes on top of the design's insights.css:
+   - small screens: "1fr" let a wide comparison table stretch the article past
+     the screen; minmax(0, 1fr) keeps it to the screen and the table scrolls
+   - the in-article Book a Demo button picked up the gold link colour (gold on gold) */
+@media (max-width: 900px) {
+  .abody__grid { grid-template-columns: minmax(0, 1fr); }
+}
+.aprose a.btn { color: var(--gold-ink); text-decoration: none; }
+
+/* filter and page links jump to #articles; keep it clear of the fixed nav */
+#articles { scroll-margin-top: 110px; }
