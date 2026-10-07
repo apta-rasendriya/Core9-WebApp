@@ -32,5 +32,6 @@ define('DB_PASS', getenv('DB_PASS') ?: '');
 define('SITE_NAME', 'Core9 Insights');
 define('ARTICLES_PER_PAGE', 6);
 define('SESSION_NAME', 'core9_admin_session');
+define('LEAD_NOTIFY_EMAIL', getenv('LEAD_NOTIFY_EMAIL') ?: '');
 
 date_default_timezone_set('UTC');

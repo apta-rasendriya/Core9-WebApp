@@ -232,3 +232,28 @@ function flash_get(): ?array
 }
 
 const THUMB_TONES = ['gold', 'purple', 'teal', 'rose', 'sage', 'steel', 'ember'];
+
+/**
+ * A lead's stored details (JSON from the calculators) as readable
+ * "key: value" lines, for the admin list, CSV export and notification email.
+ */
+function lead_details_text(?string $details): string
+{
+    if ($details === null || $details === '') {
+        return '';
+    }
+    $data = json_decode($details, true);
+    if (!is_array($data)) {
+        return $details;
+    }
+    $lines = [];
+    foreach ($data as $key => $value) {
+        if (is_array($value)) {
+            $value = implode(', ', array_map('strval', $value));
+        } elseif (is_bool($value)) {
+            $value = $value ? 'yes' : 'no';
+        }
+        $lines[] = $key . ': ' . (string) $value;
+    }
+    return implode("\n", $lines);
+}

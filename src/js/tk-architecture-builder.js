@@ -39,5 +39,5 @@ root.querySelectorAll('input[type=range]').forEach(function(r){r.addEventListene
 render();
 var form=root.querySelector('.gate__form');form.addEventListener('submit',function(e){e.preventDefault();var em=form.querySelector('input[type=email]'),err=form.querySelector('.gate__err');
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)){em.classList.add('bad');err.hidden=false;return}
-  em.classList.remove('bad');err.hidden=true;root.querySelector('[data-o=email]').textContent=em.value;root.querySelector('.size').classList.add('is-open');});
+  em.classList.remove('bad');err.hidden=true;root.querySelector('[data-o=email]').textContent=em.value;root.querySelector('.size').classList.add('is-open');if(window.C9SubmitLead)C9SubmitLead({email:em.value,tool:'architecture-builder',action:'email-architecture-pack',details:C9PageAnswers(root)}).then(function(ok){if(!ok){err.innerHTML='That didn’t go through. Please email <a href="mailto:info@core9.ai">info@core9.ai</a> for the pack.';err.hidden=false}});});
 })();

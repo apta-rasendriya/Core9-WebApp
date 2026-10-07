@@ -16,5 +16,5 @@ var sent=false;
 $('gate').addEventListener('submit',function(e){e.preventDefault();var em=$('em').value.trim(),err=$('err');
 if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){err.textContent='Enter a valid work email.';err.hidden=false;return}
 if(/@(gmail|yahoo|hotmail|outlook|icloud)\./i.test(em)){err.textContent='Please use your work email.';err.hidden=false;return}
-err.hidden=true;sent=true;$('gate').hidden=true;$('gaps').classList.remove('locked');$('done').hidden=false;$('done').textContent='Your full report is on its way to '+em+'. Every gap is listed below.';upd()});
+err.hidden=true;sent=true;$('gate').hidden=true;$('gaps').classList.remove('locked');$('done').hidden=false;$('done').textContent='Thanks. Our team will email your full report to '+em+'. Every gap is listed below.';if(window.C9SubmitLead)C9SubmitLead({email:em,tool:'compliance-readiness',action:'email-compliance-report',details:C9PageAnswers()}).then(function(ok){if(!ok)$('done').innerHTML='Every gap is listed below. We couldn’t save your email, so please write to <a href="mailto:info@core9.ai">info@core9.ai</a> for the full report.'});upd()});
 })();

@@ -56,6 +56,7 @@ $flash = flash_get();
       <a class="brand" href="index.php">Core9 · Admin</a>
       <div class="right">
         <a href="index.php">Articles</a>
+        <a href="leads.php">Leads</a>
         <span>Signed in as <?= e(Auth::username()) ?></span>
         <a href="logout.php">Log out</a>
       </div>

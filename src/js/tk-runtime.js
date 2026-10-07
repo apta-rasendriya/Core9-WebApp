@@ -141,20 +141,34 @@
           var box = form.closest(".capture") || form;
           var email = form.querySelector("input[type=email]");
           if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { if (email) email.focus(); return; }
-          C9.logLead({ leadType: "self-serve", action: form.getAttribute("data-capture"), tool: document.body.getAttribute("data-tool") || location.pathname, email: email.value, results: C9.state() });
-          box.classList.add("is-done");
+          var button = form.querySelector("button");
+          if (button) button.disabled = true;
           var safe = email.value.replace(/[<>&"]/g, "");
-          box.innerHTML = '<div class="capture__label" style="color:#7ee2b0">Sent. Check ' + safe + '.</div><div class="capture__note">Logged as a <strong>self-serve</strong> lead, not a demo request. Placeholder: no email is actually delivered until this is wired to the CRM.</div>';
+          C9.logLead({ action: form.getAttribute("data-capture"), email: email.value }).then(function (ok) {
+            if (button) button.disabled = false;
+            if (!ok) { C9.leadFailed(form); return; }
+            box.classList.add("is-done");
+            box.innerHTML = '<div class="capture__label" style="color:#7ee2b0">Got it. We’ll send your results to ' + safe + '.</div><div class="capture__note">Someone from our team will email you, usually within one working day. No newsletter.</div>';
+          });
         });
       });
 
       document.querySelectorAll("[data-gate]").forEach(function (form) {
         form.addEventListener("submit", function (e) {
           e.preventDefault();
-          C9.logLead({ leadType: "self-serve", action: "pilot-scope-pdf", gated: true, tool: document.body.getAttribute("data-tool") || location.pathname, fields: Object.fromEntries(new FormData(form).entries()), results: C9.state() });
-          var done = form.parentNode.querySelector("[data-gate-done]");
-          form.style.display = "none";
-          if (done) done.style.display = "block";
+          var f = Object.fromEntries(new FormData(form).entries());
+          var button = form.querySelector("button[type=submit]");
+          if (button) button.disabled = true;
+          C9.logLead({
+            action: "pilot-plan-request", email: f.email, firstName: f.firstName, lastName: f.lastName,
+            company: f.company, phone: f.phone ? (String(f.code || "").split(" ")[0] + " " + f.phone).trim() : ""
+          }).then(function (ok) {
+            if (button) button.disabled = false;
+            if (!ok) { C9.leadFailed(form); return; }
+            var done = form.parentNode.querySelector("[data-gate-done]");
+            form.style.display = "none";
+            if (done) done.style.display = "block";
+          });
         });
       });
 
@@ -234,12 +248,24 @@
       });
     },
 
-    logLead: function (payload) {
-      payload.capturedAt = new Date().toISOString();
-      window.C9_LEADS = window.C9_LEADS || [];
-      window.C9_LEADS.push(payload);
-      /* Placeholder: POST to the CRM here, tagged leadType:"self-serve". */
-      console.log("[core9] self-serve lead captured (mock)", payload);
+    /* Save a self-serve lead with this tool's inputs (see C9SubmitLead in site.js).
+       Resolves to true once saved. */
+    logLead: function (lead) {
+      lead.tool = document.body.getAttribute("data-tool") || location.pathname;
+      lead.details = Object.assign({ page: location.pathname }, C9.state());
+      return window.C9SubmitLead ? window.C9SubmitLead(lead) : Promise.resolve(false);
+    },
+
+    /* shown under a capture form when saving failed */
+    leadFailed: function (form) {
+      var msg = form.querySelector(".lead-error");
+      if (!msg) {
+        msg = document.createElement("p");
+        msg.className = "capture__note lead-error";
+        msg.style.color = "#f0a0a0";
+        form.appendChild(msg);
+      }
+      msg.innerHTML = 'Sorry, that didn’t go through. Please email <a href="mailto:info@core9.ai">info@core9.ai</a> and we’ll send it over.';
     }
   };
 

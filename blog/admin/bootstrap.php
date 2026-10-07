@@ -8,5 +8,6 @@ require __DIR__ . '/../src/Auth.php';
 require __DIR__ . '/../src/ImageUpload.php';
 require __DIR__ . '/../src/ArticleRepository.php';
 require __DIR__ . '/../src/CategoryRepository.php';
+require __DIR__ . '/../src/LeadRepository.php';
 
 start_session_once();

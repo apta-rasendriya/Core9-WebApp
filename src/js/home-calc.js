@@ -39,7 +39,9 @@
     row.classList.remove('is-bad'); err.hidden = true;
     o('email', em.value.trim());
     root.classList.add('is-open');
-    // TODO(client): post { email, inputs } to the HubSpot form once it is wired
+    if (window.C9SubmitLead) C9SubmitLead({ email: em.value.trim(), tool: 'home-fleet-calculator', action: 'email-fleet-savings-report', details: C9PageAnswers(root) }).then(function (ok) {
+      if (!ok) q('.fcalc__done').innerHTML = 'We couldn’t save your email. Please write to <a href="mailto:info@core9.ai">info@core9.ai</a> for the full report.';
+    });
     if (window.ScrollTrigger) setTimeout(function () { ScrollTrigger.refresh(); }, 900);
   });
 })();
