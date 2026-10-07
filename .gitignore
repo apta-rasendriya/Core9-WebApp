@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Cache files
+.parcel-cache/
+
+# Optional: OS generated files
+.DS_Store
+Thumbs.db
+.claude
+# Optional: IDE files (uncomment if needed)
+# .vscode/
+# .idea/

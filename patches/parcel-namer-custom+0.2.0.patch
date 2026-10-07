@@ -1,0 +1,46 @@
+diff --git a/node_modules/parcel-namer-custom/lib/index.js b/node_modules/parcel-namer-custom/lib/index.js
+index b920ad1..24e088e 100644
+--- a/node_modules/parcel-namer-custom/lib/index.js
++++ b/node_modules/parcel-namer-custom/lib/index.js
+@@ -39,9 +39,19 @@ var _default = new _plugin.Namer({
+       return bundle.filePath;
+     }
+ 
++    // Bundles shared across multiple HTML entries (e.g. a stylesheet linked
++    // from every page) have no single main entry; fall back to their first
++    // entry asset so they can still be matched against our per-extension
++    // rules instead of falling through to the default namer.
++    const mainEntry = bundle.getMainEntry() || bundle.getEntryAssets()[0];
++
++    if (mainEntry == null) {
++      return null;
++    }
++
+     const {
+       filePath: bundlePath
+-    } = bundle.getMainEntry();
++    } = mainEntry;
+     const {
+       projectRoot
+     } = options;
+diff --git a/node_modules/parcel-namer-custom/src/index.js b/node_modules/parcel-namer-custom/src/index.js
+index ae7c097..45a7416 100644
+--- a/node_modules/parcel-namer-custom/src/index.js
++++ b/node_modules/parcel-namer-custom/src/index.js
+@@ -36,7 +36,15 @@ export default new Namer({
+       return bundle.filePath;
+     }
+ 
+-    const { filePath: bundlePath } = bundle.getMainEntry();
++    // Bundles shared across multiple HTML entries (e.g. a stylesheet linked
++    // from every page) have no single main entry; fall back to their first
++    // entry asset so they can still be matched against our per-extension
++    // rules instead of falling through to the default namer.
++    const mainEntry = bundle.getMainEntry() || bundle.getEntryAssets()[0];
++    if (mainEntry == null) {
++      return null;
++    }
++    const { filePath: bundlePath } = mainEntry;
+     const { projectRoot } = options;
+     const pluginConfig = await getPluginConfig(projectRoot);
+ 

@@ -1,0 +1,11 @@
+{
+  "plugins": {
+    "postcss-sort-media-queries": true,
+    "@minko-fe/postcss-pxtoviewport": {
+      "viewportWidth": 1920,
+      "viewportUnit": "vw",
+      "propList": ["*"],
+      "minPixelValue": 1
+    }
+  }
+}

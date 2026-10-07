@@ -1,0 +1,7 @@
+.env
+
+# uploaded article images — keep the folders, ignore their contents
+uploads/thumbnails/*
+uploads/headers/*
+!uploads/thumbnails/.gitkeep
+!uploads/headers/.gitkeep

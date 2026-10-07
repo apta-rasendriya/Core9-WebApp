@@ -1,0 +1,7 @@
+# This folder is meant to be dropped in as a subfolder of another site
+# (e.g. yoursite.com/blog/), so unlike a dedicated docroot it can't rely on
+# files simply being "outside the webroot" for protection. Block dotfiles
+# (.env, .gitignore, .htaccess itself) from ever being served directly.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

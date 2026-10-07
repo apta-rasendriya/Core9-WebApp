@@ -1,0 +1,146 @@
+-- Core9 Insights — sample content
+-- Run after schema.sql. Safe to re-run on an empty database only
+-- (categories.slug and articles.slug are UNIQUE, so re-running will error
+-- on duplicates rather than silently double-inserting).
+
+USE core9_blog;
+
+INSERT INTO categories (name, slug) VALUES
+  ('Fleet Economics', 'fleet-economics'),
+  ('Product', 'product'),
+  ('Driver Safety', 'driver-safety'),
+  ('Cold Chain', 'cold-chain'),
+  ('Warehouse Safety', 'warehouse-safety'),
+  ('Case Studies', 'case-studies'),
+  ('Retail Execution', 'retail-execution');
+
+INSERT INTO articles
+  (category_id, title, slug, excerpt, content, author_name, read_minutes, thumb_tone, thumb_label,
+   stat_value, stat_label, quote_text, quote_citation, is_featured, status, published_at)
+VALUES
+  (
+    (SELECT id FROM categories WHERE slug = 'fleet-economics'),
+    "What's Really Driving Your Fleet Fuel Bill",
+    "whats-really-driving-your-fleet-fuel-bill",
+    "Fuel reads like a fixed cost until you break it apart. Idling, route drift, and harsh driving quietly add double digits — here's how to find the waste and measure what cutting it is worth.",
+    "Every fleet manager has stared at a fuel line item and assumed it was mostly fixed — miles driven times price at the pump. In practice, a meaningful share of that spend is avoidable, and it hides in three places: idling, route drift, and harsh driving. None of them show up on an invoice. All three show up in telematics data, if you know where to look.\n\n## The three silent contributors\nIdling alone can account for a surprising share of engine hours on a typical route — time spent at loading docks, in traffic, or waiting on a delivery window with the engine running. Route drift adds unplanned miles that never show up in a route plan. And harsh acceleration or braking events burn measurably more fuel per mile than smooth driving, on top of adding wear to brakes and tires.\n\n- Idling time per vehicle, per shift, broken out from total engine hours\n- Planned vs. actual route distance, aggregated across a fleet\n- Harsh-event frequency, scored per driver and trended over time\n\n## Turning visibility into savings\nOnce idling, drift, and harsh events are visible per vehicle and per driver, the fix is usually operational, not mechanical: adjusted dock scheduling, tighter route adherence, and coaching tied to real scores instead of anecdotes. Fleets that act on this data typically see fuel savings within the first full billing cycle — and the same data doubles as an early warning system for maintenance and safety risk.\n\nWant to see what this looks like against your own fleet's data? Book a walkthrough and we'll run the numbers together.",
+    "Core9 Team",
+    6,
+    "gold",
+    "Fleet Economics · 16:11",
+    "12–18%",
+    "Typical fuel spend recoverable once idling & route drift are made visible",
+    "The fleets that cut fuel spend fastest aren't buying newer trucks — they're finding the ten minutes of idling and the five miles of drift that were invisible before.",
+    "Core9 Fleet Analytics Team",
+    1,
+    "published",
+    "2026-07-02 09:00:00"
+  ),
+  (
+    (SELECT id FROM categories WHERE slug = 'product'),
+    "Telematics for Enterprise Fleets: What to Compare Before You Buy",
+    "telematics-for-enterprise-fleets-what-to-compare",
+    "Most platforms look identical in a 20-minute demo. The differences that matter — customization depth, AI-plus-GPS monitoring, and support at scale — only surface once you're live.",
+    "Most telematics platforms look identical in a 20-minute demo: a map, some dots, a dashboard of green and red indicators. The differences that actually matter only surface once you are live and the account is no longer new.\n\n## What to press on in a demo\n- Customization depth: how alert thresholds, scorecards, and reporting are configured for mixed vehicle types and use cases\n- AI-plus-GPS monitoring: whether the platform understands what's happening in the cab, not just where the vehicle is\n- Support at scale: how the vendor performs at your fleet size, not their largest reference logo\n\n## Ask for a live example, not a canned reel\nPositioning data alone tells you where a vehicle is; it takes computer vision or sensor fusion to tell you what is actually happening in the cab or on the dock. A platform that is responsive for a 20-vehicle pilot can behave very differently at 2,000 vehicles across time zones — ask for references at your scale before you sign.",
+    "Core9 Team",
+    9,
+    "purple",
+    "Buyer's Guide · 16:10",
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    0,
+    "published",
+    "2026-06-24 09:00:00"
+  ),
+  (
+    (SELECT id FROM categories WHERE slug = 'driver-safety'),
+    "The Hidden Cost of Driver Fatigue — and How to Catch It Early",
+    "the-hidden-cost-of-driver-fatigue",
+    "Fatigue rarely shows up in a report until it shows up in a claim. Real-time detection turns a lagging indicator into a chance to intervene before the incident.",
+    "Fatigue rarely shows up in a report until it shows up in a claim. By the time a fatigue-related incident is logged, the cost is already locked in — the insurance conversation, the vehicle downtime, and in the worst cases, an injury.\n\n## Why fatigue is a lagging indicator by default\nHours-of-service logs tell you a driver was eligible to be on the road, not whether they were alert enough to be there safely. Real-time in-cab detection changes the shape of the problem — signals like eye closure duration, head position, and lane drift can flag a fatigued driver minutes before a conventional report ever would.\n\n- Eye closure duration and blink rate\n- Head position and nod detection\n- Lane drift without a signaled lane change\n\nThe organizations that get the most value from this are not the ones chasing a zero-incident dashboard. They are the ones that treat every alert as a coaching moment, and make the pattern — not the individual event — the thing they manage.",
+    "Core9 Team",
+    5,
+    "rose",
+    "Driver Safety · 16:10",
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    0,
+    "published",
+    "2026-07-10 09:00:00"
+  ),
+  (
+    (SELECT id FROM categories WHERE slug = 'cold-chain'),
+    "Cold-Chain Confidence: Proving Temperature Compliance End to End",
+    "cold-chain-confidence-proving-temperature-compliance",
+    "A single excursion can spoil a load and a customer relationship. Continuous monitoring gives you the audit trail to prove the chain held — at every handoff.",
+    "A single temperature excursion can spoil a load and a customer relationship in the same afternoon. The frustrating part is that it is often impossible to say, after the fact, exactly when and where it happened.\n\nSpot checks at the dock only tell you the temperature at that moment, not whether the chain held during the two hours in transit or the thirty minutes sitting on a trailer waiting for a bay to open up.\n\n## Where excursions actually happen\nThe handoff points are where most excursions actually happen — not mid-route, but during loading, unloading, and cross-docking, when doors are open and equipment is idle. That is where continuous monitoring earns its cost back fastest, turning \"we think it was fine\" into a full audit trail you can hand to a customer or an auditor without hesitation.",
+    "Core9 Team",
+    7,
+    "teal",
+    "Cold Chain · 16:10",
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    0,
+    "published",
+    "2026-07-18 09:00:00"
+  ),
+  (
+    (SELECT id FROM categories WHERE slug = 'warehouse-safety'),
+    "Six Blind Spots on Every Warehouse Floor",
+    "six-blind-spots-on-every-warehouse-floor",
+    "Forklift near-misses, missing PPE, blocked exits — the hazards that cause incidents are the ones nobody is watching at 2pm on a busy shift.",
+    "Forklift near-misses, missing PPE, blocked exits — the hazards that cause incidents are rarely the ones covered in the morning safety briefing. They are the ones nobody is watching at 2pm on a busy shift, when the floor is loud and everyone is behind schedule.\n\n## The six blind spots\n- Intersections without visual controls, where pedestrian and forklift paths cross\n- PPE compliance drift over the course of a shift, not at its start\n- Blocked emergency exits, usually from temporary staging that became permanent\n- Speeding in transit lanes\n- Unsecured loads at height\n- Fatigue on repetitive tasks\n\nContinuous monitoring does not replace a safety program. It gives the safety team eyes on the floor during the hours nobody is physically walking it.",
+    "Core9 Team",
+    5,
+    "steel",
+    "Warehouse Safety · 16:10",
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    0,
+    "published",
+    "2026-06-05 09:00:00"
+  ),
+  (
+    (SELECT id FROM categories WHERE slug = 'case-studies'),
+    "How a 400-Vehicle Fleet Cut Incidents 38% in One Quarter",
+    "how-a-400-vehicle-fleet-cut-incidents-38-percent",
+    "One operator paired in-cab alerts with weekly driver scoring. The behaviour changed fast — and the insurance conversation changed with it.",
+    "One operator running a 400-vehicle regional fleet paired in-cab alerts with a weekly driver scoring program. The behavior change was fast, and the insurance conversation changed with it.\n\nThe rollout was deliberately unglamorous: real-time alerts for harsh braking, following distance, and phone handling, combined with a simple weekly scorecard sent to every driver and their supervisor. No leaderboard, no public shaming — just a private, consistent signal.\n\n## The results\nWithin the first month, harsh-braking events dropped 22%. By the end of the quarter, recordable incidents were down 38% against the same period the year before, and the fleet's insurer had enough data to open a conversation about premium adjustments.\n\nThe operator's own conclusion was that the scorecard mattered more than the alerts. Drivers already knew, in the moment, when something had gone wrong — what changed their behavior was seeing the pattern reflected back to them every week.",
+    "Core9 Team",
+    4,
+    "ember",
+    "Case Study · 16:10",
+    "38%",
+    "Reduction in recordable incidents across one quarter",
+    NULL,
+    NULL,
+    0,
+    "published",
+    "2026-08-01 09:00:00"
+  ),
+  (
+    (SELECT id FROM categories WHERE slug = 'retail-execution'),
+    "Why Your Planogram Looks Perfect on Paper and Fails on the Shelf",
+    "why-your-planogram-looks-perfect-on-paper",
+    "Compliance gaps open quietly between visits. Seeing the shelf as it actually is — not as it was planned — is the difference between a snapshot and the full picture.",
+    "A planogram looks perfect on paper because paper does not restock itself, get bumped by a cart, or run out on a Saturday afternoon. Compliance gaps open quietly between store visits, and by the time a merchandiser walks the aisle again, the picture has already moved on.\n\nThe standard fix — more frequent visits — runs into a hard ceiling. Field teams cannot be everywhere, and the cost of checking every shelf every day outweighs the value of catching most gaps.\n\n## Reframing the tradeoff\nContinuous shelf monitoring reframes the tradeoff. Instead of a snapshot every few weeks, you get a stream of what the shelf actually looks like, and can prioritize field visits toward the stores and categories where drift is actually happening.\n\nThe operators who adopt this fastest are not the ones with the worst compliance. They are the ones who realize the gap between the plan and the shelf was never visible to them in the first place.",
+    "Core9 Team",
+    6,
+    "sage",
+    "Retail Execution · 16:10",
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    0,
+    "published",
+    "2026-05-20 09:00:00"
+  );

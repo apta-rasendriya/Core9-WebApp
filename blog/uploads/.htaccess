@@ -1,0 +1,13 @@
+# User-uploaded images live here. Even though we only ever write files with
+# whitelisted image extensions, this is a defense-in-depth backstop: never
+# execute anything in this folder as PHP, no matter what ends up in it.
+<FilesMatch "\.(php|phtml|php\d)$">
+    Require all denied
+</FilesMatch>
+Options -ExecCGI
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>

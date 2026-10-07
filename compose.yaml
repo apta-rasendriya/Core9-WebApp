@@ -1,0 +1,70 @@
+# Local preview of the full site with Docker: the main site at "/" and the
+# blog at "/blog/", the same way they're deployed together.
+#
+#   npm run b                     (build the main site into build/)
+#   docker compose up -d --build
+#   Site:       http://localhost:8090/
+#   Blog:       http://localhost:8090/blog/
+#   Blog admin: http://localhost:8090/blog/admin/
+#   phpMyAdmin: http://localhost:8091/
+#
+# Re-run `npm run b` after changing the main site; blog changes show up on
+# refresh. The credentials below are for these local containers only; the
+# blog's .env is not used here.
+
+services:
+  web:
+    build: ./docker
+    ports:
+      - "8090:80"
+    volumes:
+      - ./:/srv/core9
+    environment:
+      # Real environment variables take precedence over blog/.env
+      # (see loadEnv in blog/config/config.php).
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_NAME: core9_blog
+      DB_USER: core9
+      DB_PASS: core9_local
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root_local
+      MYSQL_DATABASE: core9_blog
+      MYSQL_USER: core9
+      MYSQL_PASSWORD: core9_local
+      # Makes the mysql client that loads the .sql files on first start use
+      # UTF-8; without it it falls back to latin1 and mangles em dashes etc.
+      LANG: C.UTF-8
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - db_data:/var/lib/mysql
+      # Run once on first start (empty volume), in filename order.
+      - ./blog/database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./blog/database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+    ports:
+      - "3308:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot_local"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    ports:
+      - "8091:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root_local
+    depends_on:
+      - db
+
+volumes:
+  db_data:

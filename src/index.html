@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Core9 - Enabling Intelligent Supply Chains</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Integrated AI + hardware to transform operational data into visibility, automation & savings" />
+  <meta name="keywords"
+    content="AI safety, supply chain safety, computer vision, fleet safety, manufacturing safety, warehouse safety, retail safety, incident prevention, Core9" />
+  <meta name="author" content="Core9 Venture" />
+  <meta name="robots" content="index, follow" />
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="The AI Layer for Your Supply Chain" />
+  <meta property="og:description"
+    content="Integrated AI + hardware to transform operational data into visibility, automation & savings" />
+  <meta property="og:image" content="https://core9.ai/img/og-image.png" />
+  <meta property="og:image:alt" content="Enabling Intelligent Supply Chains" />
+  <meta property="og:url" content="https://core9.ai/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Core9" />
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The AI Layer for Your Supply Chain" />
+  <meta name="twitter:description"
+    content="Integrated AI + hardware to transform operational data into visibility, automation & savings" />
+  <meta name="twitter:image" content="https://core9.ai/img/og-image.png" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./img/logo-square-fav.png" />
+  <link rel="shortcut icon" href="./img/logo-square-fav.png" />
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://core9.ai/" />
+  <!-- CSS & JS -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="mobileStyle.css" />
+  <script src="js/jquery.js"></script>
+  <script>
+    function goHome(){
+      window.location = '/';
+    }
+  </script>
+</head>
+<body>
+
+  <div class="logo_float">
+    <img class="logo_header" src="./img/core9-logo-white.png" alt="" srcset="">
+  </div>
+  <div id="navigation">
+    <div class="nav-item">
+      <a href="/" rel="noopener noreferrer">
+        <img class="logo-square" src="./img/logo-square.png" alt="">
+      </a>
+    </div>
+    <div class="nav-item menu-text"><span target="self" scrollTo=".client_section" class="text scrollTo">Our Clients</span></div>
+    <div class="nav-item menu-text"><span target="self" scrollTo="#section_1" class="text scrollTo">Our System</span></div>
+    <div class="nav-item menu-text">
+      <span target="self" scrollTo="#section_3" class="text scrollTo">Our Products</span>
+      <div class="submenu">
+        <a href="./drivesense/index.html" class="text" onclick="event.preventDefault(); location.href='/drivesense/';">DriveSense</a>
+        <a href="./camcore/index.html" class="text" onclick="event.preventDefault(); location.href='/camcore/';">CamCore</a>
+        <a href="./illytical/index.html" class="text" onclick="event.preventDefault(); location.href='/illytical/';">illytical</a>
+      </div>
+    </div>
+    <div class="nav-item menu-text"><a href="/blog/" class="text">Insights</a></div>
+    <div class="nav-item"><button class="cta book-btn">Book a Demo</button></div>
+    <!-- <div class="nav-item"> <button class="cta faq-btn">FAQs</button></div> -->
+                   
+  </div>
+  <include src="./partial/mobileNav.html"></include>
+
+
+
+
+
+  <div class="scroll-container">
+
+    <include src="./partial/homepage_body.html"></include>
+    <include src="./partial/footer.html">{"base": "./"}</include>
+
+  </div>
+
+    <include src="./partial/opening.html"></include>
+    <include src="./partial/faq.html"></include>
+
+    <include src="./partial/demo.html"></include>
+
+    <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>

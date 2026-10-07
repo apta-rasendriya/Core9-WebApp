@@ -1,0 +1,62 @@
+{
+  "name": "max-website",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "s": "parcel serve src/*.html src/*/index.html",
+    "b": "rimraf build && parcel build src/*.html src/*/index.html --dist-dir build",
+    "postinstall": "patch-package"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.5.2",
+    "gsap": "^3.14.2",
+    "jquery": "^3.6.0",
+    "locomotive-scroll": "^4.1.4",
+    "lottie-web": "^5.13.0"
+  },
+  "htmlnano": {
+    "minifySvg": false,
+    "collapseWhitespace": true,
+    "removeComments": false,
+    "removeRedundantAttributes": true,
+    "removeEmptyAttributes": false
+  },
+  "parcel-namer-custom": {
+    ".js$": "js/[name].[hash].[ext]",
+    ".scss$": "css/[name].[hash].[type]",
+    ".css$": "css/[name].[hash].[type]",
+    ".jpg$": "assets/[name].[hash].[type]",
+    ".png$": "assets/[name].[hash].[type]",
+    ".svg$": "assets/[name].[hash].[type]",
+    ".woff2$": "assets/[name].[hash].[type]",
+    ".webp$": "assets/[name].[hash].[type]",
+    ".mp3$": "assets/[name].[type]",
+    ".ttf$": "assets/[name].[type]",
+    ".ico$": "assets/[name].[type]",
+    ".webmanifest$": "assets/[name].[type]"
+  },
+  "devDependencies": {
+    "@minko-fe/postcss-pxtoviewport": "^1.5.0",
+    "@parcel/compressor-brotli": "^2.6.2",
+    "@parcel/compressor-gzip": "^2.6.2",
+    "@parcel/namer-default": "^2.16.4",
+    "@parcel/optimizer-htmlnano": "^2.16.4",
+    "@parcel/packager-raw-url": "^2.6.2",
+    "@parcel/transformer-inline-string": "^2.6.2",
+    "@parcel/transformer-sass": "^2.6.2",
+    "@parcel/transformer-stylus": "^2.6.2",
+    "@parcel/transformer-webmanifest": "^2.6.2",
+    "parcel": "^2.16.4",
+    "parcel-namer-custom": "^0.2.0",
+    "parcel-namer-rewrite": "^2.0.0-rc.2",
+    "patch-package": "^8.0.1",
+    "postcss": "^8.5.15",
+    "postcss-sort-media-queries": "^4.4.1",
+    "posthtml-include": "^2.0.1",
+    "rimraf": "^3.0.2"
+  }
+}
