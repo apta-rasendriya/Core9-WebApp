@@ -29,8 +29,6 @@ uploads/headers/       Uploaded article header images
 config/config.php     DB credentials, loaded from .env  (not web-accessible)
 src/                   PHP classes: Database, Auth, ArticleRepository, CategoryRepository, ImageUpload, helpers  (not web-accessible)
 database/              schema.sql (tables) + seed.sql (sample content)  (not web-accessible)
-
-design-reference.html  Original static design mockup — kept for reference only, not used by the app
 ```
 
 `config/`, `src/`, and `database/` stay inside this folder (so the whole
