@@ -1,6 +1,6 @@
 /* Core9 — site-wide bits shared by every page (loaded after main.js):
    1. highlight the current page in the nav (partials/nav.html has no per-page state)
-   2. the Book a Demo popup with the HubSpot form (partials/demo.html)
+   2. the Book a Demo popup: our form, sent to HubSpot (partials/demo.html)
    3. window.C9SubmitLead: saves a toolkit calculator lead via the blog's lead.php */
 (function () {
   'use strict';
@@ -54,27 +54,27 @@
     if (btn) btn.classList.add('is-here');
   });
 
-  /* ------------------------------------------------------- Book a Demo popup */
+  /* ------------------------------------------------------- Book a Demo popup
+     Our own form (partials/demo.html), sent to the HubSpot demo form through
+     HubSpot's form submission API. HubSpot doesn't validate these fields, so
+     they are checked here first. */
+  var HUBSPOT_SUBMIT = 'https://api.hsforms.com/submissions/v3/integration/submit/147137037/216d0b24-0e5b-40c1-85a5-219593301175';
   var modal = $('#demo-modal');
   if (!modal) return;
-  var formLoaded = false, lastFocus = null;
-
-  function loadForm() {
-    if (formLoaded) return;
-    formLoaded = true;
-    var s = document.createElement('script');
-    s.src = 'https://js-eu1.hsforms.net/forms/embed/147137037.js';
-    s.defer = true;
-    document.head.appendChild(s);
-  }
+  var form = $('#demo-form', modal), errorBox = $('#demo-form-error', modal);
+  var formWrap = $('#demo-form-wrap', modal), done = $('#demo-done', modal);
+  var lastFocus = null;
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   function open() {
-    loadForm();
     lastFocus = document.activeElement;
     modal.hidden = false;
     document.body.classList.add('demo-open');
     if (window.C9Lenis) window.C9Lenis.stop();
-    $('.demo-modal__close', modal).focus();
+    // on touch screens focusing a field would pop the keyboard over the form
+    var touch = window.matchMedia && matchMedia('(hover: none)').matches;
+    var first = !done.hidden ? $('.demo-modal__title', done) : touch ? $('#demo-modal-title', modal) : $('input[name=firstname]', form);
+    setTimeout(function () { first.focus(); }, 60);
   }
 
   function close() {
@@ -82,6 +82,68 @@
     document.body.classList.remove('demo-open');
     if (window.C9Lenis) window.C9Lenis.start();
     if (lastFocus) lastFocus.focus();
+  }
+
+  function setBad(input, bad) {
+    input.closest('.dfield').classList.toggle('is-bad', bad);
+    input.setAttribute('aria-invalid', bad ? 'true' : 'false');
+  }
+
+  function check(input) {
+    var v = input.value.trim();
+    var ok = input.name === 'email' ? EMAIL.test(v) : v !== '';
+    setBad(input, !ok);
+    return ok;
+  }
+
+  var required = $$('[required]', form);
+  // after a failed submit, re-check each field as it is corrected
+  required.forEach(function (input) {
+    input.addEventListener('input', function () { if (input.closest('.is-bad')) check(input); });
+    input.addEventListener('blur', function () { if (input.value.trim()) check(input); });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errorBox.hidden = true;
+    var bad = required.filter(function (input) { return !check(input); });
+    if (bad.length) { bad[0].focus(); return; }
+
+    var f = form.elements;
+    if (f.website.value) { showDone(); return; } // hidden field only bots fill in
+    var phone = f.phone.value.trim() ? (f.code.value + ' ' + f.phone.value.trim()) : '';
+    var fields = [
+      { objectTypeId: '0-1', name: 'firstname', value: f.firstname.value.trim() },
+      { objectTypeId: '0-1', name: 'email', value: f.email.value.trim() },
+      { objectTypeId: '0-2', name: 'name', value: f.company.value.trim() },
+    ];
+    if (phone) fields.push({ objectTypeId: '0-1', name: 'phone', value: phone });
+    if (f.message.value.trim()) fields.push({ objectTypeId: '0-1', name: 'additional_information', value: f.message.value.trim() });
+
+    var button = $('.dform__submit', form), label = $('span', button);
+    button.disabled = true; button.classList.add('is-busy'); label.textContent = 'Sending…';
+
+    fetch(HUBSPOT_SUBMIT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fields: fields, context: { pageUri: location.href, pageName: document.title } }),
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HubSpot ' + r.status);
+      showDone();
+    }).catch(function () {
+      errorBox.innerHTML = 'Sorry, that didn’t go through. Please try again, or email <a href="mailto:info@core9.ai">info@core9.ai</a> and we’ll set up your demo.';
+      errorBox.hidden = false;
+    }).then(function () {
+      button.disabled = false; button.classList.remove('is-busy'); label.textContent = 'Book my demo';
+    });
+  });
+
+  function showDone() {
+    $('[data-demo-name]', done).textContent = form.elements.firstname.value.trim() || 'there';
+    $('[data-demo-email]', done).textContent = form.elements.email.value.trim();
+    formWrap.hidden = true;
+    done.hidden = false;
+    $('.demo-modal__title', done).focus();
   }
 
   document.addEventListener('click', function (e) {

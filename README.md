@@ -32,7 +32,8 @@ pages are root-absolute (`/drivesense/`), and links into the blog use
 `/insights/` and `/insights/?article=<slug>`.
 
 Every "Book a Demo" button links to `#book-demo`, which `js/site.js` turns into
-the HubSpot demo form popup (`?demo=1` on any page opens it too).
+the demo popup (`?demo=1` on any page opens it too): our own form, styled
+like the site, sent to the HubSpot demo form through HubSpot's form API.
 
 ## Commands
 

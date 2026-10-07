@@ -2,15 +2,18 @@
 .demo-modal { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 20px; }
 .demo-modal[hidden] { display: none; }
 .demo-modal__backdrop {
-  position: absolute; inset: 0; background: rgba(8, 5, 14, 0.72);
+  position: absolute; inset: 0; background: rgba(8, 5, 14, 0.74);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   animation: demo-fade 0.3s var(--ease) both;
 }
 .demo-modal__panel {
-  position: relative; width: min(560px, 100%); max-height: calc(100dvh - 40px); overflow-y: auto;
+  position: relative; width: min(600px, 100%); max-height: calc(100dvh - 40px); overflow-y: auto;
   padding: clamp(28px, 5vw, 44px); border-radius: 24px;
-  background: linear-gradient(180deg, var(--surface-2), var(--surface));
-  border: 1px solid var(--line-2); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--p-glow);
+  background:
+    radial-gradient(120% 60% at 100% 0%, rgba(117, 90, 161, 0.22), transparent 60%),
+    linear-gradient(180deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--line-2);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--p-glow);
   animation: demo-rise 0.45s var(--ease) both;
   overscroll-behavior: contain;
 }
@@ -22,13 +25,82 @@
 }
 .demo-modal__close:hover { color: var(--text); background: rgba(255, 255, 255, 0.09); }
 .demo-modal .eyebrow { margin-bottom: 16px; }
-.demo-modal__title { font-family: var(--ff); font-weight: 500; font-size: clamp(24px, 4vw, 32px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 10px; color: var(--text); }
-.demo-modal__lead { color: var(--muted); font-size: 15px; line-height: 1.55; margin: 0 0 22px; }
-/* HubSpot renders its own iframe here; it is light by default, so frame it like a card */
-.demo-modal__form { min-height: 560px; border-radius: 14px; overflow: hidden; background: #fff; }
+.demo-modal__title {
+  font-family: var(--ff); font-weight: 500; font-size: clamp(24px, 4vw, 32px); line-height: 1.12;
+  letter-spacing: -0.02em; margin: 0 0 10px; color: var(--text); text-wrap: balance; outline: none;
+}
+.demo-modal__lead { color: var(--muted); font-size: 15px; line-height: 1.55; margin: 0 0 26px; text-wrap: pretty; }
+.demo-modal__lead b { color: var(--text); font-weight: 500; overflow-wrap: anywhere; }
+
+/* ---- form */
+.dform__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 14px; }
+.dfield { display: grid; gap: 8px; min-width: 0; }
+.dfield--full { grid-column: 1 / -1; }
+.dfield > span, .dfield > label > span {
+  font-size: 13px; font-weight: 500; color: rgba(245, 242, 251, 0.82); letter-spacing: 0.01em;
+}
+.dfield i { font-style: normal; color: var(--gold-hi); }
+.dfield em { font-style: normal; font-weight: 400; color: var(--dim); margin-left: 4px; }
+.dfield input, .dfield select, .dfield textarea {
+  width: 100%; min-width: 0; box-sizing: border-box;
+  font: inherit; font-size: 15px; color: var(--text);
+  background: rgba(255, 255, 255, 0.035); border: 1px solid var(--line-2); border-radius: 12px;
+  padding: 13px 14px; outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.dfield textarea { resize: vertical; min-height: 84px; line-height: 1.5; }
+.dfield input::placeholder, .dfield textarea::placeholder { color: rgba(245, 242, 251, 0.32); }
+.dfield input:hover, .dfield select:hover, .dfield textarea:hover { border-color: rgba(255, 255, 255, 0.22); }
+.dfield input:focus, .dfield select:focus, .dfield textarea:focus {
+  border-color: var(--p-500); background: rgba(117, 90, 161, 0.08); box-shadow: 0 0 0 4px rgba(117, 90, 161, 0.22);
+}
+.dfield__phone { display: grid; grid-template-columns: minmax(118px, 38%) 1fr; gap: 8px; }
+.dfield select {
+  appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 34px; text-overflow: ellipsis;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5L6 8l3.5-3.5' fill='none' stroke='%23e1c3ff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center; background-size: 12px;
+}
+.dfield select option { background: #18112a; color: var(--text); }
+.dfield__err { display: none; font-size: 12.5px; color: #f3a6a6; }
+.dfield.is-bad input { border-color: #e07a7a; box-shadow: 0 0 0 4px rgba(224, 122, 122, 0.14); }
+.dfield.is-bad .dfield__err { display: block; }
+
+.dform__hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.dform__error {
+  margin: 18px 0 0; padding: 12px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5;
+  color: #f6c4c4; background: rgba(224, 122, 122, 0.1); border: 1px solid rgba(224, 122, 122, 0.3);
+}
+.dform__error a { color: var(--gold-hi); }
+.dform__foot { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 24px; }
+.dform__submit { gap: 10px; }
+.dform__submit[disabled] { opacity: 0.65; cursor: progress; }
+.dform__submit.is-busy .arr { animation: demo-nudge 0.8s ease-in-out infinite; }
+.dform__note { margin: 0; font-size: 12.5px; color: var(--dim); }
+
+/* ---- success */
+.demo-modal__done { text-align: center; padding: 18px 0 6px; }
+.demo-modal__done .demo-modal__lead { margin-left: auto; margin-right: auto; max-width: 42ch; }
+.demo-modal__check {
+  display: inline-grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; margin-bottom: 22px;
+  color: var(--gold-ink); background: var(--gold); box-shadow: 0 0 0 10px rgba(216, 155, 33, 0.14), 0 14px 40px rgba(216, 155, 33, 0.35);
+  animation: demo-pop 0.5s var(--ease) both;
+}
 
 body.demo-open { overflow: hidden; }
 
+@media (max-width: 560px) {
+  .demo-modal { padding: 0; align-items: end; }
+  .demo-modal__panel { border-radius: 22px 22px 0 0; max-height: 92dvh; width: 100%; padding: 30px 20px 24px; animation-name: demo-sheet; }
+  .dform__grid { grid-template-columns: 1fr; }
+  .dform__foot { flex-direction: column; align-items: stretch; text-align: center; }
+  .dform__submit { justify-content: center; }
+}
+
 @keyframes demo-fade { from { opacity: 0; } }
 @keyframes demo-rise { from { opacity: 0; transform: translateY(18px) scale(0.98); } }
-@media (prefers-reduced-motion: reduce) { .demo-modal__backdrop, .demo-modal__panel { animation: none; } }
+@keyframes demo-sheet { from { transform: translateY(100%); } }
+@keyframes demo-pop { from { opacity: 0; transform: scale(0.6); } }
+@keyframes demo-nudge { 50% { transform: translateX(4px); } }
+@media (prefers-reduced-motion: reduce) {
+  .demo-modal__backdrop, .demo-modal__panel, .demo-modal__check { animation: none; }
+}
