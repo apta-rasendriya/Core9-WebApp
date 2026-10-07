@@ -1,8 +1,8 @@
 /* pxtoviewport?disable=true */
 
 /* Mobile + tablet layout (≤900px). Below 900px the vw-scaled desktop layout
-   in styles.css gets too small to read, so phones and tablets share this
-   single-column layout instead. js/app.js and js/products.js switch their
+   in styles/desktop.css gets too small to read, so phones and tablets share this
+   single-column layout instead. js/home.js and js/product.js switch their
    scroll animations at the same width (CONFIG.isMobile). Matches the blog's
    switch point (blog/assets/css/style.css).
    This file is excluded from the px->vw build step, so px stays px. Sizes use
@@ -591,7 +591,7 @@
     }
 
     /* .header_background {
-        background: url('./img/header-bg.jpeg');
+        background: url('../assets/images/backgrounds/header-bg.jpeg');
         background-size: cover;
         background-position: right;
     } */
@@ -603,19 +603,19 @@
     }
 
     .camcore {
-        background: url('./img/Camcore-back.jpg');
+        background: url('../assets/images/products/camcore/Camcore-back.jpg');
         background-size: cover;
         background-position: left;
     }
 
     .drivesense {
-        background: url('./img/DriveSense-back.jpg');
+        background: url('../assets/images/products/drivesense/DriveSense-back.jpg');
         background-size: cover;
         background-position: center;
     }
 
     .illytical {
-        background: url('./img/illytical-back.jpg');
+        background: url('../assets/images/products/illytical/illytical-back.jpg');
         background-size: cover;
         background-position: right;
     }

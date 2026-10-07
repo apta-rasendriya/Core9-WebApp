@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 // Core9 site navigation, matching the main site's navbar (Core9-web
-// src/index.html + src/partial/mobileNav.html). The main site is served at
+// src/index.html + src/partials/mobile-nav.html). The main site is served at
 // "/" and this blog at "/blog/", so main-site links are root-absolute.
 // "/?scrollTo=...&type=..." is the main site's existing deep-link format
-// (see scrollToFromURL in src/js/app.js); "/?demo=1" opens its Book a Demo
+// (see scrollToFromURL in src/js/home.js); "/?demo=1" opens its Book a Demo
 // form.
 ?>
 <div id="navigation">

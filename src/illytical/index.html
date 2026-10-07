@@ -28,13 +28,13 @@
     content="Integrated AI + hardware to transform operational data into visibility, automation & savings" />
   <meta name="twitter:image" content="https://core9.ai/img/og-image.png" />
     <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../img/logo-square-fav.png" />
-  <link rel="shortcut icon" href="../img/logo-square-fav.png" />
+  <link rel="icon" type="image/png" href="../assets/images/brand/logo-square-fav.png" />
+  <link rel="shortcut icon" href="../assets/images/brand/logo-square-fav.png" />
     <!-- Canonical URL -->
     <link rel="canonical" href="https://core9.ai/" />
     <!-- CSS & JS -->
-    <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="../mobileStyle.css" />
+    <link rel="stylesheet" href="../styles/desktop.css" />
+    <link rel="stylesheet" href="../styles/mobile.css" />
     <script src="../js/jquery.js"></script>
     <script>
     function goHome(){
@@ -45,22 +45,22 @@
 
 <body>
     <div class="logo_float">
-        <img onclick="goHome()" class="logo_header" src="../img/core9-logo-white.png" alt="" srcset="">
+        <img onclick="goHome()" class="logo_header" src="../assets/images/brand/core9-logo-white.png" alt="" srcset="">
     </div>
-       <include src="./partial/navProducts.html">{"base": "../"}</include>
+       <include src="./partials/product-nav.html">{"base": "../"}</include>
     <div class="scroll-container">
 
         <section id="header" class="header">
             <div class="header_background"></div>
             <div class="header_background_gradient"></div>
             <div class="logo_container">
-                <img onclick="goHome()" class="logo_header" src="../img/core9-logo-white.png" alt="" srcset="">
+                <img onclick="goHome()" class="logo_header" src="../assets/images/brand/core9-logo-white.png" alt="" srcset="">
             </div>
             <div id="birds" style="width:400px; height:400px;"></div>
             <div class="header-content">
                 <!-- <h1 class="header-title">illytical</h1> -->
                 <div class="logo-product">
-                    <img src="../img/product-3-header.png" alt="" srcset="">
+                    <img src="../assets/images/products/product-3-header.png" alt="" srcset="">
                 </div>
                 <div class="header-desc">
                     <h3 class="header-sub">Your Planogram. Verified in Real Time.</h3>
@@ -91,10 +91,10 @@
 
             <div id="desktop-features" class="features_content flex flex_row gap">
                 <div class="row-features">
-                    <img class="fetures_image slide_1" src="../img/illytical-feature-1.png" alt="">
-                    <img class="fetures_image slide_2" src="../img/illytical-feature-2.png" alt="">
-                    <img class="fetures_image slide_3" src="../img/illytical-feature-3.png" alt="">
-                    <img class="fetures_image slide_4" src="../img/illytical-feature-4.png" alt="">
+                    <img class="fetures_image slide_1" src="../assets/images/products/illytical/illytical-feature-1.png" alt="">
+                    <img class="fetures_image slide_2" src="../assets/images/products/illytical/illytical-feature-2.png" alt="">
+                    <img class="fetures_image slide_3" src="../assets/images/products/illytical/illytical-feature-3.png" alt="">
+                    <img class="fetures_image slide_4" src="../assets/images/products/illytical/illytical-feature-4.png" alt="">
                 </div>
                 <div id="content_scroll" class="row-features flex_col">
                     <div class="features_text flex flex_row gap slide_1 slide">
@@ -144,7 +144,7 @@
             <div id="mobile-features">
                 <div class="card-features">
                     <h1 class="card-title">Planogram Compliance</h1>
-                    <img class="features-image slide_1" src="../img/illytical-feature-1.png" alt="">
+                    <img class="features-image slide_1" src="../assets/images/products/illytical/illytical-feature-1.png" alt="">
                     <div class="text-features">
                             <h2 class="product-sub margin-left">Know the moment the shelf stops matching the plan.</h2>
                             <ul class="list margin-left">
@@ -156,7 +156,7 @@
                 </div>
                 <div class="card-features">
                     <h1 class="card-title">Shelf Execution</h1>
-                    <img class="features-image slide_1" src="../img/illytical-feature-2.png" alt="">
+                    <img class="features-image slide_1" src="../assets/images/products/illytical/illytical-feature-2.png" alt="">
                     <div class="text-features">
                             <h2 class="product-sub margin-left">Lost availability is lost revenue. Close the gap in real time.</h2>
                             <ul class="list margin-left">
@@ -168,7 +168,7 @@
                 </div>
                 <div class="card-features">
                     <h1 class="card-title">Field Compliance</h1>
-                    <img class="features-image slide_1" src="../img/illytical-feature-3.png" alt="">
+                    <img class="features-image slide_1" src="../assets/images/products/illytical/illytical-feature-3.png" alt="">
                     <div class="text-features">
                             <h2 class="product-sub margin-left">Know exactly how your brand is represented at every store, every visit.</h2>
                             <ul class="list margin-left">
@@ -180,7 +180,7 @@
                 </div>
                 <div class="card-features">
                     <h1 class="card-title">Audit Analytics</h1>
-                    <img class="features-image slide_1" src="../img/illytical-feature-4.png" alt="">
+                    <img class="features-image slide_1" src="../assets/images/products/illytical/illytical-feature-4.png" alt="">
                     <div class="text-features">
                             <h2 class="product-sub margin-left">Manual audits give you a snapshot. illytical gives you the full picture.</h2>
                             <ul class="list margin-left">
@@ -212,7 +212,7 @@
                         <div class="video-wrap"
                             style="width: 100%; display: flex; flex-direction: column; align-items: center;">
                             <div class="video-container" id="videoContainer">
-                                <video id="customVideo" src="../img/illytical.mp4" poster="../img/thumb-drivesense.png"
+                                <video id="customVideo" src="../assets/videos/illytical.mp4" poster="../assets/images/products/thumb-drivesense.png"
                                     preload="metadata" loop>
                                     Your browser does not support the video tag.
                                 </video>
@@ -328,14 +328,14 @@
             </svg> -->
         </section>
 
-        <!-- <include src="./partial/products.html"></include> -->
+        <!-- <include src="./partials/home-products.html"></include> -->
 
-        <include src="./partial/footer.html">{"base": "../"}</include>
+        <include src="./partials/footer.html">{"base": "../"}</include>
     </div>
-    <include src="./partial/opening.html"></include>
-    <include src="./partial/faq.html"></include>
-        <include src="./partial/demo.html"></include>
+    <include src="./partials/opening.html"></include>
+    <include src="./partials/faq.html"></include>
+        <include src="./partials/demo.html"></include>
 </body>
-<script type="module" src="../js/products.js"></script>
+<script type="module" src="../js/product.js"></script>
 
 </html>

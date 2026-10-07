@@ -31,8 +31,8 @@ body {
 .hub-wrap { max-width: 1120px; margin: 0 auto; padding: 0 56px 80px; }
 
 /* ---- site nav ----
-   Mirrors the main Core9 site's navbar (Core9-web src/styles.css and
-   src/mobileStyle.css). Its build converts px to vw at a 1920px design
+   Mirrors the main Core9 site's navbar (Core9-web src/styles/desktop.css and
+   src/styles/mobile.css). Its build converts px to vw at a 1920px design
    width, so the desktop values here are those same px sizes in vw. */
 .hub-wrap { padding-top: calc(3.65vw + 40px); }
 

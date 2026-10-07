@@ -10,44 +10,44 @@
 
 @font-face {
   font-family: "Orbitron";
-  src: url(./font/orbitron.bold.ttf);
+  src: url(../assets/fonts/orbitron.bold.ttf);
   font-display: swap;
 }
 
 @font-face {
   font-family: "Outfit";
-  src: url(./font/Outfit-Regular.ttf);
+  src: url(../assets/fonts/Outfit-Regular.ttf);
   font-display: swap;
 }
 
 @font-face {
   font-family: "Outfit-thin";
-  src: url(./font/Outfit-Thin.ttf);
+  src: url(../assets/fonts/Outfit-Thin.ttf);
   font-display: swap;
 }
 
 @font-face {
   font-family: "Outfit Hero";
-  src: url(./font/Outfit-Bold.ttf);
+  src: url(../assets/fonts/Outfit-Bold.ttf);
   font-display: swap;
 }
 
 
 @font-face {
   font-family: "Hero";
-  src: url(./font/heroNew.otf);
+  src: url(../assets/fonts/heroNew.otf);
   font-display: swap;
 }
 
 @font-face {
   font-family: "Hero Bold";
-  src: url(./font/HeroExtraBold.otf);
+  src: url(../assets/fonts/HeroExtraBold.otf);
   font-display: swap;
 }
 
 @font-face {
   font-family: "Hero Italic";
-  src: url(./font/HeroItalic.otf);
+  src: url(../assets/fonts/HeroItalic.otf);
   font-display: swap;
 }
 
@@ -176,7 +176,7 @@ body {
 }
 
 .header_background {
-  background: url('./img/header-bg.jpeg');
+  background: url('../assets/images/backgrounds/header-bg.jpeg');
   background-size: cover;
   background-position: center;
   width: 100vw;
@@ -187,19 +187,19 @@ body {
 }
 
 .camcore {
-  background: url('./img/Camcore-back.jpg');
+  background: url('../assets/images/products/camcore/Camcore-back.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .drivesense {
-  background: url('./img/DriveSense-back.jpg');
+  background: url('../assets/images/products/drivesense/DriveSense-back.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .illytical {
-  background: url('./img/illytical-back.jpg');
+  background: url('../assets/images/products/illytical/illytical-back.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -403,7 +403,7 @@ li {
 }
 
 .background-product {
-  /* background: url("./img/circuit.png"); */
+  /* background: url("../assets/images/backgrounds/circuit.png"); */
   width: 100%;
   height: 100vh;
   position: absolute;
@@ -413,7 +413,7 @@ li {
 
 .background-section-1 {
   opacity: 0.5;
-  background: url("./img/maps.png");
+  background: url("../assets/images/backgrounds/maps.png");
   background-repeat: no-repeat;
   background-position: top;
   background-size: contain;
@@ -762,7 +762,7 @@ img {
 #section_2 {
   height: 585px;
   padding-top: 150px;
-  /* background-image: url("./img/maps.png");
+  /* background-image: url("../assets/images/backgrounds/maps.png");
   background-repeat: no-repeat;
   background-position: top;
   background-size: contain; */
@@ -1054,7 +1054,6 @@ img {
   top: 20vh;
 }
 
-/*# sourceMappingURL=styles.css.map */
 
 .header-desc {
   opacity: 0;
@@ -1314,7 +1313,7 @@ img {
 }
 
 .call-to-action {
-  background: url("./img/highway.png");
+  background: url("../assets/images/backgrounds/highway.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -106,7 +106,7 @@ also wipes the database so it re-seeds on the next start.
 ### Navigation
 
 The navbar in `partials/site-nav.php` mirrors the main site's navbar
-(`../src/index.html`, `../src/partial/mobileNav.html`) and links back to it
+(`../src/index.html`, `../src/partials/mobile-nav.html`) and links back to it
 with root-absolute URLs (`/`, `/drivesense/`, `/?scrollTo=...`). If the main
 site's menu changes, update this partial to match. "Book a Demo" links to
 `/?demo=1`, which opens the main site's demo form.

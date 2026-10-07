@@ -3,13 +3,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import LocomotiveScroll from "/node_modules/locomotive-scroll";
 import lottie from "lottie-web";
-import animationData from "../img/Birds.json";
+import animationData from "../assets/lottie/Birds.json";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 // ------------------------------------------------------------------- CONFIG
 const CONFIG = {
-  // Phones and tablets (<=900px) get the mobile layout in mobileStyle.css
+  // Phones and tablets (<=900px) get the mobile layout in styles/mobile.css
   isMobile: window.matchMedia("(max-width: 900px)").matches,
   mobileNav: window.matchMedia("(max-width: 900px)"),
   scrollLerp: 0.1,

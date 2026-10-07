@@ -27,13 +27,13 @@
     content="Integrated AI + hardware to transform operational data into visibility, automation & savings" />
   <meta name="twitter:image" content="https://core9.ai/img/og-image.png" />
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="./img/logo-square-fav.png" />
-  <link rel="shortcut icon" href="./img/logo-square-fav.png" />
+  <link rel="icon" type="image/png" href="./assets/images/brand/logo-square-fav.png" />
+  <link rel="shortcut icon" href="./assets/images/brand/logo-square-fav.png" />
   <!-- Canonical URL -->
   <link rel="canonical" href="https://core9.ai/" />
   <!-- CSS & JS -->
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="mobileStyle.css" />
+  <link rel="stylesheet" href="./styles/desktop.css" />
+  <link rel="stylesheet" href="./styles/mobile.css" />
   <script src="js/jquery.js"></script>
   <script>
     function goHome(){
@@ -44,12 +44,12 @@
 <body>
 
   <div class="logo_float">
-    <img class="logo_header" src="./img/core9-logo-white.png" alt="" srcset="">
+    <img class="logo_header" src="./assets/images/brand/core9-logo-white.png" alt="" srcset="">
   </div>
   <div id="navigation">
     <div class="nav-item">
       <a href="/" rel="noopener noreferrer">
-        <img class="logo-square" src="./img/logo-square.png" alt="">
+        <img class="logo-square" src="./assets/images/brand/logo-square.png" alt="">
       </a>
     </div>
     <div class="nav-item menu-text"><span target="self" scrollTo=".client_section" class="text scrollTo">Our Clients</span></div>
@@ -67,7 +67,7 @@
     <!-- <div class="nav-item"> <button class="cta faq-btn">FAQs</button></div> -->
                    
   </div>
-  <include src="./partial/mobileNav.html"></include>
+  <include src="./partials/mobile-nav.html"></include>
 
 
 
@@ -75,17 +75,17 @@
 
   <div class="scroll-container">
 
-    <include src="./partial/homepage_body.html"></include>
-    <include src="./partial/footer.html">{"base": "./"}</include>
+    <include src="./partials/home-body.html"></include>
+    <include src="./partials/footer.html">{"base": "./"}</include>
 
   </div>
 
-    <include src="./partial/opening.html"></include>
-    <include src="./partial/faq.html"></include>
+    <include src="./partials/opening.html"></include>
+    <include src="./partials/faq.html"></include>
 
-    <include src="./partial/demo.html"></include>
+    <include src="./partials/demo.html"></include>
 
-    <script type="module" src="./js/app.js"></script>
+    <script type="module" src="./js/home.js"></script>
 </body>
 
 </html>
