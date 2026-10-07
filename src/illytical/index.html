@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>illytical | Core9 — Computer vision for retail shelf audits</title>
+<meta name="description" content="illytical by Core9: computer vision that reads shelf photos in seconds, checks planogram and promo compliance, flags out-of-stocks and scores execution across every store.">
+<meta name="theme-color" content="#08050e">
+<link rel="icon" href="../assets/images/favicon.png">
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/main.css">
+<link rel="stylesheet" href="../styles/product.css">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/demo.css">
+<script>document.documentElement.className='js';</script>
+</head>
+<body id="top" class="page-ds page-cc page-il">
+
+<!-- ───── icon sprite ───── -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.6l3.1 3.1L13 4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 20 20"><path d="M7 5.2v9.6L15 10z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 20 20"><path d="M6.5 5h2.4v10H6.5zM11.1 5h2.4v10h-2.4z" fill="currentColor"/></symbol>
+  <!-- capability icons (24px line) -->
+  <symbol id="u-sector" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5h18"/><path d="M5 20.5V9l4-2.5v14M9 20.5V4h6.5v16.5M15.5 20.5V10.5H19v10"/><path d="M11.5 7.5h1.5M11.5 11h1.5M11.5 14.5h1.5"/></g></symbol>
+
+  <symbol id="c-ppe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15.5a8 8 0 0116 0"/><path d="M2.8 15.5h18.4v2.2H2.8z"/><path d="M12 7.5v-2M9 8.4l-.6-1.8M15 8.4l.6-1.8"/></g></symbol>
+  <symbol id="c-fatigue" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c2.4-3.6 5.4-5.4 9-5.4s6.6 1.8 9 5.4"/><path d="M5.4 13.6l-1.2 1.8M9 15.2l-.6 2M15 15.2l.6 2M18.6 13.6l1.2 1.8"/><path d="M8.5 12.2c1 .8 2.2 1.2 3.5 1.2s2.5-.4 3.5-1.2"/></g></symbol>
+  <symbol id="c-ergo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="15.5" cy="4.6" r="1.8"/><path d="M14.4 7.4L9 11.2l-1.6 4.4"/><path d="M9 11.2l3.4 2.6-1 6.2"/><path d="M7.4 15.6L5 20"/><path d="M14.4 7.4l2.6 3.6 2.5.6"/></g></symbol>
+  <symbol id="c-temp" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14.2V5a2 2 0 014 0v9.2a4 4 0 11-4 0z"/><path d="M12 9.5v6"/><path d="M17 6h2.5M17 9h2.5"/></g></symbol>
+  <symbol id="c-fire" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a6.5 6.5 0 006.5-6.5c0-4.6-4-6.4-4.6-10.5-2.6 1.6-4.2 4-4.2 6.4-1-.6-1.6-1.6-1.8-2.6C6.3 9.4 5.5 11.8 5.5 14.5A6.5 6.5 0 0012 21z"/><path d="M12 21a2.8 2.8 0 01-2.8-2.8c0-1.9 1.9-2.8 2.4-4.6 1.4 1 3.2 2.4 3.2 4.6A2.8 2.8 0 0112 21z"/></g></symbol>
+  <symbol id="c-anomaly" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12h4l2-4.5 3.5 10 2.5-7 1.6 1.5h5.4"/></g></symbol>
+  <symbol id="c-proximity" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M7.8 7.8a6 6 0 000 8.4M16.2 7.8a6 6 0 010 8.4"/><path d="M4.9 4.9a10 10 0 000 14.2M19.1 4.9a10 10 0 010 14.2"/></g></symbol>
+  <symbol id="c-access" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="1.8"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><path d="M12 14.2v2.6"/></g></symbol>
+  <symbol id="c-log" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.8" cy="6" r="1.2"/><circle cx="4.8" cy="12" r="1.2"/><circle cx="4.8" cy="18" r="1.2"/></g></symbol>
+  <symbol id="c-spill" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s-5 5.6-5 9.2a5 5 0 0010 0c0-3.6-5-9.2-5-9.2z"/><path d="M3 20.5c1.5-.8 3-.8 4.5 0s3 .8 4.5 0 3-.8 4.5 0 3 .8 4.5 0"/></g></symbol>
+  <symbol id="c-breach" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M12 8.5v4.5M12 16h.01"/></g></symbol>
+  <symbol id="c-report" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h8l4 4v13h-12z"/><path d="M14.5 3.5v4h4"/><path d="M9.5 13l2 2 3.5-3.8"/></g></symbol>
+  <symbol id="n-fleet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 10h4l3 3.2v3.3h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol><symbol id="n-ware" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V8.5L12 4l9 4.5v12"/><path d="M7 20.5v-8h10v8"/><path d="M7 16.5h10"/></g></symbol><symbol id="n-mfg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V11l5 3V11l5 3V11l5 3V5.5h3v15z"/><path d="M7 17.5h2M12 17.5h2"/></g></symbol><symbol id="n-retail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h2.4l2.2 10.2h10.2l2.2-7H6.6"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></g></symbol><symbol id="n-tools" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18.2h.01M12 18.2h3.5"/></g></symbol><symbol id="n-insights" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15.5H6.5A2.5 2.5 0 004 21z"/><path d="M4 21V5.5M8.5 7.5h7M8.5 11h5"/></g></symbol><symbol id="n-faq" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 01-12.4 7.5L3.5 20.5l1-4.4A8.5 8.5 0 1120.5 12z"/><path d="M9.8 9.6a2.3 2.3 0 114 1.6c-.8.7-1.8 1.1-1.8 2.3M12 16.2h.01"/></g></symbol><symbol id="n-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></g></symbol><symbol id="n-tshield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></g></symbol><symbol id="n-tbars" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V5M19 20v-6M3 20.5h18"/></g></symbol><symbol id="n-tshelf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 10v10"/></g></symbol><symbol id="n-tlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></g></symbol><symbol id="n-tarch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="5" rx="1"/><rect x="15" y="4" width="6" height="5" rx="1"/><rect x="9" y="15" width="6" height="5" rx="1"/><path d="M6 9v3h12V9M12 12v3"/></g></symbol><symbol id="n-ttarget" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2"/></g></symbol><symbol id="n-tkit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7M3 12.5h18M10.5 12.5v2h3v-2"/></g></symbol>
+  <symbol id="k-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/><path d="M10.6 9.4a1.7 1.7 0 113 1.1c-.6.5-1.3.8-1.3 1.7"/></g></symbol>
+  <symbol id="k-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/><path d="M4 4l16 16"/></g></symbol>
+</svg>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ───── intro ───── -->
+<div class="intro" id="intro" aria-hidden="true">
+  <img class="intro__mark" src="../assets/logos/core9-icon.svg" alt="">
+  <div class="intro__bar"><i></i></div>
+</div>
+
+<!-- ───── nav (sticky, same as homepage) ───── -->
+<include src="./partials/nav.html">{"base":"../"}</include>
+
+
+<main>
+
+<!-- ═════════════════════════ HERO ═════════════════════════ -->
+<section class="hero hero--ds hero--cc" id="hero" aria-label="illytical">
+  <img class="hero__img" id="heroImg" src="../assets/images/illytical/hero.jpg" width="1920" height="1080" alt="" fetchpriority="high">
+  <canvas class="hero__gl" id="heroGL" aria-hidden="true"></canvas>
+  <div class="hero__shade"></div>
+
+  <!-- HUD tags pinned to the photo (image-space coords) — they lock on as the cursor glow passes -->
+  <div class="hud" id="hud" aria-hidden="true">
+    <div class="tag" data-x="0.83" data-y="0.5">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Bay 12 · Beverages</b><span>Planogram match 96%</span></span>
+    </div>
+    <div class="tag" data-x="0.16" data-y="0.36" data-side="l">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Aisle 4 · Shelf 3</b><span>Gap detected · restock task sent</span></span>
+    </div>
+    <div class="tag" data-x="0.24" data-y="0.78">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>End-cap · Promo</b><span>Display compliant · price tag found</span></span>
+    </div>
+    <div class="tag" data-x="0.93" data-y="0.28" data-side="l">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Store 118 · Visit 3</b><span>Execution score 92</span></span>
+    </div>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__brand"><img src="../assets/logos/illytical-white.svg" alt="illytical"></div>
+    <h1 id="heroTitle" data-shiny="Verified|time.">Your planogram. Verified in real time.</h1>
+    <p class="hero__sub">illytical reads shelf photos in seconds and flags the gaps: stock-outs, planogram breaks and missing promos, store by store.</p>
+    <div class="hero__cta">
+      <a class="btn btn--gold btn--xl magnet" href="#book-demo">Book a Demo <svg class="arr"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--xl magnet" href="#showcase"><svg class="arr arr--play"><use href="#i-play"/></svg> See it in action</a>
+    </div>
+  </div>
+
+  <div class="scrollcue" aria-hidden="true"><i></i>Scroll</div>
+
+  <div class="hero__bottom">
+    <ul class="hero__trust">
+      <li><svg><use href="#i-check"/></svg>Works on your field teams’ photos</li>
+      <li><svg><use href="#i-check"/></svg>Planogram &amp; out-of-stock detection</li>
+      <li><svg><use href="#i-check"/></svg>Promo &amp; brand-standard compliance</li>
+      <li><svg><use href="#i-check"/></svg>Execution scoring by store &amp; region</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═════════════════════════ STATEMENT ═════════════════════════ -->
+<section class="section statement" aria-label="Why illytical">
+  <div class="glow" style="width:46vw;height:46vw;left:-16vw;top:10%"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-scramble style="margin-bottom:40px">The problem</span>
+    <h2 class="statement__text" id="statement">Retail and FMCG teams know what was distributed. What happens at the shelf after that, across hundreds of stores, is where the return on the whole supply chain is protected or lost. <span class="k">illytical protects it.</span></h2>
+    <div class="statement__foot" data-reveal>
+      <span>Retail chains</span><span>FMCG brands</span><span>Field sales teams</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ FEATURES (sticky showcase) ═════════════════════════ -->
+<section class="section feat" id="features" aria-label="illytical features">
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div style="display:grid;gap:22px">
+        <span class="eyebrow" data-scramble>illytical features</span>
+        <h2 class="h2 split">How illytical helps you and your company.</h2>
+      </div>
+      <p class="lead" data-reveal>Four jobs from one shelf photo: hold the planogram, close the gaps, prove the visit, and see the whole network.</p>
+    </div>
+
+    <div class="feat__grid">
+      <!-- sticky stage (desktop) -->
+      <div class="feat__stage" aria-hidden="true">
+        <div class="feat__frame" id="featFrame">
+          <figure class="fshot is-on" data-f="0">
+            <img src="../assets/images/illytical/feature-1.jpg" width="712" height="512" alt="">
+          </figure>
+          <figure class="fshot" data-f="1">
+            <img src="../assets/images/illytical/feature-2.jpg" width="712" height="512" alt="">
+          </figure>
+          <figure class="fshot" data-f="2">
+            <img src="../assets/images/illytical/feature-3.jpg" width="712" height="512" alt="">
+          </figure>
+          <figure class="fshot" data-f="3">
+            <img src="../assets/images/illytical/feature-4.jpg" width="712" height="512" alt="">
+          </figure>
+          <div class="feat__vig"></div>
+        </div>
+        <ol class="feat__rail" id="featRail">
+          <li class="is-on"><b>01</b>Planogram compliance</li>
+          <li><b>02</b>Shelf execution</li>
+          <li><b>03</b>Field compliance</li>
+          <li><b>04</b>Audit analytics</li>
+        </ol>
+      </div>
+
+      <!-- scrolling copy -->
+      <div class="feat__list">
+        <article class="fitem" data-f="0">
+          <img class="fitem__img" src="../assets/images/illytical/feature-1.jpg" width="712" height="512" alt="A field rep checking planogram compliance on a tablet in a store aisle" loading="lazy">
+          <span class="fitem__no">01 · Planogram compliance</span>
+          <h3>Know the moment the shelf stops matching the plan.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Automated verification of product placement and facings by store</li>
+            <li><svg><use href="#i-check"/></svg>Brand visibility and call-to-action checks across the full network</li>
+            <li><svg><use href="#i-check"/></svg>Real-time compliance alerts while correction is still possible</li>
+          </ul>
+        </article>
+        <article class="fitem" data-f="1">
+          <img class="fitem__img" src="../assets/images/illytical/feature-2.jpg" width="712" height="512" alt="A shelf with an out-of-stock gap and promo display flagged by illytical" loading="lazy">
+          <span class="fitem__no">02 · Shelf execution</span>
+          <h3>Lost availability is lost revenue. Close the gap in real time.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Real-time out-of-stock and shelf gap detection by store and category</li>
+            <li><svg><use href="#i-check"/></svg>Promotional display compliance tracked against agreed trade standards</li>
+            <li><svg><use href="#i-check"/></svg>Restocking alerts routed to field teams the moment a gap appears</li>
+          </ul>
+        </article>
+        <article class="fitem" data-f="2">
+          <img class="fitem__img" src="../assets/images/illytical/feature-3.jpg" width="712" height="512" alt="A promoter at a branded display, with attendance and uniform checks shown" loading="lazy">
+          <span class="fitem__no">03 · Field compliance</span>
+          <h3>Know exactly how your brand is represented at every store, every visit.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Promoter presence verification and attendance monitoring at store level</li>
+            <li><svg><use href="#i-check"/></svg>Uniform and brand standard compliance checked on every visit</li>
+            <li><svg><use href="#i-check"/></svg>Time-stamped activity evidence per visit and per team member</li>
+          </ul>
+        </article>
+        <article class="fitem" data-f="3">
+          <img class="fitem__img" src="../assets/images/illytical/feature-4.jpg" width="712" height="512" alt="Overhead view of a store with an analytics dashboard of execution scores" loading="lazy">
+          <span class="fitem__no">04 · Audit analytics</span>
+          <h3>Manual audits give you a snapshot. illytical gives you the full picture.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Automated visual reporting across the full store network, continuously</li>
+            <li><svg><use href="#i-check"/></svg>Execution scoring by store, region, category and time period</li>
+            <li><svg><use href="#i-check"/></svg>Resource prioritisation based on where improvement matters most</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ PORTAL ═════════════════════════ -->
+<!-- ═════════════════════════ SHOWCASE (video scroll-expand) ═════════════════════════ -->
+<section class="expand vexpand" id="showcase" aria-label="illytical in action">
+  <div class="scursor" id="sCursor" aria-hidden="true"><div class="scursor__in"><span>Scroll to watch</span></div></div>
+  <div class="expand__frame" id="vFrame">
+    <video id="ccVideo" src="../assets/videos/illytical.mp4" poster="../assets/videos/illytical-poster.jpg" muted loop playsinline preload="metadata"></video>
+  </div>
+  <div class="expand__content vexpand__content" id="vContent">
+    <span class="eyebrow" style="margin-bottom:26px">Showcase</span>
+    <h2 class="expand__title" id="vTitle">See illytical in action.</h2>
+  </div>
+  <div class="vbar" id="vBar">
+    <button class="vbar__toggle" id="vToggle" aria-label="Pause video"><svg class="i-pause"><use href="#i-pause"/></svg><svg class="i-play"><use href="#i-play"/></svg></button>
+    <div class="vbar__chapters" role="list">
+      <button class="vch" data-t="6.8" role="listitem"><b>Shelf visibility</b><span>What is actually on shelf</span><i><i></i></i></button>
+      <button class="vch" data-t="11.8" role="listitem"><b>Planogram compliance</b><span>Plan vs. real placement</span><i><i></i></i></button>
+      <button class="vch" data-t="16.8" role="listitem"><b>Promoter performance</b><span>In-store activity</span><i><i></i></i></button>
+      <button class="vch" data-t="21.8" role="listitem"><b>Out-of-stock detection</b><span>Before sales are lost</span><i><i></i></i></button>
+      <button class="vch" data-t="26.8" role="listitem"><b>Execution dashboard</b><span>Every store, one view</span><i><i></i></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ IMPACT (with vs without) ═════════════════════════ -->
+<section class="section impact-ds" id="impact" aria-label="The impact of illytical">
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div style="display:grid;gap:22px">
+        <span class="eyebrow" data-scramble>The impact of illytical</span>
+        <h2 class="h2 split">Your company, with &amp; without illytical.</h2>
+      </div>
+      <div class="cmp-toggle" id="cmpToggle" role="tablist" aria-label="Compare" data-reveal>
+        <button role="tab" aria-selected="false" data-side="without">Without</button>
+        <button role="tab" aria-selected="true" data-side="with" class="is-on">With illytical</button>
+        <i class="cmp-toggle__pill"></i>
+      </div>
+    </div>
+
+    <div class="cmp is-with" id="cmp">
+      <div class="cmp__head"><span>Without illytical</span><span><img src="../assets/logos/illytical-white.svg" alt="With illytical"></span></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Shelf compliance checked during scheduled store visits</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Continuous shelf monitoring across every store in the network</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Execution failures discovered days after they occur</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Compliance gaps detected while the promotion is still running</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Field team performance measured by visits completed</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Performance measured by actual shelf outcomes</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Promotional ROI lost to invisible execution gaps</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Execution failures identified and corrected in real time</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Manual audits capturing a snapshot once a week</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Continuous visibility between every visit</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ USE CASES ═════════════════════════ -->
+<section class="section ulib" id="use-cases" aria-label="Use cases" data-ulib>
+  <div class="glow" style="width:50vw;height:50vw;right:-20vw;top:0"></div>
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div style="display:grid;gap:22px">
+        <span class="eyebrow" data-scramble>Use cases</span>
+        <h2 class="h2 split">12 checks. One shelf photo.</h2>
+      </div>
+      <p class="lead" data-reveal>Four areas, from the planogram to the boardroom report. Pick one to see what illytical checks for.</p>
+    </div>
+    <div class="ulib__tabs" role="tablist" aria-label="Use-case categories" data-reveal>
+      <button class="ulib__tab is-on" role="tab" id="ul-il-t0" aria-controls="ul-il-p0" aria-selected="true" tabindex="0"><svg><use href="#n-tshelf"/></svg><span>Planogram</span><i>3</i></button><button class="ulib__tab" role="tab" id="ul-il-t1" aria-controls="ul-il-p1" aria-selected="false" tabindex="-1"><svg><use href="#k-box"/></svg><span>Availability</span><i>3</i></button><button class="ulib__tab" role="tab" id="ul-il-t2" aria-controls="ul-il-p2" aria-selected="false" tabindex="-1"><svg><use href="#k-eye"/></svg><span>Field execution</span><i>3</i></button><button class="ulib__tab" role="tab" id="ul-il-t3" aria-controls="ul-il-p3" aria-selected="false" tabindex="-1"><svg><use href="#n-tbars"/></svg><span>Reporting</span><i>3</i></button>
+    </div>
+    <div class="ulib__panels" data-reveal>
+      <div class="ulib__panel is-on" role="tabpanel" id="ul-il-p0" aria-labelledby="ul-il-t0">
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#n-tshelf"/></svg></span><h3>Planogram</h3><p>The shelf, exactly as it was planned.</p><b>3 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Placement check</h5><p>Every SKU in its agreed position, bay by bay, against the store planogram.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Facings count</h5><p>Facings counted per SKU, so shelf share matches what was negotiated.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Brand visibility</h5><p>Brand blocks, shelf strips and call-to-action material checked on every visit.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-il-p1" aria-labelledby="ul-il-t1" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#k-box"/></svg></span><h3>Availability</h3><p>Gaps found while there is still time to fill them.</p><b>3 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Out-of-stock detection</h5><p>Empty facings flagged by store, aisle and category from a single photo.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Shelf gaps</h5><p>Partial gaps and low stock spotted before the shelf runs empty.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Restock alerts</h5><p>A restock task routed to the right field rep or store team as soon as a gap appears.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-il-p2" aria-labelledby="ul-il-t2" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#k-eye"/></svg></span><h3>Field execution</h3><p>Proof of what happened on every visit.</p><b>3 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Promoter check</h5><p>Promoter presence and attendance verified at store level.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Uniform & brand standards</h5><p>Uniform and brand-standard compliance checked on every visit.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Visit evidence</h5><p>Time-stamped photo evidence per visit and per team member.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-il-p3" aria-labelledby="ul-il-t3" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#n-tbars"/></svg></span><h3>Reporting</h3><p>The whole network on one screen.</p><b>3 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Visual reporting</h5><p>Automated reports across the full store network, refreshed continuously.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Execution scoring</h5><p>Scores by store, region, category and period, so you can compare like for like.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Priority insights</h5><p>The stores and categories where a fix moves the number most, ranked.</p></div></div></div>
+      </div>
+    </div>
+    <div class="ulib__foot" data-reveal><p>Recognition works on the photos your field teams already take. Your SKUs and planograms are loaded during the pilot.</p><a class="link-arrow" href="#demo">See it on your shelves <svg class="arr"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ OTHER PRODUCTS ═════════════════════════ -->
+<section class="section more" aria-label="More from Core9">
+  <div class="wrap">
+    <div class="more__head">
+      <span class="eyebrow" data-scramble>More from Core9</span>
+      <h2 class="h2 split">One intelligence layer, beyond the shelf.</h2>
+    </div>
+    <div class="more__grid">
+      <a class="mcard spot" href="/drivesense/" data-reveal>
+        <div class="mcard__img"><img src="../assets/images/cc-drivesense.webp" width="1200" height="900" alt="" loading="lazy"></div>
+        <div class="mcard__body"><span class="pcard__brand"><img src="../assets/logos/drivesense-white.svg" alt="DriveSense"></span><h3>The fleet platform built for operational excellence.</h3><span class="link-arrow link-arrow--gold">Explore DriveSense <svg class="arr"><use href="#i-arrow"/></svg></span></div>
+      </a>
+      <a class="mcard spot" href="/camcore/" data-reveal>
+        <div class="mcard__img"><img src="../assets/images/camcore.webp" width="1200" height="900" alt="" loading="lazy"></div>
+        <div class="mcard__body"><span class="pcard__brand"><img src="../assets/logos/camcore-white.svg" alt="CamCore"></span><h3>The AI layer your cameras were missing.</h3><span class="link-arrow link-arrow--gold">Explore CamCore <svg class="arr"><use href="#i-arrow"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ FAQ ═════════════════════════ -->
+<section class="section faq" id="faq" aria-label="FAQs">
+  <div class="wrap">
+    <div class="faq__grid">
+      <div class="faq__side">
+        <span class="eyebrow" data-scramble>FAQs</span>
+        <h2 class="h2 split">Questions retail and FMCG teams ask.</h2>
+        <p class="lead" data-reveal>Still curious? We'll walk you through it on a short call.</p>
+        <div data-reveal><a class="link-arrow" href="#demo">Talk to the team <svg class="arr"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <div class="faq__list" data-reveal>
+<div class="qa is-open"><button class="qa__q" aria-expanded="true">Can illytical handle Arabic and bilingual packaging?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Recognition is based on the product itself, so Arabic, English and bilingual packs are recognised once the SKUs are loaded.</p></div></div></div>
+<div class="qa"><button class="qa__q" aria-expanded="false">We sell through several chains with different planograms. Is that a problem?<span class="qa__ico"></span></button><div class="qa__a"><div><p>No. Planograms are mapped per chain and category, so every store is scored against its own plan.</p></div></div></div>
+<div class="qa"><button class="qa__q" aria-expanded="false">Can we check campaigns like Ramadan and Eid?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Yes. Campaign displays and promotional material can be added as checks for the campaign period, then removed.</p></div></div></div>
+<div class="qa"><button class="qa__q" aria-expanded="false">Do shoppers appear in the photos?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Photos are taken of the shelf. Your team sets the capture guidelines, and images are stored in-country with retention windows you set.</p></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ CTA ═════════════════════════ -->
+<section class="cta" id="demo" aria-label="Book a demo">
+  <div class="glow a"></div><div class="glow b"></div>
+  <div class="radar" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-scramble style="margin-bottom:28px">Book a demo</span>
+    <h2 class="h2 split">See how Core9 enables intelligent supply chain operations.</h2>
+    <p class="lead" data-reveal>Smarter visibility. Faster decisions. Better control.</p>
+    <div class="cta__row" data-reveal>
+      <a class="btn btn--gold btn--xl magnet" href="#book-demo">Book a Demo <svg class="arr"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--xl magnet" href="mailto:info@core9.ai">info@core9.ai</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═════════════════════════ FOOTER ═════════════════════════ -->
+<include src="./partials/footer.html">{"base":"../","tagline":"illytical · Every shelf, every store"}</include>
+
+<script src="../js/vendor/gsap.min.js"></script>
+<script src="../js/vendor/ScrollTrigger.min.js"></script>
+<script src="../js/vendor/SplitText.min.js"></script>
+<script src="../js/vendor/lenis.min.js"></script>
+<script src="../js/hero-gl.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/camcore.js"></script>
+<include src="./partials/demo.html">{}</include>
+<script src="../js/site.js"></script>
+</body>
+</html>
