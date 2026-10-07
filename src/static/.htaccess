@@ -1,0 +1,30 @@
+# Main site (build/) — compression and browser caching. Copied into build/ by
+# scripts/copy-static.js. Each block only runs if the host has that Apache
+# module (cPanel hosts normally have all three).
+
+# Compress text files on the way out (roughly 70% smaller CSS/JS/HTML/SVG).
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml image/svg+xml
+    AddOutputFilterByType DEFLATE application/javascript text/javascript application/json application/xml
+</IfModule>
+
+# Parcel puts a content hash in every asset name (main.1a2b3c4d.js), so a
+# changed file always gets a new URL: browsers can keep assets for a year.
+# Pages themselves are re-checked on every visit, so updates show at once.
+<IfModule mod_headers.c>
+    <FilesMatch "\.[0-9a-f]{8}\.(js|css|webp|jpe?g|png|gif|svg|mp4|webm|otf|ttf|woff2?)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>
+
+# Link-preview images keep fixed names (og/*.png|jpg), so cache them briefly.
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png "access plus 7 days"
+    ExpiresByType image/jpeg "access plus 7 days"
+</IfModule>
+
+Options -Indexes

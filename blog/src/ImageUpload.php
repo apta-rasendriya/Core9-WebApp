@@ -57,7 +57,97 @@ final class ImageUpload
             return ['path' => null, 'error' => 'Could not save the uploaded image.'];
         }
 
-        return ['path' => "uploads/{$subdir}/{$filename}", 'error' => null];
+        $path = self::optimize("uploads/{$subdir}/{$filename}", self::maxWidthFor($subdir), self::formatFor($subdir));
+        return ['path' => $path, 'error' => null];
+    }
+
+    /** Widest an image needs to be: cards show thumbnails ~600px wide, headers span the page. */
+    public static function maxWidthFor(string $subdir): int
+    {
+        return $subdir === 'headers' ? 2000 : 1200;
+    }
+
+    /**
+     * Format to save in. Header images double as the article's link-preview
+     * image, and not every app shows WebP previews, so they are saved as JPEG.
+     */
+    public static function formatFor(string $subdir): string
+    {
+        return $subdir === 'headers' ? 'jpg' : 'webp';
+    }
+
+    /**
+     * Shrinks an uploaded image for the web: scales it down to $maxWidth and
+     * re-saves it as $format ('webp' or 'jpg'; JPEG when the server's GD has no WebP), keeping
+     * whichever file is smaller. GIFs (possibly animated) and servers without
+     * GD are left untouched. Returns the image's (possibly new) relative path.
+     */
+    public static function optimize(string $relativePath, int $maxWidth, string $format = 'webp'): string
+    {
+        $fullPath = dirname(self::uploadsRoot()) . '/' . $relativePath;
+        if (!function_exists('imagecreatefromstring') || !is_file($fullPath) || str_ends_with($relativePath, '.gif')) {
+            return $relativePath;
+        }
+
+        $source = @imagecreatefromstring((string) file_get_contents($fullPath));
+        if ($source === false) {
+            return $relativePath;
+        }
+
+        // palette (8-bit) PNGs/GIFs: WebP and resampling need full colour
+        if (!imageistruecolor($source)) {
+            imagepalettetotruecolor($source);
+        }
+        $width = imagesx($source);
+        $height = imagesy($source);
+        $image = $source;
+        $resized = $width > $maxWidth;
+        if ($resized) {
+            $newHeight = (int) round($height * $maxWidth / $width);
+            $image = imagecreatetruecolor($maxWidth, $newHeight);
+            imagealphablending($image, false);
+            imagesavealpha($image, true);
+            imagecopyresampled($image, $source, 0, 0, 0, 0, $maxWidth, $newHeight, $width, $height);
+        }
+
+        if ($format === 'webp' && function_exists('imagewebp')) {
+            $ext = 'webp';
+        } elseif ($format === 'webp' && str_ends_with($relativePath, '.png')) {
+            $ext = 'png'; // no WebP on this server: a PNG may have transparency, which JPEG would lose
+        } else {
+            $ext = 'jpg';
+        }
+
+        if ($ext === 'jpg') {
+            // JPEG has no transparency: flatten onto the site's background colour
+            $flat = imagecreatetruecolor(imagesx($image), imagesy($image));
+            imagefill($flat, 0, 0, imagecolorallocate($flat, 8, 5, 14));
+            imagealphablending($flat, true);
+            imagecopy($flat, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
+            $image = $flat;
+        }
+
+        $newRelative = preg_replace('/\.[a-z]+$/', '', $relativePath) . '.' . $ext;
+        $newFull = dirname(self::uploadsRoot()) . '/' . $newRelative;
+        $tmp = $newFull . '.tmp';
+        $ok = match ($ext) {
+            'webp' => imagewebp($image, $tmp, 80),
+            'jpg' => imagejpeg($image, $tmp, 82),
+            default => imagepng($image, $tmp, 9),
+        };
+
+        // keep the new file if it was resized, changed format, or is simply smaller
+        $sameFormat = str_ends_with($relativePath, '.' . $ext) || ($ext === 'jpg' && str_ends_with($relativePath, '.jpeg'));
+        clearstatcache();
+        if (!$ok || !is_file($tmp) || filesize($tmp) === 0 || (!$resized && $sameFormat && filesize($tmp) >= filesize($fullPath))) {
+            @unlink($tmp);
+            return $relativePath;
+        }
+        rename($tmp, $newFull);
+        if ($newFull !== $fullPath) {
+            unlink($fullPath);
+        }
+        return $newRelative;
     }
 
     public static function delete(?string $relativePath): void

@@ -146,6 +146,14 @@ Every "Book a Demo" button opens the HubSpot demo form in a popup.
   highlighted), and a line starting with `> ` becomes a small note. Everything is
   escaped before rendering, so there's no HTML/script injection risk from the
   admin form.
+- **Images**: uploads are resized (thumbnails to 1200 px wide, headers to
+  2000 px) and re-saved as WebP (thumbnails) or JPEG (headers, which are also
+  the article's link-preview image) by `src/ImageUpload.php`, using PHP's GD
+  extension. Without GD, files are stored as uploaded. Images uploaded before
+  this existed can be shrunk once with `php tools/optimize-images.php` (run it
+  from this folder, e.g. in cPanel → Terminal; back up first).
+- **Leads**: see the main README. `lead.php` stores calculator leads; they
+  are listed in admin → Leads.
 - **Auth security**: passwords are hashed with `password_hash()`, admin forms
   are CSRF-protected, and all DB queries use PDO prepared statements.
 - **Article images**: each article can have a **thumbnail image** (used on

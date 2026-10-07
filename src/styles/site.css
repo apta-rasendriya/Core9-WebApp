@@ -1379,7 +1379,7 @@
   position: relative;
   aspect-ratio: 16 / 10;
   border-radius: 9px;
-  background: url(../assets/images/clip.jpg) center / cover no-repeat;
+  background: url(../assets/images/clip.webp) center / cover no-repeat;
   overflow: hidden;
 }
 .evt__clip i::after {
