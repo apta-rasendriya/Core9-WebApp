@@ -33,16 +33,9 @@
     ".webmanifest$": "assets/[name].[type]"
   },
   "devDependencies": {
-    "@parcel/compressor-brotli": "^2.6.2",
-    "@parcel/compressor-gzip": "^2.6.2",
-    "@parcel/namer-default": "^2.16.4",
     "@parcel/optimizer-htmlnano": "^2.16.4",
-    "@parcel/packager-raw-url": "^2.6.2",
-    "@parcel/transformer-inline-string": "^2.6.2",
-    "@parcel/transformer-webmanifest": "^2.6.2",
     "parcel": "^2.16.4",
     "parcel-namer-custom": "^0.2.0",
-    "parcel-namer-rewrite": "^2.0.0-rc.2",
     "patch-package": "^8.0.1",
     "posthtml-include": "^2.0.1",
     "rimraf": "^3.0.2"
