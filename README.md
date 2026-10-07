@@ -17,9 +17,11 @@ src/
 ├─ styles/                          main.css + site.css (shared), product/drivesense/toolkit.css (per page type)
 ├─ js/                              main.js (shared motion), site.js (current-page nav + demo popup),
 │                                   per-page scripts, hero-*.js (hero images), vendor/ (GSAP, Lenis, three.js)
-└─ assets/                          images/, logos/, videos/
+├─ assets/                          images/, logos/, videos/
+└─ static/                          copied into build/ as-is (fixed URLs): og/ link-preview images
 blog/                               PHP blog; shared look is copied in from src/ by scripts/sync-blog.js
 scripts/sync-blog.js                copies styles, scripts, logos and nav/footer/demo partials into blog/
+scripts/copy-static.js              copies src/static/ into build/
 docker/, compose.yaml               local preview of the full site
 patches/                            patch-package fix for parcel-namer-custom
 ```
@@ -37,7 +39,7 @@ the HubSpot demo form popup (`?demo=1` on any page opens it too).
 ```
 npm install
 npm run s          dev server at http://localhost:1234 (main site only)
-npm run b          production build into build/, then sync the blog
+npm run b          production build into build/, copy src/static/, then sync the blog
 npm run sync-blog  copy the shared look into blog/ only
 docker compose up -d --build   full site + blog at http://localhost:8090 (run `npm run b` first)
 ```
@@ -48,9 +50,17 @@ Parcel reads `.parcelrc`, `.posthtmlrc` (partials resolve from `src/`) and the
 `htmlnano` block in `package.json`. There is no PostCSS step: the CSS is
 written in final units.
 
-## Placeholders still in the design
+## Link previews
 
-The toolkit calculators' "email me the results" boxes run on the page but
-don't send anywhere yet (look for `TODO(client)` and "Placeholder" in
-`src/js/home-calc.js` and `src/js/tk-runtime.js`). Wire them to a HubSpot
-form when one exists for calculator leads.
+Each page's <head> has canonical, Open Graph and Twitter tags pointing at
+https://core9.ai. Preview images are 1200×630 files in `src/static/og/`
+(`core9.png` by default; the product pages have their own). The blog builds
+its tags in `blog/partials/head.php`, using `SITE_URL` from its config.
+
+## Toolkit leads
+
+The calculators' "email me my results" boxes and the Pilot Planner post to
+`/insights/lead.php` (see `window.C9SubmitLead` in `src/js/site.js`). Leads
+are stored in the blog database and listed under **Leads** in the blog admin,
+with CSV export for HubSpot. Set `LEAD_NOTIFY_EMAIL` in `blog/.env` to get an
+email per lead. Book a Demo requests still go straight to HubSpot.

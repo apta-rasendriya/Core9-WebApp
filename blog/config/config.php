@@ -32,6 +32,10 @@ define('DB_PASS', getenv('DB_PASS') ?: '');
 define('SITE_NAME', 'Core9 Insights');
 define('ARTICLES_PER_PAGE', 6);
 define('SESSION_NAME', 'core9_admin_session');
+// Public address of the main site; the blog is at SITE_URL/insights/. Used
+// for canonical and link-preview URLs.
+define('SITE_URL', rtrim(getenv('SITE_URL') ?: 'https://core9.ai', '/'));
+define('BLOG_URL', SITE_URL . '/insights/');
 define('LEAD_NOTIFY_EMAIL', getenv('LEAD_NOTIFY_EMAIL') ?: '');
 
 date_default_timezone_set('UTC');

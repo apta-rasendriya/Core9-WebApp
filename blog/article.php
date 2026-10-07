@@ -22,6 +22,8 @@ $toc = $article ? article_toc($article['content']) : [];
 $pageTitle = $article ? $article['title'] . ' | ' . SITE_NAME : 'Article not found | ' . SITE_NAME;
 $pageDescription = $article['excerpt'] ?? 'This article does not exist or has not been published yet.';
 $canonical = $article ? 'article.php?slug=' . urlencode($article['slug']) : null;
+$isArticle = $article !== null;
+$shareImage = $article && $article['header_image'] ? BLOG_URL . $article['header_image'] : null;
 require __DIR__ . '/partials/head.php';
 ?>
 <main>

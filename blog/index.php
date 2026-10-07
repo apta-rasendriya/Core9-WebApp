@@ -44,6 +44,7 @@ function listing_url(?string $category, int $page = 1): string
 }
 
 $pageTitle = $activeCategory ? $activeCategory['name'] . ' | ' . SITE_NAME : SITE_NAME;
+$canonical = $activeCategorySlug ? '?category=' . urlencode($activeCategorySlug) : '';
 $pageDescription = 'Practical perspective from the team deploying AI monitoring across enterprise fleets, warehouses and stores: what actually moves cost, risk and uptime.';
 require __DIR__ . '/partials/head.php';
 ?>

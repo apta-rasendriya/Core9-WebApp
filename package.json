@@ -5,7 +5,7 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "s": "parcel serve src/**/index.html",
-    "b": "rimraf build && parcel build src/**/index.html --dist-dir build && node scripts/sync-blog.js",
+    "b": "rimraf build && parcel build src/**/index.html --dist-dir build && node scripts/copy-static.js && node scripts/sync-blog.js",
     "postinstall": "patch-package",
     "sync-blog": "node scripts/sync-blog.js"
   },
