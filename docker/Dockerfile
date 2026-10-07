@@ -12,3 +12,6 @@ RUN { \
     } > /usr/local/etc/php/conf.d/uploads.ini
 
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
+
+# blog/.htaccess rewrites /blog/<slug>/ to article.php
+RUN a2enmod rewrite

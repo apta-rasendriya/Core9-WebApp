@@ -1,351 +1,399 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="en" class="no-js">
 <head>
-    <meta charset="utf-8" />
-    <title>DriveSense | Core9</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- SEO Meta Tags -->
-    <meta name="description"
-        content="DriveSense by Core9: Driving safer logistics through AI-vision. Real-time driver monitoring, collision prediction, and fleet safety analytics to reduce accidents and operational costs." />
-    <meta name="keywords"
-        content="DriveSense, AI-vision logistics, fleet safety, driver monitoring, collision prediction, Core9, supply chain AI, real-time driver alert, logistics computer vision" />
-    <meta name="author" content="Core9" />
-    <meta name="robots" content="index, follow" />
-   <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content="The AI Layer for Your Supply Chain" />
-  <meta property="og:description"
-    content="Integrated AI + hardware to transform operational data into visibility, automation & savings" />
-  <meta property="og:image" content="https://core9.ai/img/og-image.png" />
-  <meta property="og:image:alt" content="Enabling Intelligent Supply Chains" />
-  <meta property="og:url" content="https://core9.ai/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Core9" />
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The AI Layer for Your Supply Chain" />
-  <meta name="twitter:description"
-    content="Integrated AI + hardware to transform operational data into visibility, automation & savings" />
-  <meta name="twitter:image" content="https://core9.ai/img/og-image.png" />
-    <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../assets/images/brand/logo-square-fav.png" />
-  <link rel="shortcut icon" href="../assets/images/brand/logo-square-fav.png" />
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://core9.ai/" />
-    <!-- CSS & JS -->
-    <link rel="stylesheet" href="../styles/desktop.css" />
-    <link rel="stylesheet" href="../styles/mobile.css" />
-    <script src="../js/jquery.js"></script>
-        <script>
-    function goHome(){
-      window.location = '/';
-    }
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DriveSense | Core9 — AI fleet &amp; driver intelligence</title>
+<meta name="description" content="DriveSense by Core9: real-time driver monitoring, collision prediction and fleet analytics that prevent incidents instead of reporting them.">
+<meta name="theme-color" content="#08050e">
+<link rel="icon" href="../assets/images/favicon.png">
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/main.css">
+<link rel="stylesheet" href="../styles/drivesense.css">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/demo.css">
+<script>document.documentElement.className='js';</script>
 </head>
+<body id="top" class="page-ds">
 
-<body>
-    <div class="logo_float">
-        <img onclick="goHome()" class="logo_header" src="../assets/images/brand/core9-logo-white.png" alt="" srcset="">
+<!-- ───── icon sprite ───── -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.6l3.1 3.1L13 4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 20 20"><path d="M7 5.2v9.6L15 10z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 20 20"><path d="M6.5 5h2.4v10H6.5zM11.1 5h2.4v10h-2.4z" fill="currentColor"/></symbol>
+  <!-- capability icons (24px line) -->
+  <symbol id="u-sector" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5h18"/><path d="M5 20.5V9l4-2.5v14M9 20.5V4h6.5v16.5M15.5 20.5V10.5H19v10"/><path d="M11.5 7.5h1.5M11.5 11h1.5M11.5 14.5h1.5"/></g></symbol>
+
+  <symbol id="c-fatigue" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c2.4-3.6 5.4-5.4 9-5.4s6.6 1.8 9 5.4"/><path d="M5.4 13.6l-1.2 1.8M9 15.2l-.6 2M15 15.2l.6 2M18.6 13.6l1.2 1.8"/><path d="M8.5 12.2c1 .8 2.2 1.2 3.5 1.2s2.5-.4 3.5-1.2"/></g></symbol>
+  <symbol id="c-distract" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="3"/><path d="M12 3.8v2.4M12 17.8v2.4M3.8 12h2.4M17.8 12h2.4"/></g></symbol>
+  <symbol id="c-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2.4"/><path d="M10.5 18h3"/><path d="M4 4l16 16"/></g></symbol>
+  <symbol id="c-track" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6.5-5.6 6.5-11a6.5 6.5 0 10-13 0c0 5.4 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.4"/></g></symbol>
+  <symbol id="c-geo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5l5-2.5 6 2.5 5-2.5v11.5l-5 2.5-6-2.5-5 2.5z" stroke-dasharray="2.4 2.2"/><circle cx="12" cy="11.5" r="2"/></g></symbol>
+  <symbol id="c-fuel" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V5.5A1.5 1.5 0 016.5 4h6A1.5 1.5 0 0114 5.5V20"/><path d="M3.5 20h12"/><path d="M14 9h2.2a1.3 1.3 0 011.3 1.3v5.2a1.5 1.5 0 003 0V8.2L18 5.6"/><path d="M7.5 8.5h4"/></g></symbol>
+  <symbol id="c-collision" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l9 16H3z"/><path d="M12 10v4.2M12 17h.01"/></g></symbol>
+  <symbol id="c-harsh" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3.5 0 4.5-10 9-10s5.5 10 9 10"/><path d="M12 7V3.5M9.5 5.5L12 3.5l2.5 2"/></g></symbol>
+  <symbol id="c-trend" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17"/><path d="M5 16l4.5-4.5 3.5 3 6.5-7"/><path d="M15 7.5h4.5V12"/></g></symbol>
+  <symbol id="c-cargo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9.5" width="17" height="11" rx="1.6"/><path d="M8 9.5V7a4 4 0 018 0v2.5"/><circle cx="12" cy="15" r="1.4"/></g></symbol>
+  <symbol id="c-report" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h8l4 4v13h-12z"/><path d="M14.5 3.5v4h4"/><path d="M9.5 13l2 2 3.5-3.8"/></g></symbol>
+  <symbol id="c-audit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.2 2"/><path d="M3.5 12H2M22 12h-1.5"/></g></symbol>
+  <symbol id="n-fleet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 10h4l3 3.2v3.3h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol><symbol id="n-ware" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V8.5L12 4l9 4.5v12"/><path d="M7 20.5v-8h10v8"/><path d="M7 16.5h10"/></g></symbol><symbol id="n-mfg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V11l5 3V11l5 3V11l5 3V5.5h3v15z"/><path d="M7 17.5h2M12 17.5h2"/></g></symbol><symbol id="n-retail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h2.4l2.2 10.2h10.2l2.2-7H6.6"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></g></symbol><symbol id="n-tools" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18.2h.01M12 18.2h3.5"/></g></symbol><symbol id="n-insights" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15.5H6.5A2.5 2.5 0 004 21z"/><path d="M4 21V5.5M8.5 7.5h7M8.5 11h5"/></g></symbol><symbol id="n-faq" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 01-12.4 7.5L3.5 20.5l1-4.4A8.5 8.5 0 1120.5 12z"/><path d="M9.8 9.6a2.3 2.3 0 114 1.6c-.8.7-1.8 1.1-1.8 2.3M12 16.2h.01"/></g></symbol><symbol id="n-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></g></symbol><symbol id="n-tshield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></g></symbol><symbol id="n-tbars" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V5M19 20v-6M3 20.5h18"/></g></symbol><symbol id="n-tshelf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 10v10"/></g></symbol><symbol id="n-tlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></g></symbol><symbol id="n-tarch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="5" rx="1"/><rect x="15" y="4" width="6" height="5" rx="1"/><rect x="9" y="15" width="6" height="5" rx="1"/><path d="M6 9v3h12V9M12 12v3"/></g></symbol><symbol id="n-ttarget" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2"/></g></symbol><symbol id="n-tkit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7M3 12.5h18M10.5 12.5v2h3v-2"/></g></symbol>
+</svg>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ───── intro ───── -->
+<div class="intro" id="intro" aria-hidden="true">
+  <img class="intro__mark" src="../assets/logos/core9-icon.svg" alt="">
+  <div class="intro__bar"><i></i></div>
+</div>
+
+<!-- ───── nav (sticky, same as homepage) ───── -->
+<include src="./partials/nav.html">{"base":"../"}</include>
+
+
+<main>
+
+<!-- ═════════════════════════ HERO ═════════════════════════ -->
+<section class="hero hero--ds" id="hero" aria-label="DriveSense">
+  <img class="hero__img" id="heroImg" src="../assets/images/ds-hero.jpg" width="1920" height="1080" alt="" fetchpriority="high">
+  <canvas class="hero__gl" id="heroGL" aria-hidden="true"></canvas>
+  <div class="hero__shade"></div>
+
+  <!-- HUD tags pinned to the photo (image-space coords) — they lock on as the AI lens passes -->
+  <div class="hud" id="hud" aria-hidden="true">
+    <div class="tag" data-x="0.727" data-y="0.566">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Road-facing AI · Lead vehicle</b><span>Following distance 2.4 s · Safe</span></span>
     </div>
-    <include src="./partials/product-nav.html">{"base": "../"}</include>
-    <div class="scroll-container">
-
-        <section id="header" class="header">
-            <div class="header_background"></div>
-            <div class="header_background_gradient"></div>
-            <div class="logo_container">
-                <img onclick="goHome()" class="logo_header" src="../assets/images/brand/core9-logo-white.png" alt="" srcset="">
-            </div>
-            <div id="birds" style="width:400px; height:400px;"></div>
-            <div class="header-content">
-                <!-- <h1 class="header-title">DriveSense</h1> -->
-                <div class="logo-product">
-                    <img src="../assets/images/products/product-2-header.png" alt="" srcset="">
-                </div>
-                <div class="header-desc">
-                    <h3 class="header-sub">The Fleet Platform Built for Operational Excellence</h3>
-                    <button class="cta book-btn">Book a Demo</button>
-                </div>
-            </div>
-        </section>
-
-
-
-        <section id="product-features" class="flex flex_col">
-            <!-- <div class="hero_divider"></div> -->
-            <div class="steps-features-cont"></div>
-            <div class="info-cont">
-                <h1 class="title-small">DriveSense Features</h1>
-                <p class="sub">How DriveSense Can Help You and Your Company.</p>
-                <div class="line-width"></div>
-                <div class="features-titles-cont">
-                    <h1 class="product-title">Driver Intelligence</h1>
-                    <h1 class="product-title">Fleet Optimization</h1>
-                    <h1 class="product-title">Risk Prevention</h1>
-                    <h1 class="product-title">Asset Protection</h1>
-                </div>
-            </div>
-
-
-            <div id="desktop-features" class="features_content flex flex_row gap">
-                <div class="row-features">
-                    <img class="fetures_image slide_1" src="../assets/images/products/drivesense/drivesense-feature-1.jpg" alt="">
-                    <img class="fetures_image slide_2" src="../assets/images/products/drivesense/drivesense-feature-2.jpg" alt="">
-                    <img class="fetures_image slide_3" src="../assets/images/products/drivesense/drivesense-feature-3.jpg" alt="">
-                    <img class="fetures_image slide_4" src="../assets/images/products/drivesense/drivesense-feature-4.jpg" alt="">
-                </div>
-                <div id="content_scroll" class="row-features flex_col">
-                    <div class="features_text flex flex_row gap slide_1 slide">
-                        <div class="margin_features">
-                            <h2 class="product-sub margin-left">Know what every driver is doing before it costs you.</h2>
-                            <ul class="list margin-left">
-                                <li>Real-time detection of fatigue, distraction, and phone use</li>
-                                <li>In-cab alerts at the exact moment of risk</li>
-                                <li>Performance scoring across every driver and trip</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="features_text flex flex_row gap slide_2 slide">
-                        <div class="margin_features">
-                            <h2 class="product-sub margin-left">Every routing and fuel decision, backed by real data.</h2>
-                            <ul class="list margin-left">
-                                <li>Live location tracking and geofencing across the full fleet</li>
-                                <li>Route deviation alerts and per-trip analytics</li>
-                                <li>Fuel consumption broken down by driver, route, and time of day</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="features_text flex flex_row gap slide_3 slide">
-                        <div class="margin_features">
-                            <h2 class="product-sub margin-left">The incident that does not happen does not cost you anything.</h2>
-                            <ul class="list margin-left">
-                                <li>Collision risk and unsafe following distance alerts in real time</li>
-                                <li>Harsh braking, acceleration, and cornering flagged as they occur</li>
-                                <li>Trend analysis identifying your highest-risk drivers and routes</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="features_text flex flex_row gap slide_3 slide">
-                        <div class="margin_features">
-                            <h2 class="product-sub margin-left">Keep your fleet compliant and your cargo secure.</h2>
-                            <ul class="list margin-left">
-                                <li>Cargo tamper detection and real-time breach alerts</li>
-                                <li>Automated regulatory reporting, no manual compilation</li>
-                                <li>A complete, auditable activity record across every vehicle</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div id="mobile-features">
-                <div class="card-features">
-                    <h1 class="card-title">Driver Intelligence</h1>
-                    <img class="features-image slide_1" src="../assets/images/products/drivesense/drivesense-feature-1.jpg" alt="">
-                    <div class="text-features">
-                            <h2 class="product-sub margin-left">Know what every driver is doing before it costs you.</h2>
-                            <ul class="list margin-left">
-                                <li>Real-time detection of fatigue, distraction, and phone use</li>
-                                <li>In-cab alerts at the exact moment of risk</li>
-                                <li>Performance scoring across every driver and trip</li>
-                            </ul>
-                    </div>
-                </div>
-                <div class="card-features">
-                    <h1 class="card-title">Fleet Optimization</h1>
-                    <img class="features-image slide_1" src="../assets/images/products/drivesense/drivesense-feature-2.jpg" alt="">
-                    <div class="text-features">
-                            <h2 class="product-sub margin-left">Every routing and fuel decision, backed by real data.</h2>
-                            <ul class="list margin-left">
-                                <li>Live location tracking and geofencing across the full fleet</li>
-                                <li>Route deviation alerts and per-trip analytics</li>
-                                <li>Fuel consumption broken down by driver, route, and time of day</li>
-                            </ul>
-                    </div>
-                </div>
-                <div class="card-features">
-                    <h1 class="card-title">Risk Prevention</h1>
-                    <img class="features-image slide_1" src="../assets/images/products/drivesense/drivesense-feature-3.jpg" alt="">
-                    <div class="text-features">
-                            <h2 class="product-sub margin-left">The incident that does not happen does not cost you anything.</h2>
-                            <ul class="list margin-left">
-                                <li>Collision risk and unsafe following distance alerts in real time</li>
-                                <li>Harsh braking, acceleration, and cornering flagged as they occur</li>
-                                <li>Trend analysis identifying your highest-risk drivers and routes</li>
-                            </ul>
-                    </div>
-                </div>
-                <div class="card-features">
-                    <h1 class="card-title">Asset Protection</h1>
-                    <img class="features-image slide_1" src="../assets/images/products/drivesense/drivesense-feature-4.jpg" alt="">
-                    <div class="text-features">
-                            <h2 class="product-sub margin-left">Keep your fleet compliant and your cargo secure.</h2>
-                            <ul class="list margin-left">
-                                <li>Cargo tamper detection and real-time breach alerts</li>
-                                <li>Automated regulatory reporting, no manual compilation</li>
-                                <li>A complete, auditable activity record across every vehicle</li>
-                            </ul>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <svg class="divider_features" viewBox="0 0 1436 294" fill="none">
-                <path d="M0 0L718 267L1436 0V294H0V0Z" fill="black"></path>
-            </svg>
-        </section>
-
-        <section id="showcase" class="flex flex_col">
-            <div class="hero_divider"></div>
-            <div class="info-cont">
-                <h1 class="title-small" >The Impact of DriveSense</h1>
-                <p class="sub">Your Company With & Without DriveSense</p>
-                <div class="line-width"></div>
-            </div>
-            <div class="showcase-cont flex flex_col">
-                <div class="showcase-section flex flex_row">
-                    <div class="row_showcase margin_auto">
-                        <p class="showcase-text">Logistics operators, FMCG distributors, and commercial fleet managers
-                            are
-                            sitting on more fleet data than ever. Most of it arrives too late to change anything.
-                            DriveSense
-                            changes that.</p>
-                        <div class="video-wrap"
-                            style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-                            <div class="video-container" id="videoContainer">
-                                <video id="customVideo" src="../assets/videos/DriveSense.mp4" poster="../assets/images/products/thumb-drivesense.png"
-                                    preload="metadata" loop>
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div class="custom-play-pause" id="playPauseBtn">
-                                    <div class="play-icon" id="iconPlay"></div>
-                                    <div class="pause-icon" id="iconPause" style="display: none;">
-                                        <div class="bar"></div>
-                                        <div class="bar"></div>
-                                    </div>
-                                </div> 
-                                <div class="video-info">◉ Click to pause/play</div>
-                            </div>
-                            <!-- <div class="click-hint">
-                            ⏵ Click the center button or click anywhere on video to toggle play/pause
-                        </div> -->
-                        </div>
-                    </div>
-                    <div class="row_showcase margin_auto">
-                        <table class="with-without">
-                            <thead>
-                                <tr>
-                                    <th>Without DriveSense</th>
-                                    <th>With DriveSense</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Weekly incident reports reviewed after the fact</td>
-                                    <td>Real-time behavioral alerts while the driver is still on the road</td>
-                                </tr>
-                                <tr>
-                                    <td>Coaching conversations happen days after the behavior</td>
-                                    <td>In-cab feedback delivered in the moment it occurs</td>
-                                </tr>
-                                <tr>
-                                    <td>Fuel spend with no behavioral breakdown</td>
-                                    <td>Driver-level fuel visibility across every vehicle</td>
-                                </tr>
-                                <tr>
-                                    <td>Risk patterns discovered after an incident</td>
-                                    <td>Behavioral patterns surfaced before they produce a consequence</td>
-                                </tr>
-                                <tr>
-                                    <td>Control tower teams reviewing everything manually</td>
-                                    <td>Automated alert filtering so teams act on what matters</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-
-                <div class="features-icons">
-
-
-                    <h2>A Glimpse Of What We Offer</h2>
-                    <div class="line-width"></div>
-
-                   <ul class="c9-features__row">
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eye-off" aria-hidden="true"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"></path><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"></path><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"></path><path d="m2 2 20 20"></path></svg></span>
-                       <span class="c9-feature__label">Fatigue Detection</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="alert-circle" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg></span>
-                       <span class="c9-feature__label">Distraction Alert</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="smartphone" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg></span>
-                       <span class="c9-feature__label">Phone Usage</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
-                       <span class="c9-feature__label">Live Tracking</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15"></path><path d="M9 3.236v15"></path></svg></span>
-                       <span class="c9-feature__label">Geofencing</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="fuel" aria-hidden="true"><line x1="3" x2="15" y1="22" y2="22"></line><line x1="4" x2="14" y1="9" y2="9"></line><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"></path><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"></path></svg></span>
-                       <span class="c9-feature__label">Fuel Insights</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="car-front" aria-hidden="true"><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"></path><path d="M7 14h.01"></path><path d="M17 14h.01"></path><rect width="18" height="8" x="3" y="10" rx="2"></rect><path d="M5 18v2"></path><path d="M19 18v2"></path></svg></span>
-                       <span class="c9-feature__label">Collision Risk</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="activity" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg></span>
-                       <span class="c9-feature__label">Harsh Driving</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trending-up" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></span>
-                       <span class="c9-feature__label">Risk Trends</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="lock" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
-                       <span class="c9-feature__label">Cargo Security</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="file-check" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="m9 15 2 2 4-4"></path></svg></span>
-                       <span class="c9-feature__label">Auto Reporting</span>
-                     </li>
-                     <li class="c9-feature">
-                       <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clipboard-list" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg></span>
-                       <span class="c9-feature__label">Audit Trail</span>
-                     </li>
-                   </ul>
-                </div>
-
-
-
-            </div>
-            <!-- <svg class="divider_2" viewBox="0 0 1436 294" fill="none">
-                <path d="M0 0L718 267L1436 0V294H0V0Z" fill="black" />
-            </svg> -->
-        </section>
-
-        <!-- <include src="./partials/home-products.html"></include> -->
-
-        <include src="./partials/footer.html">{"base": "../"}</include>
+    <div class="tag" data-x="0.235" data-y="0.47" data-side="l">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Geofence · Depot 04</b><span>Arriving in 12 km · On schedule</span></span>
     </div>
-    <include src="./partials/opening.html"></include>
-    <include src="./partials/faq.html"></include>
-        <include src="./partials/demo.html"></include>
-    <script type="module" src="../js/product.js"></script>
+    <div class="tag" data-x="0.61" data-y="0.735">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Lane keeping</b><span>Centred · No drift</span></span>
+    </div>
+    <div class="tag" data-x="0.9" data-y="0.43">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Driver-facing AI</b><span>Eyes on road · Alert</span></span>
+    </div>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__brand"><img src="../assets/logos/drivesense-white.svg" alt="DriveSense"></div>
+    <h1 id="heroTitle" data-shiny="operational|excellence.">The fleet platform built for operational excellence.</h1>
+    <p class="hero__sub">Real-time driver monitoring and collision prediction, so incidents are prevented, not reported.</p>
+    <div class="hero__cta">
+      <a class="btn btn--gold btn--xl magnet" href="#book-demo">Book a Demo <svg class="arr"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--xl magnet" href="#showcase"><svg class="arr arr--play"><use href="#i-play"/></svg> See it in action</a>
+    </div>
+  </div>
+
+  <div class="scrollcue" aria-hidden="true"><i></i>Scroll</div>
+
+  <div class="hero__bottom">
+    <ul class="hero__trust">
+      <li><svg><use href="#i-check"/></svg>Driver- &amp; road-facing AI</li>
+      <li><svg><use href="#i-check"/></svg>Real-time driver alerts</li>
+      <li><svg><use href="#i-check"/></svg>Works with your telematics</li>
+      <li><svg><use href="#i-check"/></svg>Automated reporting</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═════════════════════════ STATEMENT ═════════════════════════ -->
+<section class="section statement" aria-label="Why DriveSense">
+  <div class="glow" style="width:46vw;height:46vw;left:-16vw;top:10%"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-scramble style="margin-bottom:40px">The problem</span>
+    <h2 class="statement__text" id="statement">Fleets are sitting on more data than ever. Most of it arrives too late to change anything. <span class="k">DriveSense changes that.</span></h2>
+    <div class="statement__foot" data-reveal>
+      <span>Logistics operators</span><span>FMCG distributors</span><span>Commercial fleets</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ FEATURES (sticky showcase) ═════════════════════════ -->
+<section class="section feat" id="features" aria-label="DriveSense features">
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div style="display:grid;gap:22px">
+        <span class="eyebrow" data-scramble>DriveSense features</span>
+        <h2 class="h2 split">How DriveSense helps you and your company.</h2>
+      </div>
+      <p class="lead" data-reveal>Four jobs, one platform: watch the driver, run the fleet, stop the incident, protect the cargo.</p>
+    </div>
+
+    <div class="feat__grid">
+      <!-- sticky stage (desktop) -->
+      <div class="feat__stage" aria-hidden="true">
+        <div class="feat__frame" id="featFrame">
+          <!-- 01 driver -->
+          <figure class="fshot is-on" data-f="0">
+            <img src="../assets/images/f-driver.jpg" width="1920" height="1080" alt="">
+            <div class="fbox" style="--x:24.5%;--y:15%;--w:13.5%;--h:27%"><i></i><i></i><i></i><i></i><em>Driver · ID 0417</em></div>
+            <div class="chip fchip" style="right:5%;top:9%"><div><small>Driver-facing AI</small>Eyes on road</div></div>
+            <div class="chip fchip" style="left:5%;bottom:10%"><div><small>Fatigue</small>Low · 0.12</div></div>
+            <div class="chip fchip" style="right:5%;bottom:10%"><div><small>Phone use</small>None detected</div></div>
+          </figure>
+          <!-- 02 fleet -->
+          <figure class="fshot" data-f="1">
+            <img src="../assets/images/f-fleet.jpg" width="1920" height="1080" alt="">
+            <svg class="froute" viewBox="0 0 1600 900" preserveAspectRatio="none"><path class="froute__geo" d="M752 398 L1488 398 L1488 530 L752 530 Z"/><path class="froute__line" d="M1600 890 C 1400 770, 1180 640, 900 556 S 700 506, 640 496"/><circle class="froute__pin" cx="640" cy="496" r="9"/></svg>
+            <div class="chip fchip" style="left:5%;top:9%"><div><small>Live tracking</small>42 trucks on route</div></div>
+            <div class="chip fchip" style="right:5%;top:9%"><div><small>Geofence · Hub 02</small>Arriving · 6 min</div></div>
+            <div class="chip fchip" style="left:5%;bottom:10%"><div><small>Fuel · This trip</small>31.4 L / 100 km</div></div>
+          </figure>
+          <!-- 03 risk -->
+          <figure class="fshot" data-f="2">
+            <img src="../assets/images/f-risk.jpg" width="1920" height="1080" alt="">
+            <div class="fbox fbox--risk" style="--x:52.5%;--y:36%;--w:11%;--h:23%"><i></i><i></i><i></i><i></i><em>Lead vehicle</em></div>
+            <div class="fgap" aria-hidden="true"><span>Following distance</span><b class="fgap__v">1.4 s</b><i class="fgap__bar"><i></i></i><em class="fgap__warn">Keep distance</em></div>
+            <div class="chip fchip" style="right:5%;top:9%"><div><small>Forward collision</small>Risk rising</div></div>
+          </figure>
+          <!-- 04 asset -->
+          <figure class="fshot" data-f="3">
+            <img src="../assets/images/f-asset.jpg" width="1920" height="1080" alt="">
+            <div class="fbox" style="--x:35%;--y:30%;--w:14%;--h:17%"><i></i><i></i><i></i><i></i><em>Seal A-2291</em></div>
+            <div class="fbox fbox--sm" style="--x:56%;--y:28%;--w:6%;--h:13%"><i></i><i></i><i></i><i></i></div>
+            <div class="chip fchip" style="right:5%;top:9%"><div><small>Door sensor</small>Locked · Intact</div></div>
+            <div class="chip fchip" style="left:5%;bottom:10%"><div><small>Last opened</small>Dock 3 · 06:12</div></div>
+          </figure>
+          <div class="feat__vig"></div>
+        </div>
+        <ol class="feat__rail" id="featRail">
+          <li class="is-on"><b>01</b>Driver intelligence</li>
+          <li><b>02</b>Fleet optimisation</li>
+          <li><b>03</b>Risk prevention</li>
+          <li><b>04</b>Asset protection</li>
+        </ol>
+      </div>
+
+      <!-- scrolling copy -->
+      <div class="feat__list">
+        <article class="fitem" data-f="0">
+          <img class="fitem__img" src="../assets/images/f-driver.jpg" width="1920" height="1080" alt="Driver-facing camera view of a driver at dusk" loading="lazy">
+          <span class="fitem__no">01 · Driver intelligence</span>
+          <h3>Know what every driver is doing before it costs you.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Real-time detection of fatigue, distraction and phone use</li>
+            <li><svg><use href="#i-check"/></svg>Driver alerts at the exact moment of risk</li>
+            <li><svg><use href="#i-check"/></svg>Performance scoring across every driver and trip</li>
+          </ul>
+        </article>
+        <article class="fitem" data-f="1">
+          <img class="fitem__img" src="../assets/images/f-fleet.jpg" width="1920" height="1080" alt="Aerial view of trucks on a highway interchange at dusk" loading="lazy">
+          <span class="fitem__no">02 · Fleet optimisation</span>
+          <h3>Every routing and fuel decision, backed by real data.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Live location tracking and geofencing across the full fleet</li>
+            <li><svg><use href="#i-check"/></svg>Route deviation alerts and per-trip analytics</li>
+            <li><svg><use href="#i-check"/></svg>Fuel consumption by driver, route and time of day</li>
+          </ul>
+        </article>
+        <article class="fitem" data-f="2">
+          <img class="fitem__img" src="../assets/images/f-risk.jpg" width="1920" height="1080" alt="Road-facing view of a truck following another truck at dusk" loading="lazy">
+          <span class="fitem__no">03 · Risk prevention</span>
+          <h3>The incident that doesn't happen doesn't cost you anything.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Collision risk and unsafe following distance alerts in real time</li>
+            <li><svg><use href="#i-check"/></svg>Harsh braking, acceleration and cornering flagged as they occur</li>
+            <li><svg><use href="#i-check"/></svg>Trend analysis that finds your highest-risk drivers and routes</li>
+          </ul>
+        </article>
+        <article class="fitem" data-f="3">
+          <img class="fitem__img" src="../assets/images/f-asset.jpg" width="1920" height="1080" alt="Sealed trailer doors with a door sensor at a loading dock" loading="lazy">
+          <span class="fitem__no">04 · Asset protection</span>
+          <h3>Keep your fleet compliant and your cargo secure.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Cargo tamper detection and real-time breach alerts</li>
+            <li><svg><use href="#i-check"/></svg>Automated regulatory reporting, no manual compilation</li>
+            <li><svg><use href="#i-check"/></svg>A complete, auditable activity record for every vehicle</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ PORTAL ═════════════════════════ -->
+<section class="section portal" id="platform" aria-label="The DriveSense portal">
+  <div class="glow" style="width:60vw;height:40vw;left:20vw;top:30%"></div>
+  <div class="wrap">
+    <div class="section-head section-head--center">
+      <span class="eyebrow" data-scramble>The DriveSense portal</span>
+      <h2 class="h2 split">Every driver, every trip, one screen.</h2>
+      <p class="lead" data-reveal>Live position, alerts and safety scores for the whole fleet, with the video evidence one click away.</p>
+    </div>
+  </div>
+  <div class="portal__stage" id="portalStage">
+    <div class="portal__screen" id="portalScreen">
+      <img src="../assets/images/portal.jpg" width="2000" height="1250" alt="The DriveSense portal dashboard showing fleet overview, fleet-wise alerts and the AI safety ledger" decoding="async">
+      <div class="portal__sheen"></div>
+    </div>
+    <div class="chip portal__chip portal__chip--a"><div><small>Live</small>Fatigue alert · Truck 07 → Supervisor</div></div>
+    <div class="chip portal__chip portal__chip--b"><div><small>Safety ledger</small>Every event logged with video</div></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ SHOWCASE (video scroll-expand) ═════════════════════════ -->
+<section class="expand vexpand" id="showcase" aria-label="DriveSense in action">
+  <div class="scursor" id="sCursor" aria-hidden="true"><div class="scursor__in"><span>Scroll to watch</span></div></div>
+  <div class="expand__frame" id="vFrame">
+    <video id="dsVideo" src="../assets/videos/drivesense.mp4" poster="../assets/videos/drivesense-poster.jpg" muted loop playsinline preload="metadata"></video>
+  </div>
+  <div class="expand__content vexpand__content" id="vContent">
+    <span class="eyebrow" style="margin-bottom:26px">Showcase</span>
+    <h2 class="expand__title" id="vTitle">See DriveSense in action.</h2>
+  </div>
+  <div class="vbar" id="vBar">
+    <button class="vbar__toggle" id="vToggle" aria-label="Pause video"><svg class="i-pause"><use href="#i-pause"/></svg><svg class="i-play"><use href="#i-play"/></svg></button>
+    <div class="vbar__chapters" role="list">
+      <button class="vch" data-t="6.6" role="listitem"><b>24/7 driver monitoring</b><span>Day &amp; night, every trip</span><i><i></i></i></button>
+      <button class="vch" data-t="14" role="listitem"><b>Road risk detection</b><span>Distance, lanes, collisions</span><i><i></i></i></button>
+      <button class="vch" data-t="20" role="listitem"><b>Smoking alert</b><span>Inside the vehicle, instantly</span><i><i></i></i></button>
+      <button class="vch" data-t="25" role="listitem"><b>Live fleet visibility</b><span>Alerts, routes, activity</span><i><i></i></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ IMPACT (with vs without) ═════════════════════════ -->
+<section class="section impact-ds" id="impact" aria-label="The impact of DriveSense">
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div style="display:grid;gap:22px">
+        <span class="eyebrow" data-scramble>The impact of DriveSense</span>
+        <h2 class="h2 split">Your company, with &amp; without DriveSense.</h2>
+      </div>
+      <div class="cmp-toggle" id="cmpToggle" role="tablist" aria-label="Compare" data-reveal>
+        <button role="tab" aria-selected="false" data-side="without">Without</button>
+        <button role="tab" aria-selected="true" data-side="with" class="is-on">With DriveSense</button>
+        <i class="cmp-toggle__pill"></i>
+      </div>
+    </div>
+
+    <div class="cmp is-with" id="cmp">
+      <div class="cmp__head"><span>Without DriveSense</span><span><img src="../assets/logos/drivesense-white.svg" alt="With DriveSense"></span></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Weekly incident reports reviewed after the fact</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Real-time behaviour alerts while the driver is still on the road</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Coaching conversations happen days after the behaviour</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Driver feedback delivered in the moment it occurs</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Fuel spend with no behavioural breakdown</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Driver-level fuel visibility across every vehicle</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Risk patterns discovered after an incident</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Behaviour patterns surfaced before they cause a consequence</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Control-tower teams reviewing everything manually</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Automated alert filtering, so teams act on what matters</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ USE CASES ═════════════════════════ -->
+<section class="section ulib" id="use-cases" aria-label="Use cases" data-ulib>
+  <div class="glow" style="width:50vw;height:50vw;right:-20vw;top:0"></div>
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div style="display:grid;gap:22px">
+        <span class="eyebrow" data-scramble>Use cases</span>
+        <h2 class="h2 split">39 use cases. One platform.</h2>
+      </div>
+      <p class="lead" data-reveal>Detections across the driver, the road, the vehicle and compliance. Pick a category to see what DriveSense watches for.</p>
+    </div>
+    <div class="ulib__tabs" role="tablist" aria-label="Use-case categories" data-reveal>
+      <button class="ulib__tab is-on" role="tab" id="ul-ds-t0" aria-controls="ul-ds-p0" aria-selected="true" tabindex="0"><svg><use href="#c-fatigue"/></svg><span>Driver behaviour</span><i>11</i></button><button class="ulib__tab" role="tab" id="ul-ds-t1" aria-controls="ul-ds-p1" aria-selected="false" tabindex="-1"><svg><use href="#c-collision"/></svg><span>Road &amp; collision</span><i>13</i></button><button class="ulib__tab" role="tab" id="ul-ds-t2" aria-controls="ul-ds-p2" aria-selected="false" tabindex="-1"><svg><use href="#c-fuel"/></svg><span>Vehicle &amp; efficiency</span><i>8</i></button><button class="ulib__tab" role="tab" id="ul-ds-t3" aria-controls="ul-ds-p3" aria-selected="false" tabindex="-1"><svg><use href="#c-report"/></svg><span>Compliance &amp; security</span><i>7</i></button>
+    </div>
+    <div class="ulib__panels" data-reveal>
+      <div class="ulib__panel is-on" role="tabpanel" id="ul-ds-p0" aria-labelledby="ul-ds-t0">
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-fatigue"/></svg></span><h3>Driver behaviour</h3><p>What the driver is doing, flagged with the clip.</p><b>11 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Phone usage</h5><p>Handheld phone use behind the wheel, flagged with the clip.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Seatbelt monitoring</h5><p>Unfastened seatbelt compliance, checked continuously.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Fatigue and microsleep</h5><p>Drowsiness signs detected before the driver loses the road.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Distraction</h5><p>Eyes off the road and prolonged inattention.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Smoking in the vehicle</h5><p>Smoking inside the vehicle, detected for policy and cargo rules.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Unidentified driver</h5><p>A vehicle moving without a recognised assigned driver.</p></div></div><div class="ucard spot"><span class="ucard__n">07</span><div><h5>Eating and drinking</h5><p>Hands off the wheel for food and drink while the vehicle is moving.</p></div></div><div class="ucard spot"><span class="ucard__n">08</span><div><h5>Yawning and head nodding</h5><p>Early fatigue signs that come before eye closure.</p></div></div><div class="ucard spot"><span class="ucard__n">09</span><div><h5>Camera obstruction</h5><p>Driver-facing lens covered, turned away or blocked during a trip.</p></div></div><div class="ucard spot"><span class="ucard__n">10</span><div><h5>Unauthorised passengers</h5><p>Extra people in the vehicle against fleet policy.</p></div></div><div class="ucard spot"><span class="ucard__n">11</span><div><h5>Driver SOS alert</h5><p>A driver-triggered emergency alert with live location and footage.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-ds-p1" aria-labelledby="ul-ds-t1" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-collision"/></svg></span><h3>Road &amp; collision</h3><p>What happens on the road around the vehicle.</p><b>13 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Forward collision risk</h5><p>Unsafe following distance and closing speed on the vehicle ahead.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Harsh braking and swerving</h5><p>Abnormal manoeuvres logged with speed and location.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Over-speeding by zone</h5><p>Speed-limit breaches measured against the road, not a fleet average.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Night and low-light driving</h5><p>Detection maintained through darkness, glare and tunnels.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Lane departure and weaving</h5><p>Drifting across lane markings without a signalled lane change.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Rolling stops</h5><p>Stop signs and junctions taken without a full stop.</p></div></div><div class="ucard spot"><span class="ucard__n">07</span><div><h5>Red light violations</h5><p>Crossing a signal after it turns red.</p></div></div><div class="ucard spot"><span class="ucard__n">08</span><div><h5>Pedestrian and cyclist warning</h5><p>Vulnerable road users in the vehicle path, flagged in time to brake.</p></div></div><div class="ucard spot"><span class="ucard__n">09</span><div><h5>Tailgating</h5><p>Following too closely for the current speed, measured in seconds of headway.</p></div></div><div class="ucard spot"><span class="ucard__n">10</span><div><h5>Harsh acceleration and cornering</h5><p>Aggressive take-offs and turns logged with speed and location.</p></div></div><div class="ucard spot"><span class="ucard__n">11</span><div><h5>Collision and impact detection</h5><p>Impacts detected automatically, with the clip uploaded before anyone calls it in.</p></div></div><div class="ucard spot"><span class="ucard__n">12</span><div><h5>Rail crossing violations</h5><p>Level crossings taken without the required stop.</p></div></div><div class="ucard spot"><span class="ucard__n">13</span><div><h5>Reversing and U-turns</h5><p>Unsafe backing and U-turns in yards, depots and on the road.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-ds-p2" aria-labelledby="ul-ds-t2" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-fuel"/></svg></span><h3>Vehicle &amp; efficiency</h3><p>Where the fuel, the hours and the vehicle go.</p><b>8 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Fuel and idling</h5><p>Idle time and fuel burn tied to routes, shifts and drivers.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Route deviation</h5><p>Trips that leave the planned route or corridor.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Mechanical fault signals</h5><p>Engine and diagnostic faults surfaced before breakdown.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Dwell and stop time</h5><p>Waiting at gates, docks and customer sites, measured.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Live video on demand</h5><p>Stream the road and driver view from any vehicle during a trip.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Cold-chain temperature</h5><p>Reefer and cargo temperature tracked, with alerts outside the set range.</p></div></div><div class="ucard spot"><span class="ucard__n">07</span><div><h5>Unsafe parking and roadside stops</h5><p>Stops on hard shoulders, verges and unapproved locations.</p></div></div><div class="ucard spot"><span class="ucard__n">08</span><div><h5>Engine hours and utilisation</h5><p>Vehicle use by shift and route, for right-sizing the fleet.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-ds-p3" aria-labelledby="ul-ds-t3" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-report"/></svg></span><h3>Compliance &amp; security</h3><p>The records insurers, auditors and regulators ask for.</p><b>7 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Geofence breach</h5><p>Entry or exit from yards, customer sites and restricted areas.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Cargo door events</h5><p>Unexpected door opening away from an authorised stop.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Regulatory reporting</h5><p>Hours, incidents and compliance records exported per period.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Asset misuse</h5><p>Out-of-hours use and unauthorised journeys.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Driving hours and rest breaks</h5><p>Continuous driving time and missed rest breaks flagged against policy.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Driver scorecards and coaching</h5><p>Every event scored per driver, with the clip ready for a coaching session.</p></div></div><div class="ucard spot"><span class="ucard__n">07</span><div><h5>Claims defence evidence</h5><p>Footage and trip data packaged for insurers, disputes and fines.</p></div></div></div>
+      </div>
+    </div>
+    <div class="ulib__foot" data-reveal><p>Core detections run on every connected vehicle from day one. Live video and temperature depend on the hardware fitted; thresholds are tuned to your fleet during the pilot.</p><a class="link-arrow" href="#demo">See it on your fleet <svg class="arr"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ OTHER PRODUCTS ═════════════════════════ -->
+<section class="section more" aria-label="More from Core9">
+  <div class="wrap">
+    <div class="more__head">
+      <span class="eyebrow" data-scramble>More from Core9</span>
+      <h2 class="h2 split">One intelligence layer, beyond the road.</h2>
+    </div>
+    <div class="more__grid">
+      <a class="mcard spot" href="/camcore/" data-reveal>
+        <div class="mcard__img"><img src="../assets/images/camcore.webp" width="1200" height="900" alt="" loading="lazy"></div>
+        <div class="mcard__body"><span class="pcard__brand"><img src="../assets/logos/camcore-white.svg" alt="CamCore"></span><h3>The AI layer your cameras were missing.</h3><span class="link-arrow link-arrow--gold">Explore CamCore <svg class="arr"><use href="#i-arrow"/></svg></span></div>
+      </a>
+      <a class="mcard spot" href="/illytical/" data-reveal>
+        <div class="mcard__img"><img src="../assets/images/illytical.webp" width="1200" height="900" alt="" loading="lazy"></div>
+        <div class="mcard__body"><span class="pcard__brand"><img src="../assets/logos/illytical-white.svg" alt="illytical"></span><h3>Your planogram. Verified in real time.</h3><span class="link-arrow link-arrow--gold">Explore illytical <svg class="arr"><use href="#i-arrow"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ FAQ ═════════════════════════ -->
+<section class="section faq" id="faq" aria-label="FAQs">
+  <div class="wrap">
+    <div class="faq__grid">
+      <div class="faq__side">
+        <span class="eyebrow" data-scramble>FAQs</span>
+        <h2 class="h2 split">Frequently asked questions.</h2>
+        <p class="lead" data-reveal>Still curious? We'll walk you through it on a short call.</p>
+        <div data-reveal><a class="link-arrow" href="#demo">Talk to the team <svg class="arr"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <div class="faq__list" data-reveal>
+        <div class="qa is-open"><button class="qa__q" aria-expanded="true">What does Core9 do?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Core9 develops artificial intelligence technologies that analyse video and operational data to help organisations monitor physical operations across fleets, warehouses and industrial environments. These systems detect operational risks, identify important events and generate insights that improve visibility across supply chain operations.</p></div></div></div>
+        <div class="qa"><button class="qa__q" aria-expanded="false">How does Core9 technology work?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Core9 products connect to cameras, telematics devices and operational sensors across an organisation's physical infrastructure. AI models analyse these data streams continuously to detect events, identify anomalies and generate insights that help teams understand and manage operational activity.</p></div></div></div>
+        <div class="qa"><button class="qa__q" aria-expanded="false">What types of operations can Core9 monitor?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Core9 products can monitor fleet operations, industrial environments, warehouses and distribution centres. By analysing video and operational data, the system shows how physical operations are running in real time.</p></div></div></div>
+        <div class="qa"><button class="qa__q" aria-expanded="false">Does Core9 require new infrastructure?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Core9 products can connect to existing cameras, telematics devices and operational sensors, so organisations can deploy AI-based monitoring and analytics without replacing their hardware.</p></div></div></div>
+        <div class="qa"><button class="qa__q" aria-expanded="false">What insights can organisations gain from Core9?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Insights into driver behaviour, operational risks, facility activity and supply chain operations — helping teams understand patterns, detect issues earlier and improve operational performance.</p></div></div></div>
+        <div class="qa"><button class="qa__q" aria-expanded="false">How quickly can Core9 be deployed?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Initial deployments can typically be completed within a few weeks, depending on the scale of the environment. Many organisations begin with a pilot before expanding across fleets or facilities.</p></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ CTA ═════════════════════════ -->
+<section class="cta" id="demo" aria-label="Book a demo">
+  <div class="glow a"></div><div class="glow b"></div>
+  <div class="radar" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-scramble style="margin-bottom:28px">Book a demo</span>
+    <h2 class="h2 split">See how Core9 enables intelligent supply chain operations.</h2>
+    <p class="lead" data-reveal>Smarter visibility. Faster decisions. Better control.</p>
+    <div class="cta__row" data-reveal>
+      <a class="btn btn--gold btn--xl magnet" href="#book-demo">Book a Demo <svg class="arr"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--xl magnet" href="mailto:info@core9.ai">info@core9.ai</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═════════════════════════ FOOTER ═════════════════════════ -->
+<include src="./partials/footer.html">{"base":"../","tagline":"DriveSense · Driving safer logistics"}</include>
+
+<script src="../js/vendor/gsap.min.js"></script>
+<script src="../js/vendor/ScrollTrigger.min.js"></script>
+<script src="../js/vendor/SplitText.min.js"></script>
+<script src="../js/vendor/lenis.min.js"></script>
+<script src="../js/ds-hero-data.js"></script>
+<script src="../js/hero-gl.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/drivesense.js"></script>
+<include src="./partials/demo.html">{}</include>
+<script src="../js/site.js"></script>
 </body>
-
-
 </html>

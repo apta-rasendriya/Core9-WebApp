@@ -1,350 +1,417 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="en" class="no-js">
 <head>
-    <meta charset="utf-8" />
-    <title>CamCore | Core9</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- SEO Meta Tags -->
-    <meta name="description"
-        content="DriveSense by Core9: Driving safer logistics through AI-vision. Real-time driver monitoring, collision prediction, and fleet safety analytics to reduce accidents and operational costs." />
-    <meta name="keywords"
-        content="DriveSense, AI-vision logistics, fleet safety, driver monitoring, collision prediction, Core9, supply chain AI, real-time driver alert, logistics computer vision" />
-    <meta name="author" content="Core9" />
-    <meta name="robots" content="index, follow" />
-   <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content="The AI Layer for Your Supply Chain" />
-  <meta property="og:description"
-    content="Integrated AI + hardware to transform operational data into visibility, automation & savings" />
-  <meta property="og:image" content="https://core9.ai/img/og-image.png" />
-  <meta property="og:image:alt" content="Enabling Intelligent Supply Chains" />
-  <meta property="og:url" content="https://core9.ai/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Core9" />
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The AI Layer for Your Supply Chain" />
-  <meta name="twitter:description"
-    content="Integrated AI + hardware to transform operational data into visibility, automation & savings" />
-  <meta name="twitter:image" content="https://core9.ai/img/og-image.png" />
-    <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../assets/images/brand/logo-square-fav.png" />
-  <link rel="shortcut icon" href="../assets/images/brand/logo-square-fav.png" />
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://core9.ai/" />
-    <!-- CSS & JS -->
-    <link rel="stylesheet" href="../styles/desktop.css" />
-    <link rel="stylesheet" href="../styles/mobile.css" />
-    <script src="../js/jquery.js"></script>
-    <script>
-    function goHome(){
-      window.location = '/';
-    }
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CamCore | Core9 — AI video analytics for your existing CCTV</title>
+<meta name="description" content="CamCore by Core9: AI video analytics on the CCTV you already run. PPE, hazards, forklift proximity and equipment issues flagged in real time, every zone, every shift.">
+<meta name="theme-color" content="#08050e">
+<link rel="icon" href="../assets/images/favicon.png">
+<link rel="stylesheet" href="../styles/fonts.css">
+<link rel="stylesheet" href="../styles/main.css">
+<link rel="stylesheet" href="../styles/product.css">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/demo.css">
+<script>document.documentElement.className='js';</script>
 </head>
+<body id="top" class="page-ds page-cc">
 
-<body>
-    <div class="logo_float">
-        <img onclick="goHome()" class="logo_header" src="../assets/images/brand/core9-logo-white.png" alt="" srcset="">
+<!-- ───── icon sprite ───── -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.6l3.1 3.1L13 4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 20 20"><path d="M7 5.2v9.6L15 10z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 20 20"><path d="M6.5 5h2.4v10H6.5zM11.1 5h2.4v10h-2.4z" fill="currentColor"/></symbol>
+  <!-- capability icons (24px line) -->
+  <symbol id="u-sector" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5h18"/><path d="M5 20.5V9l4-2.5v14M9 20.5V4h6.5v16.5M15.5 20.5V10.5H19v10"/><path d="M11.5 7.5h1.5M11.5 11h1.5M11.5 14.5h1.5"/></g></symbol>
+
+  <symbol id="c-ppe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15.5a8 8 0 0116 0"/><path d="M2.8 15.5h18.4v2.2H2.8z"/><path d="M12 7.5v-2M9 8.4l-.6-1.8M15 8.4l.6-1.8"/></g></symbol>
+  <symbol id="c-fatigue" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c2.4-3.6 5.4-5.4 9-5.4s6.6 1.8 9 5.4"/><path d="M5.4 13.6l-1.2 1.8M9 15.2l-.6 2M15 15.2l.6 2M18.6 13.6l1.2 1.8"/><path d="M8.5 12.2c1 .8 2.2 1.2 3.5 1.2s2.5-.4 3.5-1.2"/></g></symbol>
+  <symbol id="c-ergo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="15.5" cy="4.6" r="1.8"/><path d="M14.4 7.4L9 11.2l-1.6 4.4"/><path d="M9 11.2l3.4 2.6-1 6.2"/><path d="M7.4 15.6L5 20"/><path d="M14.4 7.4l2.6 3.6 2.5.6"/></g></symbol>
+  <symbol id="c-temp" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14.2V5a2 2 0 014 0v9.2a4 4 0 11-4 0z"/><path d="M12 9.5v6"/><path d="M17 6h2.5M17 9h2.5"/></g></symbol>
+  <symbol id="c-fire" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a6.5 6.5 0 006.5-6.5c0-4.6-4-6.4-4.6-10.5-2.6 1.6-4.2 4-4.2 6.4-1-.6-1.6-1.6-1.8-2.6C6.3 9.4 5.5 11.8 5.5 14.5A6.5 6.5 0 0012 21z"/><path d="M12 21a2.8 2.8 0 01-2.8-2.8c0-1.9 1.9-2.8 2.4-4.6 1.4 1 3.2 2.4 3.2 4.6A2.8 2.8 0 0112 21z"/></g></symbol>
+  <symbol id="c-anomaly" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12h4l2-4.5 3.5 10 2.5-7 1.6 1.5h5.4"/></g></symbol>
+  <symbol id="c-proximity" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M7.8 7.8a6 6 0 000 8.4M16.2 7.8a6 6 0 010 8.4"/><path d="M4.9 4.9a10 10 0 000 14.2M19.1 4.9a10 10 0 010 14.2"/></g></symbol>
+  <symbol id="c-access" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="1.8"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><path d="M12 14.2v2.6"/></g></symbol>
+  <symbol id="c-log" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.8" cy="6" r="1.2"/><circle cx="4.8" cy="12" r="1.2"/><circle cx="4.8" cy="18" r="1.2"/></g></symbol>
+  <symbol id="c-spill" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s-5 5.6-5 9.2a5 5 0 0010 0c0-3.6-5-9.2-5-9.2z"/><path d="M3 20.5c1.5-.8 3-.8 4.5 0s3 .8 4.5 0 3-.8 4.5 0 3 .8 4.5 0"/></g></symbol>
+  <symbol id="c-breach" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M12 8.5v4.5M12 16h.01"/></g></symbol>
+  <symbol id="c-report" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h8l4 4v13h-12z"/><path d="M14.5 3.5v4h4"/><path d="M9.5 13l2 2 3.5-3.8"/></g></symbol>
+  <symbol id="n-fleet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 10h4l3 3.2v3.3h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol><symbol id="n-ware" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V8.5L12 4l9 4.5v12"/><path d="M7 20.5v-8h10v8"/><path d="M7 16.5h10"/></g></symbol><symbol id="n-mfg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V11l5 3V11l5 3V11l5 3V5.5h3v15z"/><path d="M7 17.5h2M12 17.5h2"/></g></symbol><symbol id="n-retail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h2.4l2.2 10.2h10.2l2.2-7H6.6"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></g></symbol><symbol id="n-tools" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18.2h.01M12 18.2h3.5"/></g></symbol><symbol id="n-insights" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15.5H6.5A2.5 2.5 0 004 21z"/><path d="M4 21V5.5M8.5 7.5h7M8.5 11h5"/></g></symbol><symbol id="n-faq" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 01-12.4 7.5L3.5 20.5l1-4.4A8.5 8.5 0 1120.5 12z"/><path d="M9.8 9.6a2.3 2.3 0 114 1.6c-.8.7-1.8 1.1-1.8 2.3M12 16.2h.01"/></g></symbol><symbol id="n-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></g></symbol><symbol id="n-tshield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></g></symbol><symbol id="n-tbars" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V5M19 20v-6M3 20.5h18"/></g></symbol><symbol id="n-tshelf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 10v10"/></g></symbol><symbol id="n-tlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></g></symbol><symbol id="n-tarch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="5" rx="1"/><rect x="15" y="4" width="6" height="5" rx="1"/><rect x="9" y="15" width="6" height="5" rx="1"/><path d="M6 9v3h12V9M12 12v3"/></g></symbol><symbol id="n-ttarget" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2"/></g></symbol><symbol id="n-tkit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7M3 12.5h18M10.5 12.5v2h3v-2"/></g></symbol>
+</svg>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ───── intro ───── -->
+<div class="intro" id="intro" aria-hidden="true">
+  <img class="intro__mark" src="../assets/logos/core9-icon.svg" alt="">
+  <div class="intro__bar"><i></i></div>
+</div>
+
+<!-- ───── nav (sticky, same as homepage) ───── -->
+<include src="./partials/nav.html">{"base":"../"}</include>
+
+
+<main>
+
+<!-- ═════════════════════════ HERO ═════════════════════════ -->
+<section class="hero hero--ds hero--cc" id="hero" aria-label="CamCore">
+  <img class="hero__img" id="heroImg" src="../assets/images/cc-hero.jpg" width="1920" height="1080" alt="" fetchpriority="high">
+  <canvas class="hero__gl" id="heroGL" aria-hidden="true"></canvas>
+  <div class="hero__shade"></div>
+
+  <!-- HUD tags pinned to the photo (image-space coords) — they lock on as the cursor glow passes -->
+  <div class="hud" id="hud" aria-hidden="true">
+    <div class="tag" data-x="0.805" data-y="0.57">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Forklift · Dock 2</b><span>6 km/h · Pedestrian zone clear</span></span>
+    </div>
+    <div class="tag" data-x="0.2" data-y="0.3" data-side="l">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Rack B-04 · Aisle 3</b><span>Load stable · No obstruction</span></span>
+    </div>
+    <div class="tag" data-x="0.22" data-y="0.8">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Walkway · Zone B</b><span>Clear · No spill detected</span></span>
+    </div>
+    <div class="tag" data-x="0.93" data-y="0.36" data-side="l">
+      <span class="tag__dot"></span>
+      <span class="tag__box"><i></i><i></i><i></i><i></i></span>
+      <span class="tag__label"><b>Cam 14 · Storage bay</b><span>Motion normal · 0 alerts</span></span>
+    </div>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__brand"><img src="../assets/logos/camcore-white.svg" alt="CamCore"></div>
+    <h1 id="heroTitle" data-shiny="cameras|missing.">The AI layer your cameras were missing.</h1>
+    <p class="hero__sub">Turns the CCTV you already run into live alerts for PPE, hazards and equipment faults.</p>
+    <div class="hero__cta">
+      <a class="btn btn--gold btn--xl magnet" href="#book-demo">Book a Demo <svg class="arr"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--xl magnet" href="#showcase"><svg class="arr arr--play"><use href="#i-play"/></svg> See it in action</a>
+    </div>
+  </div>
+
+  <div class="scrollcue" aria-hidden="true"><i></i>Scroll</div>
+
+  <div class="hero__bottom">
+    <ul class="hero__trust">
+      <li><svg><use href="#i-check"/></svg>Works with your existing CCTV</li>
+      <li><svg><use href="#i-check"/></svg>No new cameras, no capex</li>
+      <li><svg><use href="#i-check"/></svg>Real-time supervisor alerts</li>
+      <li><svg><use href="#i-check"/></svg>Automated compliance records</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═════════════════════════ STATEMENT ═════════════════════════ -->
+<section class="section statement" aria-label="Why CamCore">
+  <div class="glow" style="width:46vw;height:46vw;left:-16vw;top:10%"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-scramble style="margin-bottom:40px">The problem</span>
+    <h2 class="statement__text" id="statement">Facilities have invested heavily in cameras. Very few have invested in what sits between the camera and the decision. <span class="k">CamCore is that layer.</span></h2>
+    <div class="statement__foot" data-reveal>
+      <span>Warehousing</span><span>Manufacturing</span><span>Industrial operations</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ FEATURES (sticky showcase) ═════════════════════════ -->
+<section class="section feat" id="features" aria-label="CamCore features">
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div style="display:grid;gap:22px">
+        <span class="eyebrow" data-scramble>CamCore features</span>
+        <h2 class="h2 split">How CamCore helps you and your company.</h2>
+      </div>
+      <p class="lead" data-reveal>Four jobs, one layer on the cameras you already have: protect people, keep machines running, control vehicles, catch hazards.</p>
     </div>
 
-    <include src="./partials/product-nav.html">{"base": "../"}</include>
+    <div class="feat__grid">
+      <!-- sticky stage (desktop) -->
+      <div class="feat__stage" aria-hidden="true">
+        <div class="feat__frame" id="featFrame">
+          <!-- 01 worker safety -->
+          <figure class="fshot is-on" data-f="0">
+            <img src="../assets/images/f-safety.jpg" width="1920" height="1080" alt="">
+            <div class="fbox" style="--x:38.6%;--y:24.6%;--w:8.6%;--h:10.4%"><i></i><i></i><i></i><i></i><em>Helmet · OK</em></div>
+            <div class="fbox fbox--sm" style="--x:57%;--y:20%;--w:8.6%;--h:10.4%"><i></i><i></i><i></i><i></i></div>
+            <div class="fbox fbox--lo" style="--x:55.6%;--y:36.8%;--w:13.4%;--h:34.4%"><i></i><i></i><i></i><i></i><em>Vest · OK</em></div>
+            <div class="fbox fbox--sm" style="--x:36.2%;--y:41.5%;--w:12.2%;--h:31.5%"><i></i><i></i><i></i><i></i></div>
+            <div class="chip fchip" style="left:5%;top:9%"><div><small>PPE compliance · Zone B</small>2 of 2 workers compliant</div></div>
+            <div class="chip fchip" style="right:5%;bottom:10%"><div><small>Night shift · Cam 07</small>Supervisor alerts on</div></div>
+          </figure>
+          <!-- 02 predictive maintenance -->
+          <figure class="fshot" data-f="1">
+            <img src="../assets/images/f-maint.jpg" width="1920" height="1080" alt="">
+            <div class="fbox fbox--risk" style="--x:8%;--y:25%;--w:31.5%;--h:47%"><i></i><i></i><i></i><i></i><em>Motor M-03 · Line 2</em></div>
+            <div class="fbox fbox--sm" style="--x:36.5%;--y:40%;--w:18.5%;--h:37%"><i></i><i></i><i></i><i></i></div>
+            <div class="fgap fgap--tr" data-from="61" data-to="84" data-max="100" data-unit=" °C" data-dec="0" aria-hidden="true"><span>Bearing temperature</span><b class="fgap__v">61 °C</b><i class="fgap__bar"><i></i></i><em class="fgap__warn">Service due · work order raised</em></div>
+            <div class="chip fchip" style="left:5%;bottom:10%"><div><small>Vibration</small>Trend rising · 3 days</div></div>
+          </figure>
+          <!-- 03 vehicle intelligence -->
+          <figure class="fshot" data-f="2">
+            <img src="../assets/images/f-vehicle.jpg" width="1920" height="1080" alt="">
+            <div class="fbox fbox--risk" style="--x:34.6%;--y:39.5%;--w:16.6%;--h:29.5%"><i></i><i></i><i></i><i></i><em>Forklift F-12</em></div>
+            <div class="fbox" style="--x:54.4%;--y:45.6%;--w:4.8%;--h:17.2%"><i></i><i></i><i></i><i></i><em>Pedestrian</em></div>
+            <div class="fgap fgap--br" data-from="4.2" data-to="1.8" data-max="5" data-unit=" m" data-dec="1" data-warn="down" aria-hidden="true"><span>Proximity</span><b class="fgap__v">4.2 m</b><i class="fgap__bar"><i></i></i><em class="fgap__warn">Too close · driver alerted</em></div>
+            <div class="chip fchip" style="right:5%;top:9%"><div><small>Speed · Pedestrian zone</small>9 km/h · Limit 8</div></div>
+          </figure>
+          <!-- 04 hazard detection -->
+          <figure class="fshot" data-f="3">
+            <img src="../assets/images/f-hazard.jpg" width="1920" height="1080" alt="">
+            <div class="fbox fbox--risk fbox--hot fbox--lo" style="--x:38.2%;--y:59.6%;--w:25.8%;--h:13%"><i></i><i></i><i></i><i></i><em>Spill detected</em></div>
+            <div class="fbox" style="--x:49.4%;--y:49.8%;--w:6.8%;--h:7.8%"><i></i><i></i><i></i><i></i><em>Obstruction</em></div>
+            <div class="chip fchip" style="right:5%;top:9%"><div><small>Aisle 7 · Cam 22</small>Clean-up dispatched</div></div>
+            <div class="chip fchip" style="left:5%;bottom:10%"><div><small>Compliance log</small>Event documented · 21:42</div></div>
+          </figure>
+          <div class="feat__vig"></div>
+        </div>
+        <ol class="feat__rail" id="featRail">
+          <li class="is-on"><b>01</b>Worker safety</li>
+          <li><b>02</b>Predictive maintenance</li>
+          <li><b>03</b>Vehicle intelligence</li>
+          <li><b>04</b>Hazard detection</li>
+        </ol>
+      </div>
 
-    <div class="scroll-container">
-
-        <section id="header" class="header">
-            <div class="header_background"></div>
-            <div class="header_background_gradient"></div>
-            <div class="logo_container">
-                <img onclick="goHome()" class="logo_header" src="../assets/images/brand/core9-logo-white.png" alt="" srcset="">
-            </div>
-            <div id="birds" style="width:400px; height:400px;"></div>
-            <div class="header-content">
-                <!-- <h1 class="header-title">CamCore</h1> -->
-                <div class="logo-product">
-                    <img src="../assets/images/products/product-1-header.png" alt="" srcset="">
-                </div> 
-                <div class="header-desc">
-                    <h3 class="header-sub">The AI Layer Your Cameras Were Missing</h3>
-                    <button class="cta book-btn">Book a Demo</button>
-                </div>
-            </div>
-        </section>
-
-
-
-        <section id="product-features" class="flex flex_col">
-            <!-- <div class="hero_divider"></div> -->
-            <div class="steps-features-cont"></div>
-            <div class="info-cont">
-                <h1 class="title-small">CamCore Features</h1>
-                <p class="sub">How CamCore Can Help You and Your Company.</p>
-                <div class="line-width"></div>
-                <div class="features-titles-cont">
-                    <h1 class="product-title">Worker Safety</h1>
-                    <h1 class="product-title">Predictive Maintenance</h1>
-                    <h1 class="product-title">Vehicle Intelligence</h1>
-                    <h1 class="product-title">Hazard Detection</h1>
-                </div>
-            </div>
-
-            <div id="desktop-features" class="features_content flex flex_row gap">
-                <div class="row-features">
-                    <img class="fetures_image slide_1" src="../assets/images/products/camcore/camcore-feature-1.jpg" alt="">
-                    <img class="fetures_image slide_2" src="../assets/images/products/camcore/camcore-feature-2.jpg" alt="">
-                    <img class="fetures_image slide_3" src="../assets/images/products/camcore/camcore-feature-3.jpg" alt="">
-                    <img class="fetures_image slide_4" src="../assets/images/products/camcore/camcore-feature-4.jpg" alt="">
-                </div>
-                <div id="content_scroll" class="row-features flex_col">
-                    <div class="features_text flex flex_row gap slide_1 slide">
-                        <div class="margin_features">
-                            <h2 class="product-sub margin-left">Consistent safety coverage across every zone, every shift.</h2>
-                            <ul class="list margin-left">
-                                <li>Real-time PPE detection for helmets, vests, and gloves</li>
-                                <li>Fatigue and ergonomic risk monitoring across all facility zones</li>
-                                <li>Instant alerts to the right supervisor, every hour of every shift</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="features_text flex flex_row gap slide_2 slide">
-                        <div class="margin_features">
-                            <h2 class="product-sub margin-left">Catch equipment failures before they stop your operation.</h2>
-                            <ul class="list margin-left">
-                                <li>Continuous monitoring of temperature, vibration, and anomalies</li>
-                                <li>Maintenance alerts based on actual behaviour, not fixed schedules</li>
-                                <li>Early detection that creates time to plan, not just react</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="features_text flex flex_row gap slide_3 slide">
-                        <div class="margin_features">
-                            <h2 class="product-sub margin-left">Monitor every piece of material handling equipment, in real time.</h2>
-                            <ul class="list margin-left">
-                                <li>Speed and proximity alerts for forklifts near pedestrian zones</li>
-                                <li>Access control monitoring for restricted and hazardous areas</li>
-                                <li>Complete log of vehicle movement and compliance events per shift</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="features_text flex flex_row gap slide_3 slide">
-                        <div class="margin_features">
-                            <h2 class="product-sub margin-left">Facility hazards do not wait to be noticed. Neither does CamCore.</h2>
-                            <ul class="list margin-left">
-                                <li>Real-time detection of spills, obstructions, falls, and unsafe handling</li>
-                                <li>Restricted area breach alerts with immediate notification routing</li>
-                                <li>Every event automatically documented for compliance reporting</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div id="mobile-features">
-                <div class="card-features">
-                    <h1 class="card-title">Worker Safety</h1>
-                    <img class="features-image slide_1" src="../assets/images/products/camcore/camcore-feature-1.jpg" alt="">
-                    <div class="text-features">
-                         <h2 class="product-sub margin-left">Consistent safety coverage across every zone, every shift.</h2>
-                         <ul class="list margin-left">
-                             <li>Real-time PPE detection for helmets, vests, and gloves</li>
-                             <li>Fatigue and ergonomic risk monitoring across all facility zones</li>
-                             <li>Instant alerts to the right supervisor, every hour of every shift</li>
-                         </ul>
-                    </div>
-                </div>
-                <div class="card-features">
-                    <h1 class="card-title">Predictive Maintenance</h1>
-                    <img class="features-image slide_1" src="../assets/images/products/camcore/camcore-feature-2.jpg" alt="">
-                    <div class="text-features">
-                        <h2 class="product-sub margin-left">Catch equipment failures before they stop your operation.</h2>
-                        <ul class="list margin-left">
-                            <li>Continuous monitoring of temperature, vibration, and anomalies</li>
-                            <li>Maintenance alerts based on actual behaviour, not fixed schedules</li>
-                            <li>Early detection that creates time to plan, not just react</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card-features">
-                    <h1 class="card-title">Vehicle Intelligence</h1>
-                    <img class="features-image slide_1" src="../assets/images/products/camcore/camcore-feature-3.jpg" alt="">
-                    <div class="text-features">
-                        <h2 class="product-sub margin-left">Monitor every piece of material handling equipment, in real time.</h2>
-                        <ul class="list margin-left">
-                            <li>Speed and proximity alerts for forklifts near pedestrian zones</li>
-                            <li>Access control monitoring for restricted and hazardous areas</li>
-                            <li>Complete log of vehicle movement and compliance events per shift</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card-features">
-                    <h1 class="card-title">Hazard Detection</h1>
-                    <img class="features-image slide_1" src="../assets/images/products/camcore/camcore-feature-4.jpg" alt="">
-                    <div class="text-features">
-                        <h2 class="product-sub margin-left">Facility hazards do not wait to be noticed. Neither does CamCore.</h2>
-                        <ul class="list margin-left">
-                            <li>Real-time detection of spills, obstructions, falls, and unsafe handling</li>
-                            <li>Restricted area breach alerts with immediate notification routing</li>
-                            <li>Every event automatically documented for compliance reporting</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-            <svg class="divider_features" viewBox="0 0 1436 294" fill="none" >
-                <path d="M0 0L718 267L1436 0V294H0V0Z" fill="black"></path>
-            </svg>
-        </section>
-                <section id="showcase" class="flex flex_col">
-            <div class="hero_divider"></div>
-            <div class="info-cont">
-                <h1 class="title-small" >The Impact of CamCore</h1>
-                <p class="sub">Your Company With & Without CamCore</p>
-                <div class="line-width"></div>
-            </div>
-            <div class="showcase-cont flex flex_col">
-                <div class="showcase-section flex flex_row">
-                    <div class="row_showcase margin_auto">
-                        <p class="showcase-text">Facility managers in warehousing, manufacturing, and industrial operations have invested heavily in cameras. Very few have invested in what sits between the camera and the decision. CamCore is that layer.</p>
-                        <div class="video-wrap"
-                            style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-                            <div class="video-container" id="videoContainer">
-                                <video id="customVideo" src="../assets/videos/CamCore.mp4" poster="../assets/images/products/thumb-camcore.png"
-                                    preload="metadata" loop>
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div class="custom-play-pause" id="playPauseBtn">
-                                    <div class="play-icon" id="iconPlay"></div>
-                                    <div class="pause-icon" id="iconPause" style="display: none;">
-                                        <div class="bar"></div>
-                                        <div class="bar"></div>
-                                    </div>
-                                </div>
-                                <div class="video-info">◉ Click to pause/play</div>
-                            </div>
-                            <!-- <div class="click-hint">
-                            ⏵ Click the center button or click anywhere on video to toggle play/pause
-                        </div> -->
-                        </div>
-                    </div>
-                    <div class="row_showcase margin_auto">
-                        <table class="with-without">
-                            <thead>
-                                <tr>
-                                    <th>Without CamCore</th>
-                                    <th>With CamCore</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Footage recorded but reviewed only after incidents</td>
-                                    <td>Hazards detected and flagged in real time</td>
-                                </tr>
-                                <tr>
-                                    <td>PPE compliance checked during supervisory walkthroughs</td>
-                                    <td>Continuous compliance monitoring across every zone</td>
-                                </tr>
-                                <tr>
-                                    <td>Safety incidents discovered after they occur</td>
-                                    <td>Risk patterns surfaced before they escalate</td>
-                                </tr>
-                                <tr>
-                                    <td>Night shifts and low-supervision periods left unmonitored</td>
-                                    <td>Continuous coverage regardless of time or staffing levels</td>
-                                </tr>
-                                <tr>
-                                    <td>Manual footage review consuming safety team time</td>
-                                    <td>Automated detection so your team focuses on action not footage</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-                <div class="features-icons">
-
-                    <h2>A Glimpse Of What We Offer</h2>
-                    <div class="line-width"></div>
-
-                            <ul class="c9-features__row">
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="hard-hat" aria-hidden="true"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"></path><path d="M14 6a6 6 0 0 1 6 6v3"></path><path d="M4 15v-3a6 6 0 0 1 6-6"></path><rect x="2" y="15" width="20" height="4" rx="1"></rect></svg></span>
-            <span class="c9-feature__label">PPE Detection</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eye-off" aria-hidden="true"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"></path><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"></path><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"></path><path d="m2 2 20 20"></path></svg></span>
-            <span class="c9-feature__label">Fatigue Monitoring</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="person-standing" aria-hidden="true"><circle cx="12" cy="5" r="1"></circle><path d="m9 20 3-6 3 6"></path><path d="m6 8 6 2 6-2"></path><path d="M12 10v4"></path></svg></span>
-            <span class="c9-feature__label">Ergonomic Risk</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="thermometer" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg></span>
-            <span class="c9-feature__label">Temp Monitoring</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="flame" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg></span>
-            <span class="c9-feature__label">Fire Detection</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="radar" aria-hidden="true"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"></path><path d="M4 6h.01"></path><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"></path><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"></path><path d="M12 18h.01"></path><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"></path><circle cx="12" cy="12" r="2"></circle><path d="m13.41 10.59 5.66-5.66"></path></svg></span>
-            <span class="c9-feature__label">Anomaly Detection</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="scan" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></span>
-            <span class="c9-feature__label">Proximity Alerts</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="key-round" aria-hidden="true"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></span>
-            <span class="c9-feature__label">Access Control</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="list" aria-hidden="true"><path d="M3 12h.01"></path><path d="M3 18h.01"></path><path d="M3 6h.01"></path><path d="M8 12h13"></path><path d="M8 18h13"></path><path d="M8 6h13"></path></svg></span>
-            <span class="c9-feature__label">Movement Logs</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="droplets" aria-hidden="true"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path></svg></span>
-            <span class="c9-feature__label">Spill & Fall</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shield-alert" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg></span>
-            <span class="c9-feature__label">Breach Alerts</span>
-          </li>
-          <li class="c9-feature">
-            <span class="c9-feature__icon"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="file-check" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="m9 15 2 2 4-4"></path></svg></span>
-            <span class="c9-feature__label">Auto Documentation</span>
-          </li>
-        </ul>
-                </div>
-
-            </div>
-            <!-- <svg class="divider_2" viewBox="0 0 1436 294" fill="none">
-                <path d="M0 0L718 267L1436 0V294H0V0Z" fill="black" />
-            </svg> -->
-        </section>
-
-        <!-- <include src="./partials/home-products.html"></include> -->
-
-        <include src="./partials/footer.html">{"base": "../"}</include>
+      <!-- scrolling copy -->
+      <div class="feat__list">
+        <article class="fitem" data-f="0">
+          <img class="fitem__img" src="../assets/images/f-safety.jpg" width="1920" height="1080" alt="Two warehouse workers in hard hats and high-visibility vests walking down an aisle at dusk" loading="lazy">
+          <span class="fitem__no">01 · Worker safety</span>
+          <h3>Consistent safety coverage across every zone, every shift.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Real-time PPE detection for helmets, vests and gloves</li>
+            <li><svg><use href="#i-check"/></svg>Fatigue and ergonomic risk monitoring across all facility zones</li>
+            <li><svg><use href="#i-check"/></svg>Instant alerts to the right supervisor, every hour of every shift</li>
+          </ul>
+        </article>
+        <article class="fitem" data-f="1">
+          <img class="fitem__img" src="../assets/images/f-maint.jpg" width="1920" height="1080" alt="Industrial electric motor and gearbox driving a conveyor in a dim factory" loading="lazy">
+          <span class="fitem__no">02 · Predictive maintenance</span>
+          <h3>Catch equipment failures before they stop your operation.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Continuous monitoring of temperature, vibration and anomalies</li>
+            <li><svg><use href="#i-check"/></svg>Maintenance alerts based on actual behaviour, not fixed schedules</li>
+            <li><svg><use href="#i-check"/></svg>Early detection that creates time to plan, not just react</li>
+          </ul>
+        </article>
+        <article class="fitem" data-f="2">
+          <img class="fitem__img" src="../assets/images/f-vehicle.jpg" width="1920" height="1080" alt="A forklift carrying a pallet approaches a worker standing by a pedestrian walkway" loading="lazy">
+          <span class="fitem__no">03 · Vehicle intelligence</span>
+          <h3>Monitor every piece of material handling equipment, in real time.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Speed and proximity alerts for forklifts near pedestrian zones</li>
+            <li><svg><use href="#i-check"/></svg>Access control monitoring for restricted and hazardous areas</li>
+            <li><svg><use href="#i-check"/></svg>A complete log of vehicle movement and compliance events per shift</li>
+          </ul>
+        </article>
+        <article class="fitem" data-f="3">
+          <img class="fitem__img" src="../assets/images/f-hazard.jpg" width="1920" height="1080" alt="A liquid spill and a fallen box in a warehouse aisle at night" loading="lazy">
+          <span class="fitem__no">04 · Hazard detection</span>
+          <h3>Facility hazards don't wait to be noticed. Neither does CamCore.</h3>
+          <ul class="checks">
+            <li><svg><use href="#i-check"/></svg>Real-time detection of spills, obstructions, falls and unsafe handling</li>
+            <li><svg><use href="#i-check"/></svg>Restricted-area breach alerts with immediate notification routing</li>
+            <li><svg><use href="#i-check"/></svg>Every event automatically documented for compliance reporting</li>
+          </ul>
+        </article>
+      </div>
     </div>
-    <include src="./partials/opening.html"></include>
-    <include src="./partials/faq.html"></include>
-    <include src="./partials/demo.html"></include>
-    <script type="module" src="../js/product.js"></script>
+  </div>
+</section>
+
+<!-- ═════════════════════════ PORTAL ═════════════════════════ -->
+<section class="section portal" id="platform" aria-label="The CamCore dashboard">
+  <div class="glow" style="width:60vw;height:40vw;left:20vw;top:30%"></div>
+  <div class="wrap">
+    <div class="section-head section-head--center">
+      <span class="eyebrow" data-scramble>The CamCore dashboard</span>
+      <h2 class="h2 split">Every camera, every violation, one screen.</h2>
+      <p class="lead" data-reveal>Live violations by type and zone, trends across the shift, and every corrective action tracked to closure.</p>
+    </div>
+  </div>
+  <div class="portal__stage" id="portalStage">
+    <div class="portal__screen" id="portalScreen">
+      <img src="../assets/images/cc-portal.jpg" width="2000" height="1250" alt="The CamCore safety dashboard showing violations today, the violations trend, violations by camera and CAPA status" decoding="async">
+      <div class="portal__sheen"></div>
+    </div>
+    <div class="chip portal__chip portal__chip--a"><div><small>Live</small>No safety vest · Aisle 7 → Supervisor</div></div>
+    <div class="chip portal__chip portal__chip--b"><div><small>CAPA</small>Every case tracked to closure</div></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ SHOWCASE (video scroll-expand) ═════════════════════════ -->
+<section class="expand vexpand" id="showcase" aria-label="CamCore in action">
+  <div class="scursor" id="sCursor" aria-hidden="true"><div class="scursor__in"><span>Scroll to watch</span></div></div>
+  <div class="expand__frame" id="vFrame">
+    <video id="ccVideo" src="../assets/videos/camcore.mp4" poster="../assets/videos/camcore-poster.jpg" muted loop playsinline preload="metadata"></video>
+  </div>
+  <div class="expand__content vexpand__content" id="vContent">
+    <span class="eyebrow" style="margin-bottom:26px">Showcase</span>
+    <h2 class="expand__title" id="vTitle">See CamCore in action.</h2>
+  </div>
+  <div class="vbar" id="vBar">
+    <button class="vbar__toggle" id="vToggle" aria-label="Pause video"><svg class="i-pause"><use href="#i-pause"/></svg><svg class="i-play"><use href="#i-play"/></svg></button>
+    <div class="vbar__chapters" role="list">
+      <button class="vch" data-t="6.9" role="listitem"><b>PPE compliance</b><span>Helmets &amp; vests</span><i><i></i></i></button>
+      <button class="vch" data-t="12" role="listitem"><b>Man-to-machine</b><span>Unsafe proximity</span><i><i></i></i></button>
+      <button class="vch" data-t="17" role="listitem"><b>Machine guarding</b><span>Guards &amp; walkways</span><i><i></i></i></button>
+      <button class="vch" data-t="22" role="listitem"><b>Ergonomics</b><span>Unsafe posture</span><i><i></i></i></button>
+      <button class="vch" data-t="26.8" role="listitem"><b>Smoke &amp; fire</b><span>Detected in real time</span><i><i></i></i></button>
+      <button class="vch" data-t="30.8" role="listitem"><b>Warehouse productivity</b><span>Movement &amp; idle time</span><i><i></i></i></button>
+      <button class="vch" data-t="35.5" role="listitem"><b>Safety dashboard</b><span>One view of every site</span><i><i></i></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ IMPACT (with vs without) ═════════════════════════ -->
+<section class="section impact-ds" id="impact" aria-label="The impact of CamCore">
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div style="display:grid;gap:22px">
+        <span class="eyebrow" data-scramble>The impact of CamCore</span>
+        <h2 class="h2 split">Your company, with &amp; without CamCore.</h2>
+      </div>
+      <div class="cmp-toggle" id="cmpToggle" role="tablist" aria-label="Compare" data-reveal>
+        <button role="tab" aria-selected="false" data-side="without">Without</button>
+        <button role="tab" aria-selected="true" data-side="with" class="is-on">With CamCore</button>
+        <i class="cmp-toggle__pill"></i>
+      </div>
+    </div>
+
+    <div class="cmp is-with" id="cmp">
+      <div class="cmp__head"><span>Without CamCore</span><span><img src="../assets/logos/camcore-white.svg" alt="With CamCore"></span></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Footage recorded, but reviewed only after incidents</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Hazards detected and flagged in real time</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>PPE compliance checked during supervisory walkthroughs</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Continuous compliance monitoring across every zone</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Safety incidents discovered after they occur</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Risk patterns surfaced before they escalate</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Night shifts and low-supervision periods left unmonitored</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Continuous coverage regardless of time or staffing levels</p></div>
+      <div class="cmp__row"><p class="cmp__no"><svg><use href="#i-x"/></svg>Manual footage review consuming safety team time</p><p class="cmp__yes"><svg><use href="#i-check"/></svg>Automated detection, so your team focuses on action, not footage</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ USE CASES ═════════════════════════ -->
+<section class="section ulib" id="use-cases" aria-label="Use cases" data-ulib>
+  <div class="glow" style="width:50vw;height:50vw;right:-20vw;top:0"></div>
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div style="display:grid;gap:22px">
+        <span class="eyebrow" data-scramble>Use cases</span>
+        <h2 class="h2 split">68 use cases. The cameras you already own.</h2>
+      </div>
+      <p class="lead" data-reveal>Eight categories, from PPE to sector-specific rules. Pick a category to see what CamCore watches for.</p>
+    </div>
+    <div class="ulib__tabs" role="tablist" aria-label="Use-case categories" data-reveal>
+      <button class="ulib__tab is-on" role="tab" id="ul-cc-t0" aria-controls="ul-cc-p0" aria-selected="true" tabindex="0"><svg><use href="#c-ppe"/></svg><span>PPE &amp; hygiene</span><i>9</i></button><button class="ulib__tab" role="tab" id="ul-cc-t1" aria-controls="ul-cc-p1" aria-selected="false" tabindex="-1"><svg><use href="#c-proximity"/></svg><span>Zones &amp; vehicles</span><i>12</i></button><button class="ulib__tab" role="tab" id="ul-cc-t2" aria-controls="ul-cc-p2" aria-selected="false" tabindex="-1"><svg><use href="#c-fire"/></svg><span>Fire &amp; hazards</span><i>6</i></button><button class="ulib__tab" role="tab" id="ul-cc-t3" aria-controls="ul-cc-p3" aria-selected="false" tabindex="-1"><svg><use href="#c-spill"/></svg><span>Housekeeping</span><i>6</i></button><button class="ulib__tab" role="tab" id="ul-cc-t4" aria-controls="ul-cc-p4" aria-selected="false" tabindex="-1"><svg><use href="#c-access"/></svg><span>Security</span><i>10</i></button><button class="ulib__tab" role="tab" id="ul-cc-t5" aria-controls="ul-cc-p5" aria-selected="false" tabindex="-1"><svg><use href="#c-anomaly"/></svg><span>Productivity &amp; flow</span><i>9</i></button><button class="ulib__tab" role="tab" id="ul-cc-t6" aria-controls="ul-cc-p6" aria-selected="false" tabindex="-1"><svg><use href="#c-report"/></svg><span>Compliance &amp; evidence</span><i>7</i></button><button class="ulib__tab" role="tab" id="ul-cc-t7" aria-controls="ul-cc-p7" aria-selected="false" tabindex="-1"><svg><use href="#u-sector"/></svg><span>Sector-specific</span><i>9</i></button>
+    </div>
+    <div class="ulib__panels" data-reveal>
+      <div class="ulib__panel is-on" role="tabpanel" id="ul-cc-p0" aria-labelledby="ul-cc-t0">
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-ppe"/></svg></span><h3>PPE &amp; hygiene</h3><p>The right protection, in every zone that needs it.</p><b>9 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Hard hat compliance</h5><p>Head protection checked continuously in every zone where it is mandated.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>High-visibility vest</h5><p>Vest detection on floors shared by people and moving equipment.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Eye and face protection</h5><p>Goggles and shields enforced around cutting, welding, and chemical lines.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Gloves and footwear</h5><p>Task-specific PPE verified where handling and mechanical risk is highest.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Harness at height</h5><p>Fall-arrest harness checked on platforms, roofs, scaffolds and open edges.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Gowning and cleanroom hygiene</h5><p>Gowns, gloves and masks verified at every cleanroom and clean-zone entry.</p></div></div><div class="ucard spot"><span class="ucard__n">07</span><div><h5>Kitchen and food-safety attire</h5><p>Hairnets, gloves and uniforms checked in kitchens and food-handling areas.</p></div></div><div class="ucard spot"><span class="ucard__n">08</span><div><h5>Hearing protection</h5><p>Ear defenders in high-noise areas such as presses, compressors and ramps.</p></div></div><div class="ucard spot"><span class="ucard__n">09</span><div><h5>Respirators and masks</h5><p>Respiratory protection in dust, fume, paint and spray areas.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-cc-p1" aria-labelledby="ul-cc-t1" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-proximity"/></svg></span><h3>Zones &amp; vehicles</h3><p>People and moving equipment, kept apart.</p><b>12 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Restricted zone entry</h5><p>Entry into machine, chemical, or maintenance exclusion zones.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Forklift proximity</h5><p>People within an unsafe distance of moving material handling equipment.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Vehicle speed indoors</h5><p>Speeding forklifts and yard vehicles in pedestrian areas.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Loading dock safety</h5><p>Trailer creep, dock-edge exposure, and unsafe loading practice.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Heavy plant proximity</h5><p>People inside the danger envelope of loaders, dozers, cranes and haul trucks.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Pedestrian walkway discipline</h5><p>People leaving marked walkways in areas shared with vehicles.</p></div></div><div class="ucard spot"><span class="ucard__n">07</span><div><h5>Crane and lift radius</h5><p>Exclusion zones under suspended loads enforced while a lift is active.</p></div></div><div class="ucard spot"><span class="ucard__n">08</span><div><h5>Permit-to-work zones</h5><p>Access to hazardous areas checked against the active permit window.</p></div></div><div class="ucard spot"><span class="ucard__n">09</span><div><h5>Reversing near people</h5><p>Vehicles backing up while a person is in the reversing path.</p></div></div><div class="ucard spot"><span class="ucard__n">10</span><div><h5>Forklift speed and load height</h5><p>Forklifts travelling too fast or carrying loads raised while moving.</p></div></div><div class="ucard spot"><span class="ucard__n">11</span><div><h5>Intersection and blind-corner conflicts</h5><p>Vehicles and people meeting at aisle ends, doorways and blind corners.</p></div></div><div class="ucard spot"><span class="ucard__n">12</span><div><h5>Open edges and pits</h5><p>People near unguarded edges, pits, excavations and open floor hatches.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-cc-p2" aria-labelledby="ul-cc-t2" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-fire"/></svg></span><h3>Fire &amp; hazards</h3><p>Smoke, plumes, water and heat, caught early.</p><b>6 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Early smoke and fire</h5><p>Visible smoke and flame flagged before a detector or sprinkler is triggered.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Gas, steam and dust events</h5><p>Visible plumes, vapour and dust clouds from pipes, stacks and process areas.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Flooding and water ingress</h5><p>Standing water and leaks in plant rooms, warehouses and basements.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Conveyor blockage and spillage</h5><p>Jams, overflow and material build-up along conveyors and transfer points.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Hot work watch</h5><p>Welding and cutting outside permitted areas, and fire watch after the work ends.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Fire equipment readiness</h5><p>Missing, moved or blocked extinguishers, hose reels and alarm points.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-cc-p3" aria-labelledby="ul-cc-t3" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-spill"/></svg></span><h3>Housekeeping</h3><p>A floor that stays clear, safe and in order.</p><b>6 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Spills and leaks</h5><p>Liquid on the floor flagged before it becomes a slip incident.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Blocked exits and aisles</h5><p>Obstructed fire exits, walkways, and extinguisher access.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Unsafe stacking</h5><p>Pallets and racks stacked beyond safe height or overhanging aisles.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Housekeeping and 5S audits</h5><p>Workstation order, clutter and cleanliness scored against your standard.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Material staging</h5><p>Laydown areas, staging lanes and access routes kept clear.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Trip hazards</h5><p>Cables, hoses and loose material left across walkways.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-cc-p4" aria-labelledby="ul-cc-t4" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-access"/></svg></span><h3>Security</h3><p>Who is where, and whether they should be.</p><b>10 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Unauthorised access</h5><p>People in areas outside their shift, role, or permit window.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Smoking and open flame</h5><p>Ignition risk in fuel, chemical, and packaging storage areas.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Fall and man-down</h5><p>A person on the floor, or motionless in an area that should be active.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Perimeter intrusion</h5><p>Fence-line and boundary crossings outside operating hours.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Tailgating at access points</h5><p>Two people passing a controlled door or turnstile on one credential.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Loitering</h5><p>People lingering in sensitive areas beyond a set time.</p></div></div><div class="ucard spot"><span class="ucard__n">07</span><div><h5>Camera tampering</h5><p>Cameras covered, moved, defocused or disconnected.</p></div></div><div class="ucard spot"><span class="ucard__n">08</span><div><h5>Visitor escort compliance</h5><p>Visitors and contractors separated from their escort in controlled areas.</p></div></div><div class="ucard spot"><span class="ucard__n">09</span><div><h5>Unattended objects</h5><p>Bags, boxes and items left in walkways, entrances or restricted areas.</p></div></div><div class="ucard spot"><span class="ucard__n">10</span><div><h5>Unauthorised vehicles</h5><p>Vehicles parked or entering areas they are not cleared for.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-cc-p5" aria-labelledby="ul-cc-t5" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-anomaly"/></svg></span><h3>Productivity &amp; flow</h3><p>Where time goes on the floor, measured.</p><b>9 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Line stoppage and idle time</h5><p>Unplanned stoppages and idle equipment surfaced with time stamps.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Zone occupancy</h5><p>Headcount per zone and per shift, for staffing and evacuation checks.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>SOP adherence</h5><p>Whether defined steps happen, in order, at the stations that matter.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Dwell and queue time</h5><p>Waiting at docks, gates, and stations, measured rather than estimated.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Congestion heatmaps</h5><p>Choke points and cross-traffic that slow shifts, mapped over time.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Dock door utilisation</h5><p>Which doors are busy, idle or blocked, and for how long.</p></div></div><div class="ucard spot"><span class="ucard__n">07</span><div><h5>Yard and trailer visibility</h5><p>Trailer, gate and parking state without a yard walk.</p></div></div><div class="ucard spot"><span class="ucard__n">08</span><div><h5>Equipment state and idle time</h5><p>Machines and mobile plant running, stopped or idle, by shift.</p></div></div><div class="ucard spot"><span class="ucard__n">09</span><div><h5>Loading and unloading time</h5><p>Time from dock arrival to departure for every vehicle.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-cc-p6" aria-labelledby="ul-cc-t6" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#c-report"/></svg></span><h3>Compliance &amp; evidence</h3><p>Evidence and scorecards, ready for any audit.</p><b>7 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Site compliance scorecards</h5><p>Safety and process compliance trended per site, shift and zone.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Contractor scorecards</h5><p>Safety performance tracked per subcontractor, with evidence.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Incident evidence packs</h5><p>Time-stamped clips and context for every claim, dispute and investigation.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Packaging and label checks</h5><p>Labels, palletising and end-of-line packing verified visually.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Line clearance between batches</h5><p>Lines confirmed clear before the next batch starts, with a record.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Opening and closing routines</h5><p>Store and site open/close checklists confirmed on camera.</p></div></div><div class="ucard spot"><span class="ucard__n">07</span><div><h5>Audit-ready reports</h5><p>Per-site safety and compliance reports exported for any period.</p></div></div></div>
+      </div><div class="ulib__panel" role="tabpanel" id="ul-cc-p7" aria-labelledby="ul-cc-t7" hidden>
+        <div class="ulib__side"><span class="ulib__ico"><svg><use href="#u-sector"/></svg></span><h3>Sector-specific</h3><p>Rules built for specific kinds of sites.</p><b>9 <small>use cases</small></b></div>
+        <div class="ulib__grid"><div class="ucard spot"><span class="ucard__n">01</span><div><h5>Ports: quay and yard proximity</h5><p>People kept clear of straddle carriers, reach stackers and terminal tractors.</p></div></div><div class="ucard spot"><span class="ucard__n">02</span><div><h5>Airports: apron and FOD</h5><p>Ramp proximity on every stand and foreign objects on aprons and taxi lanes.</p></div></div><div class="ucard spot"><span class="ucard__n">03</span><div><h5>Rail: platform edge and track</h5><p>People crossing the platform edge line or entering the track bed.</p></div></div><div class="ucard spot"><span class="ucard__n">04</span><div><h5>Retail: loss prevention</h5><p>Concealment at high-risk fixtures, with the clip sent to loss prevention.</p></div></div><div class="ucard spot"><span class="ucard__n">05</span><div><h5>Healthcare: patient falls</h5><p>Falls in wards, corridors and waiting areas flagged for immediate response.</p></div></div><div class="ucard spot"><span class="ucard__n">06</span><div><h5>Cold chain: door-open time</h5><p>Cold-room and reefer doors left open beyond the allowed time.</p></div></div><div class="ucard spot"><span class="ucard__n">07</span><div><h5>Construction: edge protection</h5><p>Workers near open edges without guardrails or harness.</p></div></div><div class="ucard spot"><span class="ucard__n">08</span><div><h5>Mining: haul road safety</h5><p>Light vehicles and people on haul roads while trucks are active.</p></div></div><div class="ucard spot"><span class="ucard__n">09</span><div><h5>Hospitality: kitchen hygiene</h5><p>Handwashing, attire and food-handling practice in every kitchen.</p></div></div></div>
+      </div>
+    </div>
+    <div class="ulib__foot" data-reveal><p>Common detections run from day one. Site- and sector-specific rules are configured during the pilot, without collecting training data.</p><a class="link-arrow" href="#demo">See it on your cameras <svg class="arr"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ OTHER PRODUCTS ═════════════════════════ -->
+<section class="section more" aria-label="More from Core9">
+  <div class="wrap">
+    <div class="more__head">
+      <span class="eyebrow" data-scramble>More from Core9</span>
+      <h2 class="h2 split">One intelligence layer, beyond the facility.</h2>
+    </div>
+    <div class="more__grid">
+      <a class="mcard spot" href="/drivesense/" data-reveal>
+        <div class="mcard__img"><img src="../assets/images/cc-drivesense.webp" width="1200" height="900" alt="" loading="lazy"></div>
+        <div class="mcard__body"><span class="pcard__brand"><img src="../assets/logos/drivesense-white.svg" alt="DriveSense"></span><h3>The fleet platform built for operational excellence.</h3><span class="link-arrow link-arrow--gold">Explore DriveSense <svg class="arr"><use href="#i-arrow"/></svg></span></div>
+      </a>
+      <a class="mcard spot" href="/illytical/" data-reveal>
+        <div class="mcard__img"><img src="../assets/images/cc-illytical.webp" width="1200" height="900" alt="" loading="lazy"></div>
+        <div class="mcard__body"><span class="pcard__brand"><img src="../assets/logos/illytical-white.svg" alt="illytical"></span><h3>Your planogram. Verified in real time.</h3><span class="link-arrow link-arrow--gold">Explore illytical <svg class="arr"><use href="#i-arrow"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ FAQ ═════════════════════════ -->
+<section class="section faq" id="faq" aria-label="FAQs">
+  <div class="wrap">
+    <div class="faq__grid">
+      <div class="faq__side">
+        <span class="eyebrow" data-scramble>FAQs</span>
+        <h2 class="h2 split">Frequently asked questions.</h2>
+        <p class="lead" data-reveal>Still curious? We'll walk you through it on a short call.</p>
+        <div data-reveal><a class="link-arrow" href="#demo">Talk to the team <svg class="arr"><use href="#i-arrow"/></svg></a></div>
+      </div>
+      <div class="faq__list" data-reveal>
+        <div class="qa is-open"><button class="qa__q" aria-expanded="true">What does Core9 do?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Core9 develops artificial intelligence technologies that analyse video and operational data to help organisations monitor physical operations across fleets, warehouses and industrial environments. These systems detect operational risks, identify important events and generate insights that improve visibility across supply chain operations.</p></div></div></div>
+        <div class="qa"><button class="qa__q" aria-expanded="false">How does Core9 technology work?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Core9 products connect to cameras, telematics devices and operational sensors across an organisation's physical infrastructure. AI models analyse these data streams continuously to detect events, identify anomalies and generate insights that help teams understand and manage operational activity.</p></div></div></div>
+        <div class="qa"><button class="qa__q" aria-expanded="false">What types of operations can Core9 monitor?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Core9 products can monitor fleet operations, industrial environments, warehouses and distribution centres. By analysing video and operational data, the system shows how physical operations are running in real time.</p></div></div></div>
+        <div class="qa"><button class="qa__q" aria-expanded="false">Does Core9 require new infrastructure?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Core9 products can connect to existing cameras, telematics devices and operational sensors, so organisations can deploy AI-based monitoring and analytics without replacing their hardware.</p></div></div></div>
+        <div class="qa"><button class="qa__q" aria-expanded="false">What insights can organisations gain from Core9?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Insights into driver behaviour, operational risks, facility activity and supply chain operations — helping teams understand patterns, detect issues earlier and improve operational performance.</p></div></div></div>
+        <div class="qa"><button class="qa__q" aria-expanded="false">How quickly can Core9 be deployed?<span class="qa__ico"></span></button><div class="qa__a"><div><p>Initial deployments can typically be completed within a few weeks, depending on the scale of the environment. Many organisations begin with a pilot before expanding across fleets or facilities.</p></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ CTA ═════════════════════════ -->
+<section class="cta" id="demo" aria-label="Book a demo">
+  <div class="glow a"></div><div class="glow b"></div>
+  <div class="radar" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-scramble style="margin-bottom:28px">Book a demo</span>
+    <h2 class="h2 split">See how Core9 enables intelligent supply chain operations.</h2>
+    <p class="lead" data-reveal>Smarter visibility. Faster decisions. Better control.</p>
+    <div class="cta__row" data-reveal>
+      <a class="btn btn--gold btn--xl magnet" href="#book-demo">Book a Demo <svg class="arr"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--xl magnet" href="mailto:info@core9.ai">info@core9.ai</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═════════════════════════ FOOTER ═════════════════════════ -->
+<include src="./partials/footer.html">{"base":"../","tagline":"CamCore · The AI layer your cameras were missing"}</include>
+
+<script src="../js/vendor/gsap.min.js"></script>
+<script src="../js/vendor/ScrollTrigger.min.js"></script>
+<script src="../js/vendor/SplitText.min.js"></script>
+<script src="../js/vendor/lenis.min.js"></script>
+<script src="../js/cc-hero-data.js"></script>
+<script src="../js/hero-gl.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/camcore.js"></script>
+<include src="./partials/demo.html">{}</include>
+<script src="../js/site.js"></script>
 </body>
-
-
 </html>

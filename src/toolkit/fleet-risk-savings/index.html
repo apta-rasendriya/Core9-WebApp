@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fleet Risk &amp; Savings Calculator | Core9 Toolkit</title>
+<meta name="description" content="Score your fleet risk today and estimate the annual saving with DriveSense. Live, no login.">
+<meta name="theme-color" content="#08050e">
+<link rel="icon" href="../../assets/images/favicon.png">
+<link rel="stylesheet" href="../../styles/fonts.css">
+<link rel="stylesheet" href="../../styles/main.css">
+<link rel="stylesheet" href="../../styles/site.css">
+<link rel="stylesheet" href="../../styles/demo.css">
+<link rel="stylesheet" href="../../styles/toolkit.css">
+<script>document.documentElement.className='js';</script>
+</head>
+<body id="top" class="page-tk" data-tool="fleet-risk-savings">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.6l3.1 3.1L13 4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 20 20"><path d="M7 5.2v9.6L15 10z" fill="currentColor"/></symbol>
+  <!-- industries -->
+  <symbol id="n-fleet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 10h4l3 3.2v3.3h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol>
+  <symbol id="n-ware" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V8.5L12 4l9 4.5v12"/><path d="M7 20.5v-8h10v8"/><path d="M7 16.5h10"/></g></symbol>
+  <symbol id="n-mfg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V11l5 3V11l5 3V11l5 3V5.5h3v15z"/><path d="M7 17.5h2M12 17.5h2"/></g></symbol>
+  <symbol id="n-retail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h2.4l2.2 10.2h10.2l2.2-7H6.6"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></g></symbol>
+  <!-- resources -->
+  <symbol id="n-tools" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18.2h.01M12 18.2h3.5"/></g></symbol>
+  <symbol id="n-insights" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15.5H6.5A2.5 2.5 0 004 21z"/><path d="M4 21V5.5M8.5 7.5h7M8.5 11h5"/></g></symbol>
+  <symbol id="n-faq" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 01-12.4 7.5L3.5 20.5l1-4.4A8.5 8.5 0 1120.5 12z"/><path d="M9.8 9.6a2.3 2.3 0 114 1.6c-.8.7-1.8 1.1-1.8 2.3M12 16.2h.01"/></g></symbol>
+  <symbol id="n-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></g></symbol>
+  <!-- toolkit -->
+  <symbol id="n-tshield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></g></symbol>
+  <symbol id="n-tbars" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V5M19 20v-6M3 20.5h18"/></g></symbol>
+  <symbol id="n-tshelf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 10v10"/></g></symbol>
+  <symbol id="n-tlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></g></symbol>
+  <symbol id="n-tarch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="5" rx="1"/><rect x="15" y="4" width="6" height="5" rx="1"/><rect x="9" y="15" width="6" height="5" rx="1"/><path d="M6 9v3h12V9M12 12v3"/></g></symbol>
+  <symbol id="n-ttarget" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2"/></g></symbol>
+  <symbol id="n-tkit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7M3 12.5h18M10.5 12.5v2h3v-2"/></g></symbol>
+  <!-- compliance -->
+  <symbol id="k-loc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6.5-5.6 6.5-11a6.5 6.5 0 10-13 0c0 5.4 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.4"/></g></symbol>
+  <symbol id="k-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="k-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="1.8"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><path d="M12 14.2v2.6"/></g></symbol>
+  <symbol id="k-explain" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h8l4 4v13h-12z"/><path d="M14.5 3.5v4h4"/><path d="M9.5 13l2 2 3.5-3.8"/></g></symbol>
+  <symbol id="k-scatter" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="6" rx="1.2"/><rect x="14" y="3" width="7" height="5" rx="1.2"/><rect x="5" y="14" width="6" height="6" rx="1.2"/><rect x="15" y="12" width="6" height="8" rx="1.2"/></g></symbol>
+  <symbol id="k-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/><path d="M10.6 9.4a1.7 1.7 0 113 1.1c-.6.5-1.3.8-1.3 1.7"/></g></symbol>
+  <symbol id="k-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/><path d="M4 4l16 16"/></g></symbol>
+</svg>
+<script>window.C9_NOINTRO = true;</script>
+
+<include src="./partials/nav.html">{"base":"../../"}</include>
+
+
+<main>
+<section class="hero tkhero" id="hero" aria-label="Fleet Risk &amp; Savings Calculator">
+  <div class="tkhero__bg" aria-hidden="true"></div>
+  <div class="wrap tkhero__inner">
+    <nav class="crumbs" aria-label="Breadcrumb" data-hero-in><a href="/">Home</a><i></i><a href="/toolkit/">Toolkit</a><i></i><b>Fleet Risk &amp; Savings Calculator</b></nav>
+    <span class="ihero__eyebrow" data-hero-in>DriveSense · See your impact</span>
+    <h1 id="heroTitle" data-shiny="costing|you?">How much is your fleet’s risk costing you?</h1>
+    <p class="hero__sub">Set your fleet, how it runs and what incidents cost you today. The panel scores risk now, projects it with DriveSense and estimates the annual saving, updating with every change.</p>
+    <ul class="tkhero__meta" data-hero-in><li>No login</li><li>Updates live</li></ul>
+  </div>
+</section>
+
+<section class="tk" id="tool" aria-label="Fleet Risk &amp; Savings Calculator">
+<div class="wrap tool-grid">
+  <div>
+    <section class="tool-block">
+      <div class="tool-block__head"><h2>Your fleet</h2></div>
+      <div class="tool-block__sub">Scale and vehicle class set the baseline exposure.</div>
+      <div class="slider">
+  <div class="slider__head"><span class="slider__label">Vehicles in the fleet</span><span class="slider__val" id="vehiclesVal"></span></div>
+  <input type="range" id="vehicles" min="5" max="2000" value="120" step="1" data-format="num">
+  <div class="slider__caps"><span>5</span><span>2,000</span></div>
+</div>
+      <div class="slider">
+  <div class="slider__head"><span class="slider__label">Distance per vehicle / year (km)</span><span class="slider__val" id="kmVal"></span></div>
+  <input type="range" id="km" min="10000" max="200000" value="60000" step="1000" data-format="num">
+  <div class="slider__caps"><span>10,000</span><span>200,000</span></div>
+</div>
+      <div class="cards"><button type="button" class="card-toggle is-on" data-group="vclass" data-single="true" data-value="heavy"><strong>Heavy trucks</strong><span>Long-haul and bulk haulage</span></button><button type="button" class="card-toggle" data-group="vclass" data-single="true" data-value="light"><strong>Light commercial</strong><span>Vans and last-mile delivery</span></button><button type="button" class="card-toggle" data-group="vclass" data-single="true" data-value="bus"><strong>Buses &amp; coaches</strong><span>Passenger transport</span></button><button type="button" class="card-toggle" data-group="vclass" data-single="true" data-value="mixed"><strong>Mixed fleet</strong><span>A blend of the above</span></button></div>
+    </section>
+    <section class="tool-block">
+      <div class="tool-block__head"><h2>How they run</h2></div>
+      <div class="tool-block__sub">Route profile, night exposure, and what is already fitted to the vehicles.</div>
+      <div class="cards"><button type="button" class="card-toggle is-on" data-group="route" data-single="true" data-value="highway"><strong>Mostly highway</strong><span>High speed, fatigue-dominant risk</span></button><button type="button" class="card-toggle" data-group="route" data-single="true" data-value="urban"><strong>Mostly urban</strong><span>Dense traffic, frequent stops</span></button><button type="button" class="card-toggle" data-group="route" data-single="true" data-value="mixed"><strong>Mixed routes</strong><span>Highway plus urban delivery</span></button><button type="button" class="card-toggle" data-group="route" data-single="true" data-value="yard"><strong>Sites &amp; yards</strong><span>Low speed, manoeuvring risk</span></button></div>
+      <div class="slider">
+  <div class="slider__head"><span class="slider__label">Share of driving at night</span><span class="slider__val" id="nightVal"></span></div>
+  <input type="range" id="night" min="0" max="60" value="20" step="1" data-format="pct">
+  <div class="slider__caps"><span>0</span><span>60%</span></div>
+</div>
+      <div class="cards"><button type="button" class="card-toggle is-on" data-group="fitted" data-single="true" data-value="none"><strong>Nothing yet</strong><span>No telematics or camera fitted</span></button><button type="button" class="card-toggle" data-group="fitted" data-single="true" data-value="gps"><strong>GPS telematics</strong><span>Location and basic driving data</span></button><button type="button" class="card-toggle" data-group="fitted" data-single="true" data-value="dashcam"><strong>Passive dashcams</strong><span>Recording only, reviewed after the fact</span></button></div>
+    </section>
+    <section class="tool-block">
+      <div class="tool-block__head"><h2>Incidents &amp; cost</h2></div>
+      <div class="tool-block__sub">Use your own claims data where you have it — fully loaded cost, not just repair.</div>
+      <div class="slider">
+  <div class="slider__head"><span class="slider__label">At-fault accidents / year</span><span class="slider__val" id="accidentsVal"></span></div>
+  <input type="range" id="accidents" min="0" max="200" value="14" step="1" data-format="num">
+  <div class="slider__caps"><span>0</span><span>200</span></div>
+</div>
+<p class="placeholder-note" id="accWarn" hidden></p>
+      <div class="slider">
+  <div class="slider__head"><span class="slider__label">Average cost per accident</span><span class="slider__val" id="acostVal"></span></div>
+  <input type="range" id="acost" min="2000" max="250000" value="24000" step="1000" data-format="money">
+  <div class="slider__caps"><span>$2,000</span><span>$250,000</span></div>
+</div>
+      <div class="slider">
+  <div class="slider__head"><span class="slider__label">Insurance premium / vehicle / year</span><span class="slider__val" id="premiumVal"></span></div>
+  <input type="range" id="premium" min="300" max="20000" value="2400" step="100" data-format="money">
+  <div class="slider__caps"><span>$300</span><span>$20,000</span></div>
+</div>
+<div class="cards" style="margin-top:14px"><button type="button" class="card-toggle is-on" data-group="insdisc" data-single="true" data-value="yes"><strong>Insurer offers telematics discounts</strong><span>Premium credit for monitored fleets</span></button><button type="button" class="card-toggle" data-group="insdisc" data-single="true" data-value="no"><strong>No telematics discount</strong><span>Premium not linked to monitoring</span></button></div>
+      <p class="placeholder-note">Placeholder benchmarks: the reduction and recovery percentages in this model are conservative industry ranges, not Core9 measured results. They are named in the assumptions and should be replaced with Core9 deployment data before publication.</p>
+    </section>
+  </div>
+  <aside>
+    <div class="rail">
+      <div class="rail__top"><div class="rail__live"><i></i> Live estimate</div><select data-currency="" aria-label="Currency"><option>USD</option><option>SAR</option><option>PKR</option><option>IDR</option></select></div>
+      <div class="rail__pair">
+        <div class="rail__cell"><b id="riskNow">—</b><span>Fleet risk score today · <i id="riskNowLabel">—</i></span></div>
+        <div class="rail__cell" style="border-color:rgba(216,154,29,0.5)"><b id="riskNext" style="color:#D89A1D">—</b><span>With DriveSense · <i id="riskNextLabel">—</i></span></div>
+      </div>
+      <div class="bar"><div class="bar__head"><span>Fatigue exposure</span><span id="f1v"></span></div><div class="bar__track"><div class="bar__fill" id="f1"></div></div></div>
+      <div class="bar"><div class="bar__head"><span>Distraction exposure</span><span id="f2v"></span></div><div class="bar__track"><div class="bar__fill" id="f2"></div></div></div>
+      <div class="bar"><div class="bar__head"><span>Incident history</span><span id="f3v"></span></div><div class="bar__track"><div class="bar__fill" id="f3"></div></div></div>
+      <div class="bar"><div class="bar__head"><span>Detection gap</span><span id="f4v"></span></div><div class="bar__track"><div class="bar__fill" id="f4"></div></div></div>
+      <div class="rail__rows">
+        <div class="rail__row"><span>Accidents avoided / year</span><b id="avoided">—</b></div>
+        <div class="rail__row"><span>Accident cost avoided</span><b id="accSave">—</b></div>
+        <div class="rail__row"><span>Insurance premium impact</span><b id="insSave">—</b></div>
+      </div>
+      <div class="rail__total"><span>Estimated annual saving</span><b id="totalSave">—</b></div>
+      <div class="rail__actions">
+        <button class="c9btn" type="button" data-share="">Copy my results link</button>
+        <a class="c9btn c9btn--ghost" href="/toolkit/fleet-fit-checker/">Check fleet fit →</a>
+      </div>
+      <form class="capture" data-capture="email-fleet-risk-estimate">
+  <div class="capture__label">Email me this estimate</div>
+  <div class="capture__row"><input type="email" placeholder="you@company.com" required=""><button class="c9btn c9btn--sm" type="submit">Send</button></div>
+  <div class="capture__note">One click, email only. Logged as a self-serve lead — no call booked.</div>
+</form>
+      <details class="disclosure"><summary>Assumptions behind this estimate</summary><ul><li>The risk score is a 0–100 planning index built from vehicle class, route profile, night-driving share, at-fault accidents per million km, and what is already fitted to the vehicles. It is not an actuarial score.</li><li>Accident reduction is capped at 30% and scaled by night-driving share and current on-vehicle equipment — fleets starting with nothing fitted show the largest modelled change. Placeholder industry range.</li><li>Insurance premium impact is modelled at up to 8% of annual premium, and only when your insurer offers telematics-linked discounts. This is off by default when Pakistani rupees are selected. Placeholder.</li><li>The accidents slider tops out at twice your vehicle count, and a warning shows above one at-fault accident per vehicle per year.</li><li>Excluded: downtime, third-party liability beyond the per-accident cost you entered, cargo loss, and any fuel or maintenance effect.</li><li>Currency conversion is indicative, at a fixed display rate.</li></ul></details>
+    </div>
+  </aside>
+</div>
+</section>
+<div class="tkdock" data-src="totalSave" data-target=".rail" aria-hidden="true"><span>Estimated annual saving</span><b>—</b><a href="#tool" tabindex="-1">See results <svg><use href="#i-arrow"/></svg></a></div><script>
+(function () {
+  var d = document.querySelector('.tkdock'); if (!d) return;
+  var src = document.getElementById(d.getAttribute('data-src')), tgt = document.querySelector(d.getAttribute('data-target')), out = d.querySelector('b');
+  if (!src || !tgt) return;
+  function copy() { out.textContent = src.textContent; }
+  new MutationObserver(copy).observe(src, { childList: true, characterData: true, subtree: true }); copy();
+  var tool = document.getElementById('tool'), inTool = false, railVis = false;
+  function sync() { d.classList.toggle('is-on', inTool && !railVis); }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { inTool = e[0].isIntersecting; sync(); }, { rootMargin: '-30% 0px -30% 0px' }).observe(tool);
+    new IntersectionObserver(function (e) { railVis = e[0].isIntersecting; sync(); }, { threshold: 0.05 }).observe(tgt);
+  }
+  d.querySelector('a').addEventListener('click', function (e) {
+    e.preventDefault(); var y = tgt.getBoundingClientRect().top + window.pageYOffset - 90;
+    if (window.C9Lenis) window.C9Lenis.scrollTo(y, { duration: 1.1 }); else window.scrollTo({ top: y, behavior: 'smooth' });
+  });
+})();
+</script>
+
+<section class="tknext" aria-label="Where to go next">
+  <div class="wrap">
+    <div class="tknext__head"><h2 class="split">Where to go next.</h2><a class="link-arrow" href="/toolkit/">All tools in the toolkit <svg class="arr"><use href="#i-arrow"/></svg></a></div>
+    <div class="tknext__grid"><a class="tcard spot" href="/toolkit/fleet-fit-checker/" data-reveal><div class="tcard__top"><span class="tcard__ico"><svg><use href="#n-fleet"/></svg></span><span class="tcard__tag">DriveSense</span></div><h3>Fleet Fit Checker</h3><p>Will DriveSense fit your vehicle mix and what is already fitted? Two minutes.</p><span class="link-arrow">Check the fit <svg class="arr"><use href="#i-arrow"/></svg></span></a><a class="tcard spot" href="/toolkit/pilot-planner/" data-reveal><div class="tcard__top"><span class="tcard__ico"><svg><use href="#n-ttarget"/></svg></span><span class="tcard__tag">All products</span></div><h3>Pilot Planner</h3><p>Turn this estimate into a pilot on a slice of the fleet.</p><span class="link-arrow">Plan a pilot <svg class="arr"><use href="#i-arrow"/></svg></span></a></div>
+  </div>
+</section>
+
+<section class="cta" id="demo" aria-label="Book a demo">
+  <div class="glow a"></div><div class="glow b"></div>
+  <div class="radar" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-scramble style="margin-bottom:28px">Book a demo</span>
+    <h2 class="h2 split">Done with the homework?</h2>
+    <p class="lead" data-reveal>Book a demo and we will walk through your own numbers with you.</p>
+    <div class="cta__row" data-reveal>
+      <a class="btn btn--gold btn--xl magnet" href="#book-demo">Book a Demo <svg class="arr"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--xl magnet" href="mailto:info@core9.ai">info@core9.ai</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<include src="./partials/footer.html">{"base":"../../","tagline":"Toolkit · Self-serve, in your browser"}</include>
+
+<script src="../../js/vendor/gsap.min.js"></script>
+<script src="../../js/vendor/ScrollTrigger.min.js"></script>
+<script src="../../js/vendor/SplitText.min.js"></script>
+<script src="../../js/vendor/lenis.min.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/tk-runtime.js"></script>
+<script src="../../js/tk-fleet-risk-savings.js"></script>
+<include src="./partials/demo.html">{}</include>
+<script src="../../js/site.js"></script>
+</body>
+</html>

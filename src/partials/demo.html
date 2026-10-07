@@ -1,24 +1,15 @@
-<section id="book-demo">
-    <div class="book-section">
-        <div class="close-btn-book">
-            <svg class="close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-                <path
-                    d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z" />
-            </svg>
-        </div>
-        <div class="book-content">
-            <h1>Book a Demo</h1>
-            <div class="form-embed">
-                <!-- ✅ HubSpot Form -->
-                <script src="https://js-eu1.hsforms.net/forms/embed/147137037.js" defer=""></script>
-                <div class="hs-form-frame" data-region="eu1" data-form-id="216d0b24-0e5b-40c1-85a5-219593301175"
-                    data-portal-id="147137037" style="height: 616px;"><iframe
-                        src="https://js-eu1.hsforms.net/ui-forms-embed-components-app/frame.html?_hsPortalId=147137037&amp;_hsFormId=216d0b24-0e5b-40c1-85a5-219593301175&amp;_hsIsQa=false&amp;_hsHublet=eu1&amp;_hsDisableScriptloader=true&amp;_hsDisableRedirect=true&amp;_hsInstanceId=eca8ad93-cad4-476e-9d14-3143903bfade"
-                        data-test-id="embedded-form-216d0b24-0e5b-40c1-85a5-219593301175" title="Form" scrolling="no"
-                        style="border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; height: 100%; width: 100%;"></iframe>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
+<!-- Book a Demo popup: HubSpot form. Opened by any link to "#book-demo",
+     or on load with ?demo=1 (the blog's "Book a Demo" links use that). The
+     form script loads on first open, not with the page. See js/site.js. -->
+<div class="demo-modal" id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" hidden>
+  <div class="demo-modal__backdrop" data-demo-close></div>
+  <div class="demo-modal__panel" data-lenis-prevent>
+    <button class="demo-modal__close" type="button" aria-label="Close" data-demo-close>
+      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <span class="eyebrow">Book a demo</span>
+    <h2 class="demo-modal__title" id="demo-modal-title">See Core9 on your own operation.</h2>
+    <p class="demo-modal__lead">Tell us a little about your fleet, facilities or stores and we'll set up a walkthrough.</p>
+    <div class="demo-modal__form hs-form-frame" data-region="eu1" data-form-id="216d0b24-0e5b-40c1-85a5-219593301175" data-portal-id="147137037"></div>
+  </div>
+</div>

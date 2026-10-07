@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Camera &amp; VMS Compatibility Checker | Core9 Toolkit</title>
+<meta name="description" content="Check in seconds whether CamCore works with your existing VMS and camera brands.">
+<meta name="theme-color" content="#08050e">
+<link rel="icon" href="../../assets/images/favicon.png">
+<link rel="stylesheet" href="../../styles/fonts.css">
+<link rel="stylesheet" href="../../styles/main.css">
+<link rel="stylesheet" href="../../styles/site.css">
+<link rel="stylesheet" href="../../styles/demo.css">
+<link rel="stylesheet" href="../../styles/toolkit.css">
+<script>document.documentElement.className='js';</script>
+</head>
+<body id="top" class="page-tk" data-tool="camera-compatibility">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.6l3.1 3.1L13 4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 20 20"><path d="M7 5.2v9.6L15 10z" fill="currentColor"/></symbol>
+  <!-- industries -->
+  <symbol id="n-fleet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 10h4l3 3.2v3.3h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol>
+  <symbol id="n-ware" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V8.5L12 4l9 4.5v12"/><path d="M7 20.5v-8h10v8"/><path d="M7 16.5h10"/></g></symbol>
+  <symbol id="n-mfg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V11l5 3V11l5 3V11l5 3V5.5h3v15z"/><path d="M7 17.5h2M12 17.5h2"/></g></symbol>
+  <symbol id="n-retail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h2.4l2.2 10.2h10.2l2.2-7H6.6"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></g></symbol>
+  <!-- resources -->
+  <symbol id="n-tools" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18.2h.01M12 18.2h3.5"/></g></symbol>
+  <symbol id="n-insights" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15.5H6.5A2.5 2.5 0 004 21z"/><path d="M4 21V5.5M8.5 7.5h7M8.5 11h5"/></g></symbol>
+  <symbol id="n-faq" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 01-12.4 7.5L3.5 20.5l1-4.4A8.5 8.5 0 1120.5 12z"/><path d="M9.8 9.6a2.3 2.3 0 114 1.6c-.8.7-1.8 1.1-1.8 2.3M12 16.2h.01"/></g></symbol>
+  <symbol id="n-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></g></symbol>
+  <!-- toolkit -->
+  <symbol id="n-tshield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></g></symbol>
+  <symbol id="n-tbars" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V5M19 20v-6M3 20.5h18"/></g></symbol>
+  <symbol id="n-tshelf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 10v10"/></g></symbol>
+  <symbol id="n-tlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></g></symbol>
+  <symbol id="n-tarch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="5" rx="1"/><rect x="15" y="4" width="6" height="5" rx="1"/><rect x="9" y="15" width="6" height="5" rx="1"/><path d="M6 9v3h12V9M12 12v3"/></g></symbol>
+  <symbol id="n-ttarget" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2"/></g></symbol>
+  <symbol id="n-tkit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7M3 12.5h18M10.5 12.5v2h3v-2"/></g></symbol>
+  <!-- compliance -->
+  <symbol id="k-loc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6.5-5.6 6.5-11a6.5 6.5 0 10-13 0c0 5.4 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.4"/></g></symbol>
+  <symbol id="k-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="k-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="1.8"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><path d="M12 14.2v2.6"/></g></symbol>
+  <symbol id="k-explain" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h8l4 4v13h-12z"/><path d="M14.5 3.5v4h4"/><path d="M9.5 13l2 2 3.5-3.8"/></g></symbol>
+  <symbol id="k-scatter" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="6" rx="1.2"/><rect x="14" y="3" width="7" height="5" rx="1.2"/><rect x="5" y="14" width="6" height="6" rx="1.2"/><rect x="15" y="12" width="6" height="8" rx="1.2"/></g></symbol>
+  <symbol id="k-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/><path d="M10.6 9.4a1.7 1.7 0 113 1.1c-.6.5-1.3.8-1.3 1.7"/></g></symbol>
+  <symbol id="k-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/><path d="M4 4l16 16"/></g></symbol>
+</svg>
+<script>window.C9_NOINTRO = true;</script>
+
+<include src="./partials/nav.html">{"base":"../../"}</include>
+
+
+<main>
+<section class="hero tkhero" id="hero" aria-label="Camera &amp; VMS Compatibility Checker">
+  <div class="tkhero__bg" aria-hidden="true"></div>
+  <div class="wrap tkhero__inner">
+    <nav class="crumbs" aria-label="Breadcrumb" data-hero-in><a href="/">Home</a><i></i><a href="/toolkit/">Toolkit</a><i></i><b>Camera &amp; VMS Compatibility Checker</b></nav>
+    <span class="ihero__eyebrow" data-hero-in>CamCore · Check the fit</span>
+    <h1 id="heroTitle" data-shiny="cameras|you|already|own?">Will it work with the cameras you already own?</h1>
+    <p class="hero__sub">Almost certainly. CamCore reads existing feeds rather than replacing hardware. Pick your recording platform and camera brands for an instant verdict and a plain explanation of how it connects.</p>
+    <ul class="tkhero__meta" data-hero-in><li>No login</li><li>Instant verdict</li></ul>
+  </div>
+</section>
+
+<section class="tk" id="tool" aria-label="Camera &amp; VMS Compatibility Checker">
+<div class="wrap tool-grid">
+  <div>
+    <section class="tool-block">
+      <div class="tool-block__head"><h2>Your recording platform</h2></div>
+      <div class="tool-block__sub">CamCore pulls streams from the platform you already run. Pick the closest match.</div>
+      <div style="margin-bottom:16px"><div class="c9nav__group-label">On-premises VMS</div>
+        <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(190px,1fr))"><button type="button" class="card-toggle is-on" data-group="vms" data-single="true" data-value="Milestone XProtect"><strong>Milestone XProtect</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Genetec Security Center"><strong>Genetec Security Center</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Nx Witness"><strong>Nx Witness</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Hanwha Wisenet WAVE"><strong>Hanwha Wisenet WAVE</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Avigilon Unity"><strong>Avigilon Unity</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Bosch BVMS"><strong>Bosch BVMS</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="HikCentral"><strong>HikCentral</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Dahua DSS"><strong>Dahua DSS</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Honeywell MAXPRO"><strong>Honeywell MAXPRO</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Salient CompleteView"><strong>Salient CompleteView</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Luxriot EVO"><strong>Luxriot EVO</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Digifort"><strong>Digifort</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Mirasys"><strong>Mirasys</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="IDIS Solution Suite"><strong>IDIS Solution Suite</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Axxon One"><strong>Axxon One</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Qognify"><strong>Qognify</strong></button></div></div><div style="margin-bottom:16px"><div class="c9nav__group-label">Cloud video platforms</div>
+        <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(190px,1fr))"><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Eagle Eye Networks"><strong>Eagle Eye Networks</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Genetec Stratocast"><strong>Genetec Stratocast</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Arcules"><strong>Arcules</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Verkada Command"><strong>Verkada Command</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Cisco Meraki Vision"><strong>Cisco Meraki Vision</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Ava Aware"><strong>Ava Aware</strong></button></div></div><div style="margin-bottom:16px"><div class="c9nav__group-label">No VMS</div>
+        <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(190px,1fr))"><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Standalone NVR only"><strong>Standalone NVR only</strong></button><button type="button" class="card-toggle" data-group="vms" data-single="true" data-value="Cameras direct, no recorder"><strong>Cameras direct, no recorder</strong></button></div></div>
+    </section>
+    <section class="tool-block">
+      <div class="tool-block__head"><h2>Your camera brands</h2><span class="muted" style="font-size:13px"><i id="brandCount">0</i> selected</span></div>
+      <div class="tool-block__sub">Select every brand in the estate — mixed estates are normal and handled per stream.</div>
+      <div class="search-field"><input type="text" data-search-for="brandGrid" placeholder="Search brands…"></div>
+      <div class="chip-grid" id="brandGrid">
+        <button type="button" class="tk-chip is-on" data-group="brands" data-value="Hikvision" data-level="green"><span class="dot dot--green"></span>Hikvision</button><button type="button" class="tk-chip is-on" data-group="brands" data-value="Dahua" data-level="green"><span class="dot dot--green"></span>Dahua</button><button type="button" class="tk-chip" data-group="brands" data-value="Axis" data-level="green"><span class="dot dot--green"></span>Axis</button><button type="button" class="tk-chip" data-group="brands" data-value="Hanwha Vision" data-level="green"><span class="dot dot--green"></span>Hanwha Vision</button><button type="button" class="tk-chip" data-group="brands" data-value="Bosch" data-level="green"><span class="dot dot--green"></span>Bosch</button><button type="button" class="tk-chip" data-group="brands" data-value="Avigilon" data-level="green"><span class="dot dot--green"></span>Avigilon</button><button type="button" class="tk-chip" data-group="brands" data-value="Uniview" data-level="green"><span class="dot dot--green"></span>Uniview</button><button type="button" class="tk-chip" data-group="brands" data-value="Vivotek" data-level="green"><span class="dot dot--green"></span>Vivotek</button><button type="button" class="tk-chip" data-group="brands" data-value="Panasonic i-PRO" data-level="green"><span class="dot dot--green"></span>Panasonic i-PRO</button><button type="button" class="tk-chip" data-group="brands" data-value="Sony" data-level="green"><span class="dot dot--green"></span>Sony</button><button type="button" class="tk-chip" data-group="brands" data-value="Pelco" data-level="green"><span class="dot dot--green"></span>Pelco</button><button type="button" class="tk-chip" data-group="brands" data-value="Honeywell" data-level="green"><span class="dot dot--green"></span>Honeywell</button><button type="button" class="tk-chip" data-group="brands" data-value="Tiandy" data-level="green"><span class="dot dot--green"></span>Tiandy</button><button type="button" class="tk-chip" data-group="brands" data-value="CP Plus" data-level="green"><span class="dot dot--green"></span>CP Plus</button><button type="button" class="tk-chip" data-group="brands" data-value="Reolink" data-level="green"><span class="dot dot--green"></span>Reolink</button><button type="button" class="tk-chip" data-group="brands" data-value="Amcrest" data-level="green"><span class="dot dot--green"></span>Amcrest</button><button type="button" class="tk-chip" data-group="brands" data-value="Lorex" data-level="green"><span class="dot dot--green"></span>Lorex</button><button type="button" class="tk-chip" data-group="brands" data-value="TP-Link VIGI" data-level="green"><span class="dot dot--green"></span>TP-Link VIGI</button><button type="button" class="tk-chip" data-group="brands" data-value="Milesight" data-level="green"><span class="dot dot--green"></span>Milesight</button><button type="button" class="tk-chip" data-group="brands" data-value="Geovision" data-level="green"><span class="dot dot--green"></span>Geovision</button><button type="button" class="tk-chip" data-group="brands" data-value="ACTi" data-level="green"><span class="dot dot--green"></span>ACTi</button><button type="button" class="tk-chip" data-group="brands" data-value="Mobotix" data-level="amber"><span class="dot dot--amber"></span>Mobotix</button><button type="button" class="tk-chip" data-group="brands" data-value="Verkada" data-level="amber"><span class="dot dot--amber"></span>Verkada</button><button type="button" class="tk-chip" data-group="brands" data-value="Ubiquiti UniFi" data-level="amber"><span class="dot dot--amber"></span>Ubiquiti UniFi</button><button type="button" class="tk-chip" data-group="brands" data-value="Arlo" data-level="red"><span class="dot dot--red"></span>Arlo</button><button type="button" class="tk-chip" data-group="brands" data-value="Ring" data-level="red"><span class="dot dot--red"></span>Ring</button><button type="button" class="tk-chip" data-group="brands" data-value="Google Nest" data-level="red"><span class="dot dot--red"></span>Google Nest</button><button type="button" class="tk-chip" data-group="brands" data-value="Eufy" data-level="amber"><span class="dot dot--amber"></span>Eufy</button><button type="button" class="tk-chip" data-group="brands" data-value="Wyze" data-level="amber"><span class="dot dot--amber"></span>Wyze</button><button type="button" class="tk-chip" data-group="brands" data-value="Blink" data-level="red"><span class="dot dot--red"></span>Blink</button><button type="button" class="tk-chip" data-group="brands" data-value="Consumer Wi-Fi, brand unknown" data-level="red"><span class="dot dot--red"></span>Consumer Wi-Fi, brand unknown</button><button type="button" class="tk-chip" data-group="brands" data-value="Analog cameras, no encoder" data-level="red"><span class="dot dot--red"></span>Analog cameras, no encoder</button>
+      </div>
+      <div class="legend"><span><i class="dot dot--green"></i> Fully supported</span><span><i class="dot dot--amber"></i> Supported with notes</span><span><i class="dot dot--red"></i> Needs review</span></div>
+    </section>
+    <section class="tool-block">
+      <div class="tool-block__head"><h2>How are they connected?</h2></div>
+      <div class="tool-block__sub">This determines whether a small encoder or edge box is needed on site.</div>
+      <div class="cards"><button type="button" class="card-toggle is-on" data-group="conn" data-single="true" data-value="ip"><strong>IP cameras</strong><span>Networked cameras on site LAN</span></button><button type="button" class="card-toggle" data-group="conn" data-single="true" data-value="analog"><strong>Analog via DVR / encoder</strong><span>Coax cameras behind a recorder</span></button><button type="button" class="card-toggle" data-group="conn" data-single="true" data-value="mixed"><strong>Mixed IP and analog</strong><span>A mix across sites</span></button></div>
+    </section>
+  </div>
+  <aside>
+    <div class="rail">
+      <div class="rail__top"><div class="rail__live"><i></i> Live verdict</div></div>
+      <div class="verdict" id="verdictWrap"><span class="verdict__badge" id="verdict">—</span></div>
+      <p class="rail__cap" id="verdictText" style="margin-top:10px"></p>
+      <div class="rail__rows"><div class="rail__row"><span>Selection</span><b id="tally">—</b></div>
+        <div class="rail__row"><span>Platform</span><b id="platform">—</b></div>
+        <div class="rail__row"><span>Connection</span><b id="connOut">—</b></div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.09);margin-top:16px;padding-top:14px">
+        <div class="c9nav__group-label">How it connects</div>
+        <p class="rail__cap" id="howText"></p>
+      </div>
+      <div class="rail__rows" id="brandRows"></div>
+      <div class="rail__actions">
+        <a class="c9btn" href="/toolkit/pilot-planner/">Scope a pilot on these cameras →</a>
+        <button class="c9btn c9btn--ghost" type="button" data-share="">Copy my results link</button>
+      </div>
+      <form class="capture" data-capture="email-compatibility-confirmation">
+  <div class="capture__label">Get written confirmation by email</div>
+  <div class="capture__row"><input type="email" placeholder="you@company.com" required=""><button class="c9btn c9btn--sm" type="submit">Send</button></div>
+  <div class="capture__note">One click, email only. Logged as a self-serve lead — no call booked.</div>
+</form>
+      <details class="disclosure"><summary>What CamCore needs from a camera stream</summary><ul><li>An ONVIF Profile S or RTSP stream reachable from the site network — the same stream your recorder already uses.</li><li>A secondary or sub-stream is preferred so analysis never competes with recording. CamCore does not alter retention or recording behaviour.</li><li>Analog cameras work through an existing DVR or a small encoder; the coax and camera stay in place.</li><li>Minimum useful resolution depends on the use case: 1080p for PPE and person detection, higher for small-object or plate work.</li><li>Processing happens on site, so uplink bandwidth is used for events and clips rather than continuous video.</li><li>Cloud platforms are rated "with notes" because stream or API access has to be confirmed per platform. Verkada Command needs review. Ring, Google Nest and Arlo generally do not expose an RTSP stream. Levels to be confirmed by Core9 engineering.</li><li>A brand not on this list is not a blocker — anything that speaks ONVIF or RTSP can be reviewed in a day.</li></ul></details>
+    </div>
+  </aside>
+</div>
+</section>
+<div class="tkdock" data-src="verdict" data-target=".rail" aria-hidden="true"><span>Compatibility</span><b>—</b><a href="#tool" tabindex="-1">See results <svg><use href="#i-arrow"/></svg></a></div><script>
+(function () {
+  var d = document.querySelector('.tkdock'); if (!d) return;
+  var src = document.getElementById(d.getAttribute('data-src')), tgt = document.querySelector(d.getAttribute('data-target')), out = d.querySelector('b');
+  if (!src || !tgt) return;
+  function copy() { out.textContent = src.textContent; }
+  new MutationObserver(copy).observe(src, { childList: true, characterData: true, subtree: true }); copy();
+  var tool = document.getElementById('tool'), inTool = false, railVis = false;
+  function sync() { d.classList.toggle('is-on', inTool && !railVis); }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { inTool = e[0].isIntersecting; sync(); }, { rootMargin: '-30% 0px -30% 0px' }).observe(tool);
+    new IntersectionObserver(function (e) { railVis = e[0].isIntersecting; sync(); }, { threshold: 0.05 }).observe(tgt);
+  }
+  d.querySelector('a').addEventListener('click', function (e) {
+    e.preventDefault(); var y = tgt.getBoundingClientRect().top + window.pageYOffset - 90;
+    if (window.C9Lenis) window.C9Lenis.scrollTo(y, { duration: 1.1 }); else window.scrollTo({ top: y, behavior: 'smooth' });
+  });
+})();
+</script>
+
+<section class="tknext" aria-label="Where to go next">
+  <div class="wrap">
+    <div class="tknext__head"><h2 class="split">Where to go next.</h2><a class="link-arrow" href="/toolkit/">All tools in the toolkit <svg class="arr"><use href="#i-arrow"/></svg></a></div>
+    <div class="tknext__grid"><a class="tcard spot" href="/toolkit/safety-efficiency-roi/" data-reveal><div class="tcard__top"><span class="tcard__ico"><svg><use href="#n-tbars"/></svg></span><span class="tcard__tag">CamCore</span></div><h3>Safety &amp; Efficiency ROI Calculator</h3><p>Now that it fits, size what CamCore is worth on those cameras.</p><span class="link-arrow">Open the calculator <svg class="arr"><use href="#i-arrow"/></svg></span></a><a class="tcard spot" href="/toolkit/pilot-planner/" data-reveal><div class="tcard__top"><span class="tcard__ico"><svg><use href="#n-ttarget"/></svg></span><span class="tcard__tag">All products</span></div><h3>Pilot Planner</h3><p>Scope a pilot on a slice of this estate.</p><span class="link-arrow">Plan a pilot <svg class="arr"><use href="#i-arrow"/></svg></span></a></div>
+  </div>
+</section>
+
+<section class="cta" id="demo" aria-label="Book a demo">
+  <div class="glow a"></div><div class="glow b"></div>
+  <div class="radar" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-scramble style="margin-bottom:28px">Book a demo</span>
+    <h2 class="h2 split">Done with the homework?</h2>
+    <p class="lead" data-reveal>Book a demo and we will walk through your own numbers with you.</p>
+    <div class="cta__row" data-reveal>
+      <a class="btn btn--gold btn--xl magnet" href="#book-demo">Book a Demo <svg class="arr"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--xl magnet" href="mailto:info@core9.ai">info@core9.ai</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<include src="./partials/footer.html">{"base":"../../","tagline":"Toolkit · Self-serve, in your browser"}</include>
+
+<script src="../../js/vendor/gsap.min.js"></script>
+<script src="../../js/vendor/ScrollTrigger.min.js"></script>
+<script src="../../js/vendor/SplitText.min.js"></script>
+<script src="../../js/vendor/lenis.min.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/tk-runtime.js"></script>
+<script src="../../js/tk-camera-vms-checker.js"></script>
+<include src="./partials/demo.html">{}</include>
+<script src="../../js/site.js"></script>
+</body>
+</html>

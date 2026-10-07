@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pilot Planner | Core9 Toolkit</title>
+<meta name="description" content="Scope a Core9 pilot in four steps and request it as a written plan.">
+<meta name="theme-color" content="#08050e">
+<link rel="icon" href="../../assets/images/favicon.png">
+<link rel="stylesheet" href="../../styles/fonts.css">
+<link rel="stylesheet" href="../../styles/main.css">
+<link rel="stylesheet" href="../../styles/site.css">
+<link rel="stylesheet" href="../../styles/demo.css">
+<link rel="stylesheet" href="../../styles/toolkit.css">
+<script>document.documentElement.className='js';</script>
+</head>
+<body id="top" class="page-tk" data-tool="pilot-planner">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.6l3.1 3.1L13 4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 20 20"><path d="M7 5.2v9.6L15 10z" fill="currentColor"/></symbol>
+  <!-- industries -->
+  <symbol id="n-fleet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5h11v10h-11z"/><path d="M13.5 10h4l3 3.2v3.3h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol>
+  <symbol id="n-ware" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V8.5L12 4l9 4.5v12"/><path d="M7 20.5v-8h10v8"/><path d="M7 16.5h10"/></g></symbol>
+  <symbol id="n-mfg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5V11l5 3V11l5 3V11l5 3V5.5h3v15z"/><path d="M7 17.5h2M12 17.5h2"/></g></symbol>
+  <symbol id="n-retail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h2.4l2.2 10.2h10.2l2.2-7H6.6"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></g></symbol>
+  <!-- resources -->
+  <symbol id="n-tools" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18.2h.01M12 18.2h3.5"/></g></symbol>
+  <symbol id="n-insights" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15.5H6.5A2.5 2.5 0 004 21z"/><path d="M4 21V5.5M8.5 7.5h7M8.5 11h5"/></g></symbol>
+  <symbol id="n-faq" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 01-12.4 7.5L3.5 20.5l1-4.4A8.5 8.5 0 1120.5 12z"/><path d="M9.8 9.6a2.3 2.3 0 114 1.6c-.8.7-1.8 1.1-1.8 2.3M12 16.2h.01"/></g></symbol>
+  <symbol id="n-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></g></symbol>
+  <!-- toolkit -->
+  <symbol id="n-tshield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></g></symbol>
+  <symbol id="n-tbars" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V5M19 20v-6M3 20.5h18"/></g></symbol>
+  <symbol id="n-tshelf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 10v10"/></g></symbol>
+  <symbol id="n-tlink" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></g></symbol>
+  <symbol id="n-tarch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="5" rx="1"/><rect x="15" y="4" width="6" height="5" rx="1"/><rect x="9" y="15" width="6" height="5" rx="1"/><path d="M6 9v3h12V9M12 12v3"/></g></symbol>
+  <symbol id="n-ttarget" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2"/></g></symbol>
+  <symbol id="n-tkit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5.5A1.5 1.5 0 0110.5 4h3A1.5 1.5 0 0115 5.5V7M3 12.5h18M10.5 12.5v2h3v-2"/></g></symbol>
+  <!-- compliance -->
+  <symbol id="k-loc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6.5-5.6 6.5-11a6.5 6.5 0 10-13 0c0 5.4 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.4"/></g></symbol>
+  <symbol id="k-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="k-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="1.8"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><path d="M12 14.2v2.6"/></g></symbol>
+  <symbol id="k-explain" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h8l4 4v13h-12z"/><path d="M14.5 3.5v4h4"/><path d="M9.5 13l2 2 3.5-3.8"/></g></symbol>
+  <symbol id="k-scatter" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="6" rx="1.2"/><rect x="14" y="3" width="7" height="5" rx="1.2"/><rect x="5" y="14" width="6" height="6" rx="1.2"/><rect x="15" y="12" width="6" height="8" rx="1.2"/></g></symbol>
+  <symbol id="k-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/><path d="M10.6 9.4a1.7 1.7 0 113 1.1c-.6.5-1.3.8-1.3 1.7"/></g></symbol>
+  <symbol id="k-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/><path d="M4 4l16 16"/></g></symbol>
+</svg>
+<script>window.C9_NOINTRO = true;</script>
+
+<include src="./partials/nav.html">{"base":"../../"}</include>
+
+
+<main>
+<section class="hero tkhero" id="hero" aria-label="Pilot Planner">
+  <div class="tkhero__bg" aria-hidden="true"></div>
+  <div class="wrap tkhero__inner">
+    <nav class="crumbs" aria-label="Breadcrumb" data-hero-in><a href="/">Home</a><i></i><a href="/toolkit/">Toolkit</a><i></i><b>Pilot Planner</b></nav>
+    <span class="ihero__eyebrow" data-hero-in>All products · Plan your deployment</span>
+    <h1 id="heroTitle" data-shiny="four|steps.">Scope your pilot in four steps.</h1>
+    <p class="hero__sub">Every Core9 deployment starts with a pilot on part of your estate. Answer four questions for an indicative plan: scope, duration, what each side provides, and the metrics it will be judged on.</p>
+    <ul class="tkhero__meta" data-hero-in><li>No login</li><li>Four steps</li></ul>
+  </div>
+</section>
+
+<section class="tk" id="tool" aria-label="Pilot Planner">
+<div class="wrap steps-wrap">
+  <div class="steps">
+    <button class="step-tab is-on" data-step="1" type="button"><i>1</i> Product</button>
+    <button class="step-tab" data-step="2" type="button"><i>2</i> Industry &amp; scale</button>
+    <button class="step-tab" data-step="3" type="button"><i>3</i> Focus</button>
+    <button class="step-tab" data-step="4" type="button"><i>4</i> Your pilot plan</button>
+  </div>
+</div>
+<div class="wrap tool-grid">
+  <div>
+    <div class="step-panel is-on" data-panel="1">
+      <section class="tool-block">
+        <div class="tool-block__head"><h2>Which product is the pilot for?</h2></div>
+        <div class="tool-block__sub">Pilots run on one product at a time. Multi-product programmes are sequenced, not combined.</div>
+        <div class="cards"><button type="button" class="card-toggle is-on" data-group="product" data-single="true" data-value="camcore"><strong>CamCore</strong><span>AI on your existing CCTV — safety, hazard and process events</span></button><button type="button" class="card-toggle" data-group="product" data-single="true" data-value="drivesense"><strong>DriveSense</strong><span>On-vehicle AI for driver behaviour, fatigue and collision risk</span></button><button type="button" class="card-toggle" data-group="product" data-single="true" data-value="illytical"><strong>illytical</strong><span>Shelf vision for stock gaps and planogram compliance</span></button></div>
+        <div style="margin-top:20px"><button class="c9btn" type="button" data-next="2">Continue</button></div>
+      </section>
+    </div>
+    <div class="step-panel" data-panel="2">
+      <section class="tool-block">
+        <div class="tool-block__head"><h2>Industry and scale</h2></div>
+        <div class="tool-block__sub">Pilot scope stays deliberately small — enough to prove the pattern, not to boil the ocean.</div>
+        <div class="cards"><button type="button" class="card-toggle is-on" data-group="industry" data-single="true" data-value="manufacturing"><strong>Manufacturing</strong><span>Production lines, PPE zones, machine areas</span></button><button type="button" class="card-toggle" data-group="industry" data-single="true" data-value="warehousing"><strong>Warehousing &amp; DC</strong><span>Docks, aisles, forklift traffic</span></button><button type="button" class="card-toggle" data-group="industry" data-single="true" data-value="logistics"><strong>Logistics &amp; transport</strong><span>Yards, gates, road fleets</span></button><button type="button" class="card-toggle" data-group="industry" data-single="true" data-value="retail"><strong>Retail</strong><span>Store floor, back-of-house, shelves</span></button></div>
+        <div class="slider">
+  <div class="slider__head"><span class="slider__label">Units in the pilot (cameras, vehicles or stores)</span><span class="slider__val" id="scaleVal"></span></div>
+  <input type="range" id="scale" min="5" max="200" value="30" step="1" data-format="num">
+  <div class="slider__caps"><span>5</span><span>200</span></div>
+</div>
+        <div class="slider">
+  <div class="slider__head"><span class="slider__label">Sites, depots or stores involved</span><span class="slider__val" id="sitesVal"></span></div>
+  <input type="range" id="sites" min="1" max="20" value="2" step="1" data-format="num">
+  <div class="slider__caps"><span>1</span><span>20</span></div>
+</div>
+        <div style="margin-top:20px"><button class="c9btn" type="button" data-next="3">Continue</button></div>
+      </section>
+    </div>
+    <div class="step-panel" data-panel="3">
+      <section class="tool-block">
+        <div class="tool-block__head"><h2>What should the pilot prove?</h2></div>
+        <div class="tool-block__sub">Pick two or three. Each one becomes a measured success criterion in the written scope.</div>
+        <div id="focusCards"></div>
+        <div style="margin-top:20px"><button class="c9btn" type="button" data-next="4">See my pilot plan</button></div>
+      </section>
+    </div>
+    <div class="step-panel" data-panel="4">
+      <section class="tool-block">
+        <div class="tool-block__head"><h2>Your indicative pilot plan</h2></div>
+        <div class="tool-block__sub">Generated from your four answers. Everything here is indicative until it is written up and agreed.</div>
+        <div class="plan-list" id="plan"></div>
+        <p class="placeholder-note">Pilots carry no charge. Duration bands are planning figures, confirmed in your written plan.</p>
+      </section>
+      <section class="gate">
+        <h2 style="font-size:19px">Get the written plan for your pilot</h2>
+        <p class="muted" style="font-size:14px;margin-top:8px">This is the one place on the site that asks for more than an email — you are asking us to write up your pilot plan, so we need to know who it is for.</p>
+        <form data-gate="">
+          <div class="gate__grid">
+            <label>First name<input name="firstName" required=""></label>
+            <label>Last name<input name="lastName" required=""></label>
+            <label class="gate__full">Work email<input name="email" type="email" required=""></label>
+            <label>Company<input name="company" required=""></label>
+            <label>Phone<div style="display:flex;gap:8px"><select name="code" style="max-width:120px"><option>+92 Pakistan</option><option>+966 Saudi Arabia</option><option>+62 Indonesia</option><option>+971 UAE</option><option>+974 Qatar</option><option>+973 Bahrain</option><option>+965 Kuwait</option><option>+968 Oman</option><option>+65 Singapore</option><option>+60 Malaysia</option><option>+44 United Kingdom</option><option>+1 United States</option></select><input name="phone" style="flex:1;min-width:0"></div></label>
+          </div>
+          <button class="c9btn" type="submit">Request my pilot plan</button>
+          <p class="capture__note" style="margin-top:12px">Your written pilot plan is sent to the email above.</p>
+        </form>
+        <div data-gate-done="" style="display:none">
+          <p style="color:#4ade80">Request received. Our team will email your written pilot plan and contact you to confirm the scope.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+  <aside>
+    <div class="rail">
+      <div class="rail__top"><div class="rail__live"><i></i> Pilot summary</div></div>
+      <div class="rail__figure"><span class="rail__num rail__num--sm" id="prodOut">—</span><span class="rail__cap" id="scopeOut">—</span></div>
+      <div class="rail__pair">
+        <div class="rail__cell"><b id="weeks">—</b><span>indicative duration</span></div>
+        <div class="rail__cell"><b id="price">—</b><span>cost to you</span></div>
+      </div>
+      <div class="rail__rows">
+        <div class="rail__row"><span>Sites involved</span><b id="sitesOut">—</b></div>
+        <div class="rail__row"><span>Success criteria</span><b id="focusOut">—</b></div>
+        <div class="rail__row"><span>Report cadence</span><b>Weekly, plus a closing review</b></div>
+      </div>
+      <div class="rail__actions">
+        <button class="c9btn" type="button" data-share="">Copy my plan link</button>
+        <a class="c9btn c9btn--ghost" href="#book-demo">Book a Demo instead</a>
+      </div>
+      <p class="capture__note">Not ready to be written up? Size the value first with the ROI calculators below.</p>
+      <details class="disclosure"><summary>What a Core9 pilot assumes</summary><ul><li>The pilot runs on your existing cameras, vehicles or stores — no rip-and-replace needed.</li><li>Duration bands: 4 weeks for small single-site scopes, 6–8 weeks for multi-site, plus a week of setup.</li><li>Core9 provides configuration, the edge or on-vehicle hardware for the pilot period, tuning, and the closing report. You provide site access, stream or vehicle access, and one operational owner.</li><li>Success criteria are agreed in writing before the pilot starts, and measured against your own baseline — not against a Core9 benchmark.</li><li>The pilot carries no charge. Scope, duration and exit criteria are agreed in writing up front, with no obligation to continue.</li></ul></details>
+    </div>
+  </aside>
+</div>
+</section>
+<div class="tkdock" data-src="weeks" data-target=".rail" aria-hidden="true"><span>Indicative pilot</span><b>—</b><a href="#tool" tabindex="-1">See results <svg><use href="#i-arrow"/></svg></a></div><script>
+(function () {
+  var d = document.querySelector('.tkdock'); if (!d) return;
+  var src = document.getElementById(d.getAttribute('data-src')), tgt = document.querySelector(d.getAttribute('data-target')), out = d.querySelector('b');
+  if (!src || !tgt) return;
+  function copy() { out.textContent = src.textContent; }
+  new MutationObserver(copy).observe(src, { childList: true, characterData: true, subtree: true }); copy();
+  var tool = document.getElementById('tool'), inTool = false, railVis = false;
+  function sync() { d.classList.toggle('is-on', inTool && !railVis); }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { inTool = e[0].isIntersecting; sync(); }, { rootMargin: '-30% 0px -30% 0px' }).observe(tool);
+    new IntersectionObserver(function (e) { railVis = e[0].isIntersecting; sync(); }, { threshold: 0.05 }).observe(tgt);
+  }
+  d.querySelector('a').addEventListener('click', function (e) {
+    e.preventDefault(); var y = tgt.getBoundingClientRect().top + window.pageYOffset - 90;
+    if (window.C9Lenis) window.C9Lenis.scrollTo(y, { duration: 1.1 }); else window.scrollTo({ top: y, behavior: 'smooth' });
+  });
+})();
+</script>
+
+<section class="tknext" aria-label="Where to go next">
+  <div class="wrap">
+    <div class="tknext__head"><h2 class="split">Where to go next.</h2><a class="link-arrow" href="/toolkit/">All tools in the toolkit <svg class="arr"><use href="#i-arrow"/></svg></a></div>
+    <div class="tknext__grid"><a class="tcard spot" href="/toolkit/safety-efficiency-roi/" data-reveal><div class="tcard__top"><span class="tcard__ico"><svg><use href="#n-tbars"/></svg></span><span class="tcard__tag">CamCore</span></div><h3>Safety &amp; Efficiency ROI Calculator</h3><p>Size the CamCore value on your own numbers first.</p><span class="link-arrow">Open the calculator <svg class="arr"><use href="#i-arrow"/></svg></span></a><a class="tcard spot" href="/toolkit/fleet-risk-savings/" data-reveal><div class="tcard__top"><span class="tcard__ico"><svg><use href="#n-tshield"/></svg></span><span class="tcard__tag">DriveSense</span></div><h3>Fleet Risk &amp; Savings Calculator</h3><p>For fleet pilots: score risk today and project the saving.</p><span class="link-arrow">Open the calculator <svg class="arr"><use href="#i-arrow"/></svg></span></a><a class="tcard spot" href="/toolkit/shelf-audit-roi/" data-reveal><div class="tcard__top"><span class="tcard__ico"><svg><use href="#n-tshelf"/></svg></span><span class="tcard__tag">illytical</span></div><h3>Shelf Audit ROI Calculator</h3><p>For store pilots: recovered revenue and audit hours.</p><span class="link-arrow">Open the calculator <svg class="arr"><use href="#i-arrow"/></svg></span></a></div>
+  </div>
+</section>
+
+<section class="cta" id="demo" aria-label="Book a demo">
+  <div class="glow a"></div><div class="glow b"></div>
+  <div class="radar" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-scramble style="margin-bottom:28px">Book a demo</span>
+    <h2 class="h2 split">Done with the homework?</h2>
+    <p class="lead" data-reveal>Book a demo and we will walk through your own numbers with you.</p>
+    <div class="cta__row" data-reveal>
+      <a class="btn btn--gold btn--xl magnet" href="#book-demo">Book a Demo <svg class="arr"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost btn--xl magnet" href="mailto:info@core9.ai">info@core9.ai</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<include src="./partials/footer.html">{"base":"../../","tagline":"Toolkit · Self-serve, in your browser"}</include>
+
+<script src="../../js/vendor/gsap.min.js"></script>
+<script src="../../js/vendor/ScrollTrigger.min.js"></script>
+<script src="../../js/vendor/SplitText.min.js"></script>
+<script src="../../js/vendor/lenis.min.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/tk-runtime.js"></script>
+<script src="../../js/tk-pilot-planner.js"></script>
+<include src="./partials/demo.html">{}</include>
+<script src="../../js/site.js"></script>
+</body>
+</html>
